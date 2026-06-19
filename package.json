@@ -1,0 +1,23 @@
+{
+  "name": "twixxt",
+  "type": "module",
+  "version": "2.0.0",
+  "description": "my portfolio. nobody asked for it.",
+  "author": "twixxty <glarglecheeseball@gmail.com>",
+  "license": "do whatever",
+  "homepage": "https://twixxt.vercel.app",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/twixxty/portfolio-26"
+  },
+  "scripts": {
+    "dev": "astro dev",
+    "build": "astro build",
+    "preview": "astro preview",
+    "start": "astro dev"
+  },
+  "dependencies": {
+    "astro": "^4.16.0",
+    "lenis": "^1.1.14"
+  }
+}
