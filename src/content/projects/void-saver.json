@@ -1,0 +1,13 @@
+{
+  "href": "https://voidsaver.netlify.app",
+  "image": "../../assets/images/void.avif",
+  "imageAlt": "void-saver",
+  "video": "/videos/void.webm",
+  "index": "ex",
+  "date": "03/24",
+  "title": "void-saver",
+  "desc": "it's really just an uncomfortably resource hungry screensaver",
+  "statNum": "7",
+  "statLabel": "devices destroyed.",
+  "order": 4
+}

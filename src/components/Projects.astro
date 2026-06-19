@@ -1,0 +1,48 @@
+---
+import { getCollection } from 'astro:content';
+import { Image } from 'astro:assets';
+
+const allProjects = await getCollection('projects');
+const projects = allProjects.sort((a, b) => a.data.order - b.data.order);
+---
+
+<section id="projects" class="projects-section">
+  {projects.map((p) => (
+    <a href={p.data.href} class="project-link" target="_blank" rel="noopener noreferrer">
+      <article class="project-card">
+        <div class="project-media">
+          <Image
+            src={p.data.image}
+            alt={p.data.imageAlt}
+            class="project-image"
+            loading="lazy"
+            decoding="async"
+            width={1200}
+            height={800}
+            widths={[400, 800, 1200]}
+            sizes="(max-width: 768px) 100vw, 80vw"
+          />
+          <video class="project-video" muted loop playsinline preload="none">
+            <source src={p.data.video} type="video/webm" />
+          </video>
+        </div>
+        <div class="project-info">
+          <div class="project-index">{p.data.index} —<span>{p.data.date}</span></div>
+          <h2>{p.data.title}</h2>
+          <p>{p.data.desc}</p>
+          <div class="project-stat">
+            <strong>{p.data.statNum}</strong>
+            <span>{p.data.statLabel}</span>
+          </div>
+        </div>
+      </article>
+    </a>
+  ))}
+
+  <div class="archive-section">
+    <a href="https://classixxty.vercel.app" class="archive-row" target="_blank" rel="noopener noreferrer">
+      <span class="archive-title">OLD FUN WEBSITE</span>
+      <div class="archive-arrow">↗</div>
+    </a>
+  </div>
+</section>

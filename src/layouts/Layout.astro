@@ -1,0 +1,60 @@
+---
+export interface Props {
+  title?: string;
+  description?: string;
+}
+
+const {
+  title = "twixxty's portfolio",
+  description = "twixxty's portfolio. Just another web dev making resource-hungry sites that absolutely nobody asked for.",
+} = Astro.props;
+---
+
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <title>{title}</title>
+    <meta name="description" content={description} />
+    <meta name="keywords" content="twixxty, twixxty portfolio, glargle cheeseball, web developer, front-end developer, ui designer" />
+
+    
+    <meta property="og:title" content="twixxt" />
+    <meta property="og:description" content="twixxty's personal webpage – a web developer, video editor, and tech enthusiast." />
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content="https://twixxt.vercel.app" />
+    <meta property="og:image" content="/images/favicon.avif" />
+
+    
+    <link rel="icon" type="image/avif" href="/images/favicon.avif" />
+
+    
+    <link rel="preconnect" href="https://avatar-cyan.vercel.app" />
+
+    
+    <link rel="preload" href="/images/background.avif" as="image" type="image/avif" />
+
+    
+    <link rel="preload" href="/fonts/StackSansNotch-VariableFont_wght.woff2" as="font" type="font/woff2" crossorigin />
+    <link rel="preload" href="/fonts/Poppins-Bold.woff2" as="font" type="font/woff2" crossorigin />
+    <link rel="preload" href="/fonts/Poppins-Regular.woff2" as="font" type="font/woff2" crossorigin />
+    <link rel="preload" href="/fonts/Poppins-Black.woff2" as="font" type="font/woff2" crossorigin />
+    <link rel="preload" href="/fonts/TAN-Moonlight/TAN-MOONLIGHT-Regular.woff2" as="font" type="font/woff2" crossorigin />
+    <link rel="preload" href="/fonts/GoogleSansCode-VariableFont_MONO,wght.woff2" as="font" type="font/woff2" crossorigin />
+
+    
+    <link rel="stylesheet" href="/styles.css" media="print" onload="this.media='all';this.onload=null" />
+    <noscript><link rel="stylesheet" href="/styles.css" /></noscript>
+
+    
+    <style is:inline>html.lenis,html.lenis body{height:auto}.lenis-smooth{scroll-behavior:auto!important}.lenis-smooth [data-lenis-prevent]{scroll-control:none}.lenis-target{scroll-behavior:auto!important}.lenis-stopped{overflow:hidden}.lenis-scrolling iframe{pointer-events:none}.menu-overlay,.top-nav{pointer-events:none;opacity:0}.hero-bg,.hero-overlay-video,.hero-subtext,.hero-title,.nav-links-nav li,.scroll-down span,.top-nav{opacity:0}*{margin:0;padding:0;-webkit-tap-highlight-color:#fff0;box-sizing:border-box}:root{--background:#222;--font-notch:"Stack Sans Notch",sans-serif}body{background:var(--background);overflow-x:hidden}.hero{position:relative;width:100%;height:100svh;display:flex;align-items:center;justify-content:center;overflow:hidden;background:var(--background)}@media (max-width:768px){.top-nav-links{display:none}}.about-side-panel{transform:translateX(100%)}.hero-bg{background:linear-gradient(rgb(0 0 0 / .45),rgb(0 0 0 / .45)),url(/images/background.avif) center/cover no-repeat}</style>
+  </head>
+  <body>
+    <slot />
+
+    
+    <script is:inline defer src="/lenis/lenis.min.js"></script>
+    <script is:inline defer src="/scripts.js"></script>
+  </body>
+</html>

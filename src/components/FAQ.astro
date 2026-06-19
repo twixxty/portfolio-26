@@ -1,0 +1,46 @@
+---
+import { getCollection } from 'astro:content';
+import { Image } from 'astro:assets';
+import ozone from '../assets/images/ozone.avif';
+
+const allFaqs = await getCollection('faqs');
+const faqs = allFaqs.sort((a, b) => a.data.order - b.data.order);
+---
+
+<section id="faq" class="faq-section">
+  <div class="faq-right">
+    <h2 class="faq-heading">before you ask questions, READ!</h2>
+    <div class="faq-list">
+      {faqs.map((item) => (
+        <div class="faq-item">
+          <button class="faq-trigger">
+            <span class="faq-title">{item.data.question}</span>
+          </button>
+          <div class="faq-content">
+            <p class="faq-content-inner">{item.data.answer}</p>
+          </div>
+        </div>
+      ))}
+    </div>
+  </div>
+  <div class="faq-left">
+    <div class="faq-sticky">
+      <div class="faq-profile">
+        <Image
+          src={ozone}
+          alt="twixxty avatar"
+          class="faq-avatar"
+          width={120}
+          height={120}
+          loading="lazy"
+          decoding="async"
+        />
+        <h3>got more questions?<br />(stupid)</h3>
+        <a href="#" class="faq-btn contact-trigger">
+          <span class="faq-btn-text"><span>talk to twixxty</span><span>talk to twixxty</span></span>
+          <div class="faq-arrow-box"><span>↗</span><span>↗</span></div>
+        </a>
+      </div>
+    </div>
+  </div>
+</section>

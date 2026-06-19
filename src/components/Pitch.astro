@@ -1,0 +1,40 @@
+---
+import { Image } from 'astro:assets';
+import pitchBg from '../assets/images/pitch.avif';
+
+const words = ["feel", "like", "your", "company", "is", "doing", "a", "little", "too", "well?"];
+---
+
+<div class="reveal-container">
+  <section id="pitch" class="pitch-section">
+    <div class="pitch-media-wrapper project-media">
+      <Image
+        src={pitchBg}
+        alt="Background Canvas"
+        class="project-image pitch-parallax-bg"
+        loading="lazy"
+        decoding="async"
+        widths={[800, 1200, 1600]}
+        sizes="100vw"
+      />
+    </div>
+    <div class="pitch-container">
+      <div class="pitch-sticky-content">
+        <h2 class="pitch-statement">
+          {words.map((word) => (
+            <span class="pitch-word-mask"><span>{word}</span></span>
+          ))}
+        </h2>
+        <div class="pitch-action-wrapper">
+          <a href="#" class="faq-btn pitch-btn contact-trigger">
+            <span class="faq-btn-text">
+              <span>better call twixxty</span>
+              <span>better call twixxty</span>
+            </span>
+            <div class="faq-arrow-box"><span>↗</span><span>↗</span></div>
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+</div>

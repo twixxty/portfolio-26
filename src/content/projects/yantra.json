@@ -1,0 +1,13 @@
+{
+  "href": "https://yantra-launcher.vercel.app",
+  "image": "../../assets/images/yantra.avif",
+  "imageAlt": "Yantra Launcher",
+  "video": "/videos/yantra.webm",
+  "index": "wd",
+  "date": "05/25",
+  "title": "Yantra Launcher homepage",
+  "desc": "i made the terminal version of the website hehe :>",
+  "statNum": "3M",
+  "statLabel": "bugs",
+  "order": 2
+}

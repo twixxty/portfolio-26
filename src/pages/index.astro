@@ -1,0 +1,48 @@
+---
+import Layout from '../layouts/Layout.astro';
+import Nav from '../components/Nav.astro';
+import Hero from '../components/Hero.astro';
+import Projects from '../components/Projects.astro';
+import Testimonials from '../components/Testimonials.astro';
+import FAQ from '../components/FAQ.astro';
+import Pitch from '../components/Pitch.astro';
+import Contact from '../components/Contact.astro';
+import Panels from '../components/Panels.astro';
+---
+
+<Layout>
+  
+  <script is:inline>
+    history.scrollRestoration && (history.scrollRestoration = 'manual');
+    window.scrollTo(0, 0);
+  </script>
+
+  <Nav />
+  <div class="noise-overlay" aria-hidden="true"></div>
+
+  <main>
+    <Hero />
+
+    
+    <section class="big-text-section">
+      <h2 class="massive-statement" id="baitSwitchText">
+        <span class="word">making</span>
+        <span class="word">stuff</span>
+        <span class="word">look</span>
+        <span class="reveal-wrapper">
+          <span class="fake-word">gayyyyyy</span>
+          <span class="real-word">cool</span>
+        </span>
+      </h2>
+    </section>
+
+    <Projects />
+    <Testimonials />
+    <FAQ />
+    <Pitch />
+    <Contact />
+  </main>
+
+  <div class="contact-shifted-wrapper"></div>
+  <Panels />
+</Layout>
