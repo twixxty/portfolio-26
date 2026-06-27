@@ -4,17 +4,10 @@ export default defineConfig({
   site: 'https://twixxt.vercel.app',
   compressHTML: true,
   build: {
-    
-    inlineStylesheets: 'auto',
+    inlineStylesheets: 'always',
   },
   image: {
-    
-    
     defaultFormat: 'avif',
     quality: 80,
-  },
-  experimental: {
-    
-    contentLayer: true,
-  },
+  }
 });
