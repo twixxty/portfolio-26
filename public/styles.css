@@ -2,7 +2,7 @@
 .panel-banner-container {
   width: 100%;
   margin-top: 1.5rem;
-  margin-bottom: 1.5rem;
+  margin-bottom: 0.5rem;
 }
 
 .panel-banner-container img {
@@ -12,6 +12,3 @@
   object-fit: cover;
 }
 
-.panel-banner-container + p {
-  margin-top: 1rem;
-}
