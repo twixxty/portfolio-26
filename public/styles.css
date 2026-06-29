@@ -1864,7 +1864,8 @@ main {
 }
 
 .panel-content {
-	padding-top: 3rem;
+	margin-top: 1rem;
+	padding-top: 2rem;
 	display: flex;
 	flex-direction: column;
 	gap: 2rem;
