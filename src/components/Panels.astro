@@ -1,6 +1,7 @@
 ---
 import { Image } from 'astro:assets';
 import caot from '../assets/images/caot.avif';
+import caotBanner from '../assets/images/caotbanner.avif';
 ---
 
 <aside class="about-side-panel" id="aboutPanel" aria-label="About me">
@@ -8,7 +9,7 @@ import caot from '../assets/images/caot.avif';
     <kbd>esc</kbd>
   </button>
   <div class="panel-content" data-lenis-prevent>
-    <h2 class="about-word-mask">About Me</h2>
+    <h2 class="about-word-mask">About Me (WORK IN PROGRESS)</h2>
     <div class="panel-image-container">
       <Image
         src={caot}
@@ -26,8 +27,20 @@ import caot from '../assets/images/caot.avif';
     <p class="about-word-mask">
       I love to enchant websites (with blackmagic) and sometimes make video edits (lost practice but I was good at it. trust me bro).
     </p>
+    <div class="panel-banner-container">
+      <Image
+        src={caotBanner} 
+        alt="banner"
+        loading="lazy"
+        decoding="async"
+      />
+    </div>
+    <p class="about-word-mask">
+      caot
+    </p>
   </div>
 </aside>
+
 
 <aside class="about-side-panel contact-side-panel" id="contactPanel" aria-label="Contact form">
   <button class="panel-close-btn" id="contactClose" aria-label="Close contact panel">
