@@ -2,7 +2,6 @@
 import { Image } from 'astro:assets';
 import caot from '../assets/images/caot.avif';
 ---
-
 <aside class="about-side-panel" id="aboutPanel" aria-label="About me">
   <button class="panel-close-btn" id="panelClose" aria-label="Close about panel">
     <kbd>esc</kbd>
@@ -27,31 +26,30 @@ import caot from '../assets/images/caot.avif';
       I love to enchant websites (with blackmagic) and sometimes make video edits (lost practice but I was good at it. trust me bro).
     </p>
     <div class="panel-banner-container">
-  <img
-    src="/images/caotbanner.avif" 
-    alt="banner"
-    loading="lazy"
-    decoding="async"
-  />
-</div><p class="about-word-mask">here's caot:</p>
-<p class="about-word-mask">he's a goat. a silly little goat. one horn (the right one, the left one just forgot to grow), one eye that's clearly trying harder than the other, and a head that said "F proportions" and meant it.</p>
-<p class="about-word-mask">his ears are long (like really long) and they expand and retract on purpose, he thinks it's funny (it lowkey is).</p>
-<p class="about-word-mask">he smokes a fat blunt and carries a comically large knife and honestly? good for him. no comments.</p>
-<div class="panel-banner-container">
-  <img
-    src="/images/caotollage.avif"
-    alt="caot"
-    loading="lazy"
-    decoding="async"
-    widths={[400, 800]}
-    sizes="(max-width: 768px) 80vw, 400px"
-  />
-</div>
-<p class="about-word-mask">caot is not perfect. he's better than perfect. he is caot.</p>
+      <img
+        src="/images/caotbanner.avif"
+        alt="banner"
+        loading="lazy"
+        decoding="async"
+      />
+    </div>
+    <p class="about-word-mask">here's caot:</p>
+    <p class="about-word-mask">he's a goat. a silly little goat. one horn (the right one, the left one just forgot to grow), one eye that's clearly trying harder than the other, and a head that said "F proportions" and meant it.</p>
+    <p class="about-word-mask">his ears are long (like really long) and they expand and retract on purpose, he thinks it's funny (it lowkey is).</p>
+    <p class="about-word-mask">he smokes a fat blunt and carries a comically large knife and honestly? good for him. no comments.</p>
+    <div class="panel-banner-container">
+      <img
+        src="/images/caotollage.avif"
+        alt="caot"
+        loading="lazy"
+        decoding="async"
+        widths={[400, 800]}
+        sizes="(max-width: 768px) 80vw, 400px"
+      />
+    </div>
+    <p class="about-word-mask">caot is not perfect. he's better than perfect. he is caot.</p>
   </div>
 </aside>
-
-
 <aside class="about-side-panel contact-side-panel" id="contactPanel" aria-label="Contact form">
   <button class="panel-close-btn" id="contactClose" aria-label="Close contact panel">
     <kbd>esc</kbd>
@@ -86,5 +84,4 @@ import caot from '../assets/images/caot.avif';
     </form>
   </div>
 </aside>
-
 <div class="panel-overlay" id="panelOverlay"></div>

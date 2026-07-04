@@ -313,31 +313,31 @@ pitchSection && pitchObserver.observe(pitchSection), document.getElementById("ne
             t.className = "word-wrapper", e.parentNode.insertBefore(t, e), t.appendChild(e)
         })
     });
-const h = e => {
-        e && e.preventDefault(), document.querySelector(".menu-overlay")?.classList.remove("active", "open"), (document.getElementById("menuBtn") || document.querySelector(".menu-btn"))?.classList.remove("active", "open"), document.documentElement.style.setProperty("--page-shift", "-80px"), r?.classList.add("open"), l?.classList.add("active");
-        const panelContent = r?.querySelector(".panel-content");
-        panelContent && (panelContent.scrollTop = 0);
-        let t = 0;
-        c.forEach(e => {
-            e.querySelectorAll(".word").forEach(e => {
-                e.style.transition = "transform 0.85s cubic-bezier(0.16, 1, 0.3, 1)", e.style.transitionDelay = 100 + 18 * t++ + "ms", e.classList.add("show")
+    const h = e => {
+            e && e.preventDefault(), document.querySelector(".menu-overlay")?.classList.remove("active", "open"), (document.getElementById("menuBtn") || document.querySelector(".menu-btn"))?.classList.remove("active", "open"), document.documentElement.style.setProperty("--page-shift", "-80px"), r?.classList.add("open"), l?.classList.add("active");
+            const panelContent = r?.querySelector(".panel-content");
+            panelContent && (panelContent.scrollTop = 0);
+            let t = 0;
+            c.forEach(e => {
+                e.querySelectorAll(".word").forEach(e => {
+                    e.style.transition = "transform 0.85s cubic-bezier(0.16, 1, 0.3, 1)", e.style.transitionDelay = 100 + 18 * t++ + "ms", e.classList.add("show")
+                })
+            });
+            r?.querySelectorAll(".panel-image-container img, .panel-banner-container img").forEach((e, t) => {
+                e.style.transition = "transform 0.85s cubic-bezier(0.16, 1, 0.3, 1)", e.style.transitionDelay = `${150+120*t}ms`, e.classList.add("show")
             })
-        });
-        r?.querySelectorAll(".panel-image-container img, .panel-banner-container img").forEach((e, t) => {
-            e.style.transitionDelay = `${150+120*t}ms`, e.classList.add("show")
-        })
-    },
+        },
         v = () => {
             document.documentElement.style.setProperty("--page-shift", "0px"), r?.classList.remove("open"), l?.classList.remove("active"), document.body.classList.remove("menu-open"), c.forEach(e => e.querySelectorAll(".word").forEach(e => e.style.transitionDelay = "0ms"))
         };
-r?.addEventListener("transitionend", e => {
-    r.classList.contains("open") || "transform" !== e.propertyName || (c.forEach(e => e.querySelectorAll(".word").forEach(e => {
-        e.style.transition = "none", e.classList.remove("show")
-    })), r.querySelectorAll(".panel-image-container img, .panel-banner-container img").forEach(e => {
-        e.style.transition = "none", e.classList.remove("show")
-    }))
-}), s.forEach(e => e.addEventListener("click", h)), a?.addEventListener("click", v), l?.addEventListener("click", v);
-const g = e => {
+    r?.addEventListener("transitionend", e => {
+        r.classList.contains("open") || "transform" !== e.propertyName || (c.forEach(e => e.querySelectorAll(".word").forEach(e => {
+            e.style.transition = "none", e.classList.remove("show")
+        })), r.querySelectorAll(".panel-image-container img, .panel-banner-container img").forEach(e => {
+            e.style.transition = "none", e.classList.remove("show")
+        }))
+    }), s.forEach(e => e.addEventListener("click", h)), a?.addEventListener("click", v), l?.addEventListener("click", v);
+    const g = e => {
             e && e.preventDefault(), document.querySelector(".menu-overlay")?.classList.remove("active", "open"), (document.getElementById("menuBtn") || document.querySelector(".menu-btn"))?.classList.remove("active", "open"), document.documentElement.style.setProperty("--page-shift", "-80px"), m?.classList.add("open"), l?.classList.add("active")
         },
         y = () => {
