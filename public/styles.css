@@ -1930,26 +1930,19 @@ main {
     }
 }
 
-.panel-banner-container {
-	width: 100%;
-	margin-top: 1.5rem;
-	margin-bottom: .5rem;
-	overflow: hidden
+.panel-image-container {
+    position: relative;
+    width: 100%;
+    margin-bottom: 1.5rem
 }
 
-.panel-banner-container img {
-	width: 100%;
-	height: auto;
-	display: block;
-	object-fit: cover;
-	transform: translateY(105%);
-	transition: transform 0.85s cubic-bezier(.16, 1, .3, 1);
-	will-change: transform
+.panel-image-container img {
+    width: 100%;
+    aspect-ratio: 607 / 795;
+    height: auto;
+    display: block
 }
 
-.panel-banner-container img.show {
-	transform: translateY(0)
-}
 .panel-image-container .image-caption {
     position: absolute;
     bottom: 0;
