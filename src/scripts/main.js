@@ -79,9 +79,12 @@ navTitle?.addEventListener("click", () => {
         easing: e => 1 - Math.pow(1 - e, 3)
     })
 });
+let isPageLoaded = false;
+setTimeout(() => { isPageLoaded = true; }, 300);
+
 const baitSwitchObserver = new IntersectionObserver((e, t) => {
         e.forEach(e => {
-            if (!e.isIntersecting) return;
+            if (!isPageLoaded || !e.isIntersecting) return;
             const n = e.target,
                 o = n.querySelector(".reveal-wrapper"),
                 i = n.querySelector(".fake-word"),
@@ -120,14 +123,16 @@ const baitSwitchObserver = new IntersectionObserver((e, t) => {
             t.unobserve(n)
         })
     }, {
-        threshold: .6
+        threshold: .9
     }),
     heroObserver = new IntersectionObserver((e, t) => {
         e.forEach(e => {
-            e.isIntersecting && (setTimeout(() => animateWords(e.target, 0), 800), t.unobserve(e.target))
+            if (!isPageLoaded || !e.isIntersecting) return;
+            setTimeout(() => animateWords(e.target, 0), 800);
+            t.unobserve(e.target);
         })
     }, {
-        threshold: .3
+        threshold: .2
     });
 
 function updateNavScroll(e, t, n) {
