@@ -697,7 +697,7 @@ body.menu-open {
 }
 
 .project-card.in-view .project-image {
-    filter: brightness(.45) saturate(0.25);
+    filter: brightness(.45) saturate(0.25) blur(2px);
 }
 
 .project-card.in-view .project-video {
