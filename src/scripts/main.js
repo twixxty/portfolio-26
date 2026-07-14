@@ -346,17 +346,17 @@ pitchSection && pitchObserver.observe(pitchSection), document.getElementById("ne
             })
         })
     });
-    const f = new IntersectionObserver(e => {
-        e.forEach(e => {
-            const t = e.target.querySelector(".project-video");
-            t && (e.isIntersecting ? t._playTimer = setTimeout(() => {
-                t.play().catch(() => {})
-            }, 150) : (clearTimeout(t._playTimer), t.pause()))
-        })
-    }, {
-        threshold: .15
-    });
-    document.querySelectorAll(".project-card").forEach(e => f.observe(e))
-}), window.addEventListener("load", () => setTimeout(() => {
-    lenis.resize()
-}, 500)), requestAnimationFrame(raf);
+    const videos = document.querySelectorAll(".project-card .project-video");
+
+const f = new IntersectionObserver((entries, observer) => {
+    if (entries.some(e => e.isIntersecting)) {
+        videos.forEach(v => v.play().catch(() => {}));
+        observer.disconnect();
+    }
+}, { threshold: 0.15 });
+
+const firstCard = document.querySelector(".project-card");
+if (firstCard) f.observe(firstCard);
+
+window.addEventListener("load", () => setTimeout(() => lenis.resize(), 500));
+requestAnimationFrame(raf);
