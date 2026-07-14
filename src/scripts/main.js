@@ -132,7 +132,7 @@ const baitSwitchObserver = new IntersectionObserver((e, t) => {
             t.unobserve(e.target);
         })
     }, {
-        threshold: .2
+        threshold: .7
     });
 
 function updateNavScroll(e, t, n) {
