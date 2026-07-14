@@ -12,6 +12,11 @@
     --cubic-slide: cubic-bezier(0.2, 0.8, 0.2, 1)
 }
 
+::selection {
+  background-color: #ddd;
+  color: #222;
+}
+
 html {
     scroll-behavior: smooth
 }
