@@ -329,6 +329,27 @@ pitchSection && pitchObserver.observe(pitchSection), document.getElementById("ne
             t.className = "word-wrapper", e.parentNode.insertBefore(t, e), t.appendChild(e)
         })
     });
+    let panelHistoryPushed = false;
+    const pushPanelHistory = () => {
+        if (!panelHistoryPushed) {
+            history.pushState({ panelOpen: true }, "");
+            panelHistoryPushed = true;
+        }
+    };
+    const requestClosePanels = () => {
+        if (panelHistoryPushed) {
+            panelHistoryPushed = false;
+            history.back();
+        } else {
+            r?.classList.contains("open") && v();
+            m?.classList.contains("open") && y();
+        }
+    };
+    window.addEventListener("popstate", () => {
+        panelHistoryPushed = false;
+        r?.classList.contains("open") && v();
+        m?.classList.contains("open") && y();
+    });
     const h = e => {
             e && e.preventDefault();
             document.querySelector(".menu-overlay")?.classList.remove("active", "open");
@@ -340,6 +361,7 @@ pitchSection && pitchObserver.observe(pitchSection), document.getElementById("ne
 
             r?.classList.add("open");
             l?.classList.add("active");
+            pushPanelHistory();
 
             c.forEach(el => {
                 el.querySelectorAll(".word").forEach(w => {
@@ -396,18 +418,20 @@ pitchSection && pitchObserver.observe(pitchSection), document.getElementById("ne
             el.classList.remove('visible');
         });
     });
-    s.forEach(e => e.addEventListener("click", h)), a?.addEventListener("click", v), l?.addEventListener("click", v);
+    s.forEach(e => e.addEventListener("click", h)), a?.addEventListener("click", requestClosePanels), l?.addEventListener("click", requestClosePanels);
     const g = e => {
-            e && e.preventDefault(), document.querySelector(".menu-overlay")?.classList.remove("active", "open"), (document.getElementById("menuBtn") || document.querySelector(".menu-btn"))?.classList.remove("active", "open"), document.documentElement.style.setProperty("--page-shift", "-80px"), m?.classList.add("open"), l?.classList.add("active")
+            e && e.preventDefault(), document.querySelector(".menu-overlay")?.classList.remove("active", "open"), (document.getElementById("menuBtn") || document.querySelector(".menu-btn"))?.classList.remove("active", "open"), document.documentElement.style.setProperty("--page-shift", "-80px"), m?.classList.add("open"), l?.classList.add("active"), pushPanelHistory()
         },
         y = () => {
             document.documentElement.style.setProperty("--page-shift", "0px"), m?.classList.remove("open"), document.getElementById("aboutPanel")?.classList.contains("open") || l?.classList.remove("active"), document.body.classList.remove("menu-open")
         };
-    d.forEach(e => e.addEventListener("click", g)), u?.addEventListener("click", y), l?.addEventListener("click", y), window.addEventListener("keydown", e => {
-        "Escape" === e.key && (r?.classList.contains("open") && v(), m?.classList.contains("open") && y())
+    d.forEach(e => e.addEventListener("click", g)), u?.addEventListener("click", requestClosePanels), window.addEventListener("keydown", e => {
+        "Escape" === e.key && requestClosePanels()
     }), p.forEach(e => {
         e.addEventListener("click", e => {
-            e.preventDefault(), document.documentElement.style.setProperty("--page-shift", "0px"), document.getElementById("contactPanel")?.classList.remove("open"), document.getElementById("aboutPanel")?.classList.remove("open"), document.getElementById("panelOverlay")?.classList.remove("active"), lenis.scrollTo(0, {
+            e.preventDefault(), document.documentElement.style.setProperty("--page-shift", "0px"), document.getElementById("contactPanel")?.classList.remove("open"), document.getElementById("aboutPanel")?.classList.remove("open"), document.getElementById("panelOverlay")?.classList.remove("active");
+            if (panelHistoryPushed) { panelHistoryPushed = false; history.back(); }
+            lenis.scrollTo(0, {
                 duration: 1.5,
                 easing: e => Math.min(1, 1.001 - Math.pow(2, -10 * e))
             })
