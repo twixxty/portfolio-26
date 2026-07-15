@@ -351,27 +351,48 @@ pitchSection && pitchObserver.observe(pitchSection), document.getElementById("ne
             })
         })
     });
-const projectVideoObserver = new IntersectionObserver((entries) => {
-  entries.forEach((entry) => {
-    const video = entry.target.querySelector(".project-video");
-    if (!video) return;
+}); 
+const projectCards = document.querySelectorAll(".project-card");
+const projectVideos = Array.from(projectCards, (card) =>
+  card.querySelector(".project-video")
+).filter(Boolean);
 
-    clearTimeout(video._playTimer); 
+const projectVideoObserver = new IntersectionObserver(
+  (entries) => {
+    entries.forEach((entry) => {
+      const video = entry.target.querySelector(".project-video");
+      if (!video) return;
 
-    if (entry.isIntersecting) {
-      video._playTimer = setTimeout(() => {
-        video.currentTime = 0; 
+      clearTimeout(video._playTimer);
+
+      if (entry.isIntersecting) {
+        video._playTimer = setTimeout(() => {
+          video.play().catch(() => {});
+        }, 150);
+      } else {
+        video.pause();
+      }
+    });
+  },
+  { threshold: 0.15 }
+);
+
+projectCards.forEach((card) => projectVideoObserver.observe(card));
+
+if (projectCards.length) {
+  const primeAllVideos = new IntersectionObserver(
+    ([firstEntry], observer) => {
+      if (!firstEntry.isIntersecting) return;
+      projectVideos.forEach((video) => {
+        video.currentTime = 0;
         video.play().catch(() => {});
-      }, 150);
-    } else {
-      video.pause();
-    }
-  });
-}, { threshold: 0.15 });
-
-document
-  .querySelectorAll(".project-card")
-  .forEach((card) => projectVideoObserver.observe(card));
+      });
+      observer.disconnect();
+    },
+    { threshold: 0.15 }
+  );
+  primeAllVideos.observe(projectCards[0]);
+}
 
 window.addEventListener("load", () => {
   setTimeout(() => lenis.resize(), 500);
