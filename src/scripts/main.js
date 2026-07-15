@@ -53,8 +53,8 @@ const cardVisibilityObserver = new IntersectionObserver(e => {
         threshold: .45
     });
 document.querySelectorAll(".project-card, .project-media").forEach(e => {
-    cardVisibilityObserver.observe(e), cardObserver.observe(e)
-}),
+        cardVisibilityObserver.observe(e), cardObserver.observe(e)
+    }),
     lenis.on("scroll", onScrollParallax);
 let currentTestimonialIndex = 0,
     testimonialTimeout = null,
@@ -81,7 +81,9 @@ navTitle?.addEventListener("click", () => {
     })
 });
 let isPageLoaded = false;
-setTimeout(() => { isPageLoaded = true; }, 300);
+setTimeout(() => {
+    isPageLoaded = true;
+}, 300);
 
 const baitSwitchObserver = new IntersectionObserver((e, t) => {
         e.forEach(e => {
@@ -126,15 +128,15 @@ const baitSwitchObserver = new IntersectionObserver((e, t) => {
     }, {
         threshold: .9
     }),
-heroObserver = new IntersectionObserver((e, t) => {
-    e.forEach(e => {
-        if (!e.isIntersecting) return; 
-        setTimeout(() => animateWords(e.target, 0), 800);
-        t.unobserve(e.target);
-    })
-}, {
-    threshold: .7
-});
+    heroObserver = new IntersectionObserver((e, t) => {
+        e.forEach(e => {
+            if (!e.isIntersecting) return;
+            setTimeout(() => animateWords(e.target, 0), 800);
+            t.unobserve(e.target);
+        })
+    }, {
+        threshold: .7
+    });
 
 function updateNavScroll(e, t, n) {
     if (!heroTitle || !topNav) return;
@@ -333,14 +335,12 @@ pitchSection && pitchObserver.observe(pitchSection), document.getElementById("ne
             (document.getElementById("menuBtn") || document.querySelector(".menu-btn"))?.classList.remove("active", "open");
             document.documentElement.style.setProperty("--page-shift", "-80px");
 
-            // Always scroll panel back to top before opening
             const panelContent = r?.querySelector('.panel-content');
             if (panelContent) panelContent.scrollTop = 0;
 
             r?.classList.add("open");
             l?.classList.add("active");
 
-            // Reset any in-progress word animations so re-opens always replay cleanly
             c.forEach(el => {
                 el.querySelectorAll(".word").forEach(w => {
                     w.style.transition = "none";
@@ -349,14 +349,12 @@ pitchSection && pitchObserver.observe(pitchSection), document.getElementById("ne
                 });
             });
 
-            // Reset images immediately (no visible transition — panel is off-screen or just starting slide-in)
             r?.querySelectorAll('.panel-img-wipe').forEach(el => {
                 el.style.transition = 'none';
                 el.style.transitionDelay = '';
                 el.classList.remove('visible');
             });
 
-            // Next frame: commit resets, then kick off animations
             requestAnimationFrame(() => {
                 let t = 0;
                 c.forEach(el => {
@@ -367,9 +365,8 @@ pitchSection && pitchObserver.observe(pitchSection), document.getElementById("ne
                     });
                 });
 
-                // Image wipe-ins: stagger each one (main img → banner → collage)
                 r?.querySelectorAll('.panel-img-wipe').forEach((el, i) => {
-                    el.style.transition = '';  // restore CSS transition
+                    el.style.transition = '';
                     el.style.transitionDelay = `${220 + i * 180}ms`;
                     el.classList.add('visible');
                 });
@@ -381,7 +378,6 @@ pitchSection && pitchObserver.observe(pitchSection), document.getElementById("ne
             l?.classList.remove("active");
             document.body.classList.remove("menu-open");
             c.forEach(el => el.querySelectorAll(".word").forEach(w => w.style.transitionDelay = "0ms"));
-            // Snap images back to hidden — panel is sliding away so this is invisible
             r?.querySelectorAll('.panel-img-wipe').forEach(el => {
                 el.style.transition = 'none';
                 el.style.transitionDelay = '';
@@ -390,7 +386,6 @@ pitchSection && pitchObserver.observe(pitchSection), document.getElementById("ne
         };
     r?.addEventListener("transitionend", e => {
         if (r.classList.contains("open") || e.propertyName !== "transform") return;
-        // Panel fully closed: hard-reset words and images so next open always starts fresh
         c.forEach(el => el.querySelectorAll(".word").forEach(w => {
             w.style.transition = "none";
             w.classList.remove("show");
@@ -418,52 +413,54 @@ pitchSection && pitchObserver.observe(pitchSection), document.getElementById("ne
             })
         })
     });
-}); 
+});
 
 const projectCards = document.querySelectorAll(".project-card");
 const projectVideos = Array.from(projectCards, (card) =>
-  card.querySelector(".project-video")
+    card.querySelector(".project-video")
 ).filter(Boolean);
 
 const projectVideoObserver = new IntersectionObserver(
-  (entries) => {
-    entries.forEach((entry) => {
-      const video = entry.target.querySelector(".project-video");
-      if (!video) return;
+    (entries) => {
+        entries.forEach((entry) => {
+            const video = entry.target.querySelector(".project-video");
+            if (!video) return;
 
-      clearTimeout(video._playTimer);
+            clearTimeout(video._playTimer);
 
-      if (entry.isIntersecting) {
-        video._playTimer = setTimeout(() => {
-          video.play().catch(() => {});
-        }, 150);
-      } else {
-        video.pause();
-      }
-    });
-  },
-  { threshold: 0.15 }
+            if (entry.isIntersecting) {
+                video._playTimer = setTimeout(() => {
+                    video.play().catch(() => {});
+                }, 150);
+            } else {
+                video.pause();
+            }
+        });
+    }, {
+        threshold: 0.15
+    }
 );
 
 projectCards.forEach((card) => projectVideoObserver.observe(card));
 
 if (projectCards.length) {
-  const primeAllVideos = new IntersectionObserver(
-    ([firstEntry], observer) => {
-      if (!firstEntry.isIntersecting) return;
-      projectVideos.forEach((video) => {
-        video.currentTime = 0;
-        video.play().catch(() => {});
-      });
-      observer.disconnect();
-    },
-    { threshold: 0.15 }
-  );
-  primeAllVideos.observe(projectCards[0]);
+    const primeAllVideos = new IntersectionObserver(
+        ([firstEntry], observer) => {
+            if (!firstEntry.isIntersecting) return;
+            projectVideos.forEach((video) => {
+                video.currentTime = 0;
+                video.play().catch(() => {});
+            });
+            observer.disconnect();
+        }, {
+            threshold: 0.15
+        }
+    );
+    primeAllVideos.observe(projectCards[0]);
 }
 
 window.addEventListener("load", () => {
-  setTimeout(() => lenis.resize(), 500);
+    setTimeout(() => lenis.resize(), 500);
 });
 
 requestAnimationFrame(raf);
