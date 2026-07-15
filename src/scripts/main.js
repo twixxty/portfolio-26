@@ -351,17 +351,30 @@ pitchSection && pitchObserver.observe(pitchSection), document.getElementById("ne
             })
         })
     });
-    const videos = document.querySelectorAll(".project-card .project-video");
+const projectVideoObserver = new IntersectionObserver((entries) => {
+  entries.forEach((entry) => {
+    const video = entry.target.querySelector(".project-video");
+    if (!video) return;
 
-const f = new IntersectionObserver((entries, observer) => {
-    if (entries.some(e => e.isIntersecting)) {
-        videos.forEach(v => v.play().catch(() => {}));
-        observer.disconnect();
+    clearTimeout(video._playTimer); 
+
+    if (entry.isIntersecting) {
+      video._playTimer = setTimeout(() => {
+        video.currentTime = 0; 
+        video.play().catch(() => {});
+      }, 150);
+    } else {
+      video.pause();
     }
+  });
 }, { threshold: 0.15 });
 
-const firstCard = document.querySelector(".project-card");
-if (firstCard) f.observe(firstCard);
+document
+  .querySelectorAll(".project-card")
+  .forEach((card) => projectVideoObserver.observe(card));
 
-window.addEventListener("load", () => setTimeout(() => lenis.resize(), 500));
+window.addEventListener("load", () => {
+  setTimeout(() => lenis.resize(), 500);
+});
+
 requestAnimationFrame(raf);
