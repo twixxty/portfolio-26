@@ -1805,7 +1805,7 @@ main {
     top: 0;
     right: 0;
     width: 550px;
-    height: 100vh;
+    height: 100dvh;
     background: var(--background);
     border-left: 1px solid #141414;
     z-index: 10000;
