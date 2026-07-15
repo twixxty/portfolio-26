@@ -328,22 +328,80 @@ pitchSection && pitchObserver.observe(pitchSection), document.getElementById("ne
         })
     });
     const h = e => {
-            e && e.preventDefault(), document.querySelector(".menu-overlay")?.classList.remove("active", "open"), (document.getElementById("menuBtn") || document.querySelector(".menu-btn"))?.classList.remove("active", "open"), document.documentElement.style.setProperty("--page-shift", "-80px"), r?.classList.add("open"), l?.classList.add("active");
-            let t = 0;
-            c.forEach(e => {
-                e.querySelectorAll(".word").forEach(e => {
-                    e.style.transition = "transform 0.85s cubic-bezier(0.16, 1, 0.3, 1)", e.style.transitionDelay = 100 + 18 * t++ + "ms", e.classList.add("show")
-                })
-            })
+            e && e.preventDefault();
+            document.querySelector(".menu-overlay")?.classList.remove("active", "open");
+            (document.getElementById("menuBtn") || document.querySelector(".menu-btn"))?.classList.remove("active", "open");
+            document.documentElement.style.setProperty("--page-shift", "-80px");
+
+            // Always scroll panel back to top before opening
+            const panelContent = r?.querySelector('.panel-content');
+            if (panelContent) panelContent.scrollTop = 0;
+
+            r?.classList.add("open");
+            l?.classList.add("active");
+
+            // Reset any in-progress word animations so re-opens always replay cleanly
+            c.forEach(el => {
+                el.querySelectorAll(".word").forEach(w => {
+                    w.style.transition = "none";
+                    w.style.transitionDelay = "0ms";
+                    w.classList.remove("show");
+                });
+            });
+
+            // Reset images immediately (no visible transition — panel is off-screen or just starting slide-in)
+            r?.querySelectorAll('.panel-img-wipe').forEach(el => {
+                el.style.transition = 'none';
+                el.style.transitionDelay = '';
+                el.classList.remove('visible');
+            });
+
+            // Next frame: commit resets, then kick off animations
+            requestAnimationFrame(() => {
+                let t = 0;
+                c.forEach(el => {
+                    el.querySelectorAll(".word").forEach(w => {
+                        w.style.transition = "transform 0.85s cubic-bezier(0.16, 1, 0.3, 1)";
+                        w.style.transitionDelay = `${100 + 18 * t++}ms`;
+                        w.classList.add("show");
+                    });
+                });
+
+                // Image wipe-ins: stagger each one (main img → banner → collage)
+                r?.querySelectorAll('.panel-img-wipe').forEach((el, i) => {
+                    el.style.transition = '';  // restore CSS transition
+                    el.style.transitionDelay = `${220 + i * 180}ms`;
+                    el.classList.add('visible');
+                });
+            });
         },
         v = () => {
-            document.documentElement.style.setProperty("--page-shift", "0px"), r?.classList.remove("open"), l?.classList.remove("active"), document.body.classList.remove("menu-open"), c.forEach(e => e.querySelectorAll(".word").forEach(e => e.style.transitionDelay = "0ms"))
+            document.documentElement.style.setProperty("--page-shift", "0px");
+            r?.classList.remove("open");
+            l?.classList.remove("active");
+            document.body.classList.remove("menu-open");
+            c.forEach(el => el.querySelectorAll(".word").forEach(w => w.style.transitionDelay = "0ms"));
+            // Snap images back to hidden — panel is sliding away so this is invisible
+            r?.querySelectorAll('.panel-img-wipe').forEach(el => {
+                el.style.transition = 'none';
+                el.style.transitionDelay = '';
+                el.classList.remove('visible');
+            });
         };
     r?.addEventListener("transitionend", e => {
-        r.classList.contains("open") || "transform" !== e.propertyName || c.forEach(e => e.querySelectorAll(".word").forEach(e => {
-            e.style.transition = "none", e.classList.remove("show")
-        }))
-    }), s.forEach(e => e.addEventListener("click", h)), a?.addEventListener("click", v), l?.addEventListener("click", v);
+        if (r.classList.contains("open") || e.propertyName !== "transform") return;
+        // Panel fully closed: hard-reset words and images so next open always starts fresh
+        c.forEach(el => el.querySelectorAll(".word").forEach(w => {
+            w.style.transition = "none";
+            w.classList.remove("show");
+        }));
+        r.querySelectorAll('.panel-img-wipe').forEach(el => {
+            el.style.transition = 'none';
+            el.style.transitionDelay = '';
+            el.classList.remove('visible');
+        });
+    });
+    s.forEach(e => e.addEventListener("click", h)), a?.addEventListener("click", v), l?.addEventListener("click", v);
     const g = e => {
             e && e.preventDefault(), document.querySelector(".menu-overlay")?.classList.remove("active", "open"), (document.getElementById("menuBtn") || document.querySelector(".menu-btn"))?.classList.remove("active", "open"), document.documentElement.style.setProperty("--page-shift", "-80px"), m?.classList.add("open"), l?.classList.add("active")
         },
