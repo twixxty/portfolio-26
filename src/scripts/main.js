@@ -127,7 +127,7 @@ const baitSwitchObserver = new IntersectionObserver((e, t) => {
     }),
 heroObserver = new IntersectionObserver((e, t) => {
     e.forEach(e => {
-        if (!e.isIntersecting) return;  // Remove !isPageLoaded check
+        if (!e.isIntersecting) return; 
         setTimeout(() => animateWords(e.target, 0), 800);
         t.unobserve(e.target);
     })
@@ -277,7 +277,7 @@ function navigateTestimonial(e) {
 
 function raf(e) {
     lenis.raf(e);
-    updateNavScroll(heroTitle ? heroTitle.getBoundingClientRect().bottom : null, pitchNearViewport && pitchSection ? pitchSection.getBoundingClientRect() : null, contactSection ? contactSection.getBoundingClientRect() : null), pitchNearViewport && updatePitchAndContact(), requestAnimationFrame(raf)
+    updateNavScroll(heroTitle ? heroTitle.getBoundingClientRect().bottom : null, pitchNearViewport && pitchSection ? pitchSection.getBoundingClientRect() : null, contactSection ? contactSection.getBoundingClientRect() : null), updatePitchAndContact(), requestAnimationFrame(raf)  
 }
 pitchSection && pitchObserver.observe(pitchSection), document.getElementById("nextTestimonial")?.addEventListener("click", () => navigateTestimonial(1)), document.getElementById("prevTestimonial")?.addEventListener("click", () => navigateTestimonial(-1)), document.querySelectorAll(".faq-trigger").forEach(e => {
     e.addEventListener("click", () => {
