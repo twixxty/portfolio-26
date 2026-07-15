@@ -1809,7 +1809,7 @@ main {
     background: var(--background);
     border-left: 1px solid #141414;
     z-index: 10000;
-    padding: 0 4rem 5rem;
+    padding: 0 4rem 0;
     box-sizing: border-box;
     display: flex;
     flex-direction: column;
