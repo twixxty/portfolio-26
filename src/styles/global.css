@@ -30,6 +30,11 @@ html {
     background: #fff0
 }
 
+::selection {
+  background-color: #ddd;
+  color: #222;
+}
+
 @font-face {
     font-family: 'Poppins';
     src: url(/fonts/Poppins-Bold.woff2) format('woff2');
