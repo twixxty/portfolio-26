@@ -350,11 +350,25 @@ pitchSection && pitchObserver.observe(pitchSection), document.getElementById("ne
         r?.classList.contains("open") && v();
         m?.classList.contains("open") && y();
     });
+    let panelCloseTimeout = null;
+    const clearAboutPanelContent = () => {
+        c.forEach(el => el.querySelectorAll(".word").forEach(w => {
+            w.style.transition = "none";
+            w.classList.remove("show");
+        }));
+        r?.querySelectorAll('.panel-img-wipe').forEach(el => {
+            el.style.transition = 'none';
+            el.style.transitionDelay = '';
+            el.classList.remove('visible');
+        });
+    };
     const h = e => {
             e && e.preventDefault();
             document.querySelector(".menu-overlay")?.classList.remove("active", "open");
             (document.getElementById("menuBtn") || document.querySelector(".menu-btn"))?.classList.remove("active", "open");
             document.documentElement.style.setProperty("--page-shift", "-80px");
+
+            clearTimeout(panelCloseTimeout);
 
             const panelContent = r?.querySelector('.panel-content');
             if (panelContent) panelContent.scrollTop = 0;
@@ -399,19 +413,9 @@ pitchSection && pitchObserver.observe(pitchSection), document.getElementById("ne
             r?.classList.remove("open");
             l?.classList.remove("active");
             document.body.classList.remove("menu-open");
+            clearTimeout(panelCloseTimeout);
+            panelCloseTimeout = setTimeout(clearAboutPanelContent, 850);
         };
-    r?.addEventListener("transitionend", e => {
-        if (r.classList.contains("open") || e.propertyName !== "transform") return;
-        c.forEach(el => el.querySelectorAll(".word").forEach(w => {
-            w.style.transition = "none";
-            w.classList.remove("show");
-        }));
-        r.querySelectorAll('.panel-img-wipe').forEach(el => {
-            el.style.transition = 'none';
-            el.style.transitionDelay = '';
-            el.classList.remove('visible');
-        });
-    });
     s.forEach(e => e.addEventListener("click", h)), a?.addEventListener("click", requestClosePanels), l?.addEventListener("click", requestClosePanels);
     const g = e => {
             e && e.preventDefault(), document.querySelector(".menu-overlay")?.classList.remove("active", "open"), (document.getElementById("menuBtn") || document.querySelector(".menu-btn"))?.classList.remove("active", "open"), document.documentElement.style.setProperty("--page-shift", "-80px"), m?.classList.add("open"), l?.classList.add("active"), pushPanelHistory()
