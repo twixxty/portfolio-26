@@ -399,12 +399,6 @@ pitchSection && pitchObserver.observe(pitchSection), document.getElementById("ne
             r?.classList.remove("open");
             l?.classList.remove("active");
             document.body.classList.remove("menu-open");
-            c.forEach(el => el.querySelectorAll(".word").forEach(w => w.style.transitionDelay = "0ms"));
-            r?.querySelectorAll('.panel-img-wipe').forEach(el => {
-                el.style.transition = 'none';
-                el.style.transitionDelay = '';
-                el.classList.remove('visible');
-            });
         };
     r?.addEventListener("transitionend", e => {
         if (r.classList.contains("open") || e.propertyName !== "transform") return;
