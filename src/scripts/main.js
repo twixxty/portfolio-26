@@ -52,9 +52,10 @@ const cardVisibilityObserver = new IntersectionObserver(e => {
     }, {
         threshold: .45
     });
-document.querySelectorAll(".project-card").forEach(e => {
+document.querySelectorAll(".project-card, .project-media").forEach(e => {
     cardVisibilityObserver.observe(e), cardObserver.observe(e)
-}), lenis.on("scroll", onScrollParallax);
+}),
+    lenis.on("scroll", onScrollParallax);
 let currentTestimonialIndex = 0,
     testimonialTimeout = null,
     progressAnimationInterval = null,
