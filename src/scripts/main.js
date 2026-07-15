@@ -125,15 +125,15 @@ const baitSwitchObserver = new IntersectionObserver((e, t) => {
     }, {
         threshold: .9
     }),
-    heroObserver = new IntersectionObserver((e, t) => {
-        e.forEach(e => {
-            if (!isPageLoaded || !e.isIntersecting) return;
-            setTimeout(() => animateWords(e.target, 0), 800);
-            t.unobserve(e.target);
-        })
-    }, {
-        threshold: .7
-    });
+heroObserver = new IntersectionObserver((e, t) => {
+    e.forEach(e => {
+        if (!e.isIntersecting) return;  // Remove !isPageLoaded check
+        setTimeout(() => animateWords(e.target, 0), 800);
+        t.unobserve(e.target);
+    })
+}, {
+    threshold: .7
+});
 
 function updateNavScroll(e, t, n) {
     if (!heroTitle || !topNav) return;
