@@ -162,7 +162,9 @@ function updatePitchAndContact() {
         e.classList.toggle("reveal", o >= .05 + .06 * t)
     }), pitchWrapper && pitchWrapper.classList.toggle("reveal", o >= .75);
     const s = Math.max(0, Math.min(1, 1 - e.bottom / window.innerHeight));
-    if (pitchSection.style.transform = `scale(${(1-.1*s).toFixed(4)})`, pitchSection.style.transformOrigin = "center top", contactSection) {
+    pitchSection.style.transform = `scale(${(1-.1*s).toFixed(4)})`;
+    pitchSection.style.transformOrigin = "center top";
+    if (contactSection) {
         const t = Math.max(0, Math.min(1, -e.top / (e.height - window.innerHeight)));
         contactSection.style.transform = `translateY(${Math.round(250*t)}px)`
     }
@@ -277,8 +279,14 @@ function navigateTestimonial(e) {
 
 function raf(e) {
     lenis.raf(e);
-    updateNavScroll(heroTitle ? heroTitle.getBoundingClientRect().bottom : null, pitchNearViewport && pitchSection ? pitchSection.getBoundingClientRect() : null, contactSection ? contactSection.getBoundingClientRect() : null), updatePitchAndContact(), requestAnimationFrame(raf)  
+    const heroRect = heroTitle ? heroTitle.getBoundingClientRect() : null;
+    const pitchRect = pitchSection ? pitchSection.getBoundingClientRect() : null;
+    const contactRect = contactSection ? contactSection.getBoundingClientRect() : null;
+    updateNavScroll(heroRect?.bottom, pitchRect, contactRect);
+    updatePitchAndContact();
+    requestAnimationFrame(raf);
 }
+
 pitchSection && pitchObserver.observe(pitchSection), document.getElementById("nextTestimonial")?.addEventListener("click", () => navigateTestimonial(1)), document.getElementById("prevTestimonial")?.addEventListener("click", () => navigateTestimonial(-1)), document.querySelectorAll(".faq-trigger").forEach(e => {
     e.addEventListener("click", () => {
         const t = e.parentElement,
@@ -352,6 +360,7 @@ pitchSection && pitchObserver.observe(pitchSection), document.getElementById("ne
         })
     });
 }); 
+
 const projectCards = document.querySelectorAll(".project-card");
 const projectVideos = Array.from(projectCards, (card) =>
   card.querySelector(".project-video")
