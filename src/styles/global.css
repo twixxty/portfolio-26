@@ -394,6 +394,7 @@ img {
 }
 
 .menu-overlay.open {
+    opacity: 1;
     clip-path: inset(0 0 0% 0);
     -webkit-clip-path: inset(0 0 0% 0);
     pointer-events: auto
