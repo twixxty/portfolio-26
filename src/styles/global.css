@@ -2106,21 +2106,13 @@ main {
     letter-spacing: .1em
 }
 
-.form-group label {
-    font-family: "google sans code";
-    font-size: .8rem;
-    color: #555; 
-    text-transform: uppercase;
-    letter-spacing: .1em
-}
-
 .form-group input,
 .form-group textarea {
     width: 100%;
     padding: 1rem;
-    background: #c5c5c5; 
-    border: 1px solid #b8b8b8; 
-    color: #111;
+    background: #eee; 
+    border: 1px solid #ddd; 
+    color: #000; 
     font-family: inherit;
     font-size: .95rem;
     box-sizing: border-box;
@@ -2130,8 +2122,8 @@ main {
 .form-group input:focus,
 .form-group textarea:focus {
     outline: none;
-    border-color: #777;
-    background: #b8b8b8
+    border-color: #aaa; 
+    background: #ebebeb 
 }
 
 .form-submit-btn.faq-btn {
