@@ -1161,8 +1161,8 @@ body.menu-open {
     }
 
     .project-card.in-view .project-video {
-        transform: translate(-50%, -50%) translateY(0);
-        opacity: 1
+        transform: translate(-50%, -50%) translateY(0) perspective(800px) rotateX(0deg) scale(1);
+        opacity: 1;
     }
 }
 
