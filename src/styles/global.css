@@ -2126,9 +2126,21 @@ main {
     background: #ebebeb 
 }
 
-.form-submit-btn {
-    width: fit-content
+.form-submit-btn.faq-btn {
+    width: fit-content;
+    background: #1b1b1c;
+    color: #ddd
 }
+
+.form-submit-btn.faq-btn:hover {
+    background-color: #333
+}
+
+.form-submit-btn .faq-arrow-box {
+    background: #f5f5f5;
+    color: #222
+}
+
 
 @media (hover:none) {
 
@@ -2272,7 +2284,29 @@ main {
     .faq-btn:active .faq-arrow-box span:nth-child(2) {
         transform: translate(0, 0) !important
     }
+    .form-submit-btn.faq-btn:active {
+        background-color: #333333 !important
+    }
 
+    .form-submit-btn.faq-btn:active .faq-btn-text span:nth-child(1) {
+        transform: translateY(-100%) !important
+    }
+
+    .form-submit-btn.faq-btn:active .faq-btn-text span:nth-child(2) {
+        transform: translateY(0) !important
+    }
+
+    .form-submit-btn.faq-btn:active .faq-arrow-box {
+        transform: scale(.85) !important
+    }
+
+    .form-submit-btn.faq-btn:active .faq-arrow-box span:nth-child(1) {
+        transform: translate(120%, -120%) !important
+    }
+
+    .form-submit-btn.faq-btn:active .faq-arrow-box span:nth-child(2) {
+        transform: translate(0, 0) !important
+    }
     .contact-wordmark-wrapper:hover .contact-wordmark {
         -webkit-text-stroke: 1px rgb(255 255 255 / .293)
     }
