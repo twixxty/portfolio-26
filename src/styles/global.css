@@ -1957,7 +1957,7 @@ main {
 
 .panel-image-container .image-caption {
     position: absolute;
-    bottom: 0;
+    bottom: -0.5px;
     right: 0;
     background: var(--background);
     color: #ddd;
@@ -2103,8 +2103,6 @@ main {
     }
 
     .panel-close-btn:hover kbd {
-        background-color: transparent !important;
-        color: inherit !important;
         background: #333;
         color: #666;
         border: 1px solid #222;
