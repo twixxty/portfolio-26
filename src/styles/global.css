@@ -399,7 +399,7 @@ img {
     clip-path: inset(0 0 0% 0);
     -webkit-clip-path: inset(0 0 0% 0);
     pointer-events: auto;
-    transition: clip-path 0.6s var(--cubic-reveal), -webkit-clip-path 0.6s var(--cubic-reveal), opacity 0s var(--cubic-reveal)
+    transition: clip-path 0.6s var(--cubic-reveal), -webkit-clip-path 0.6s var(--cubic-reveal), opacity 0s var(--cubic-reveal) 0.6s
 
 }
 
