@@ -301,6 +301,7 @@ pitchSection && pitchObserver.observe(pitchSection), document.getElementById("ne
         t = document.getElementById("baitSwitchText"),
         n = document.getElementById("menuBtn"),
         o = document.getElementById("menuOverlay"),
+        b = document.getElementById("menuBackdrop"),
         s = document.querySelectorAll(".about-trigger"),
         r = document.getElementById("aboutPanel"),
         a = document.getElementById("panelClose"),
@@ -312,6 +313,7 @@ pitchSection && pitchObserver.observe(pitchSection), document.getElementById("ne
         p = document.querySelectorAll(".scroll-to-top-trigger");
     const closeMobileMenu = () => {
         o.classList.remove("open");
+        b?.classList.remove("open");
         n?.classList.remove("open");
         n?.setAttribute("aria-expanded", "false");
         document.body.classList.remove("menu-open", "mobile-nav-open");
@@ -319,6 +321,7 @@ pitchSection && pitchObserver.observe(pitchSection), document.getElementById("ne
     };
     const openMobileMenu = () => {
         o.classList.add("open");
+        b?.classList.add("open");
         n?.classList.add("open");
         n?.setAttribute("aria-expanded", "true");
         document.body.classList.add("menu-open", "mobile-nav-open");
