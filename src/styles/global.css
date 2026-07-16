@@ -1957,8 +1957,8 @@ main {
 
 .panel-image-container .image-caption {
     position: absolute;
-    bottom: 2.5px;
-    left: 2.5px;
+    bottom: 0;
+    left: 0;
     background: #ddd; 
     color: #222;
     font-family: "Google sans code";
