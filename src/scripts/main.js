@@ -313,11 +313,11 @@ document.addEventListener("DOMContentLoaded", () => {
         u = document.getElementById("contactClose"),
         p = document.querySelectorAll(".scroll-to-top-trigger");
 
-    let menuHistoryPushed = false;
-    const pushMenuHistory = () => {
-        if (!menuHistoryPushed) {
-            history.pushState({ menuOpen: true }, "");
-            menuHistoryPushed = true;
+    let uiHistoryPushed = false;
+    const pushUIHistory = () => {
+        if (!uiHistoryPushed) {
+            history.pushState({ uiOpen: true }, "");
+            uiHistoryPushed = true;
         }
     };
 
@@ -336,59 +336,8 @@ document.addEventListener("DOMContentLoaded", () => {
         n?.setAttribute("aria-expanded", "true");
         document.body.classList.add("menu-open", "mobile-nav-open");
         document.documentElement.style.setProperty("--page-shift-y", "50px");
-        pushMenuHistory();
+        pushUIHistory();
     };
-    const requestCloseMobileMenu = () => {
-        if (menuHistoryPushed) {
-            menuHistoryPushed = false;
-            history.back(); 
-        } else {
-            closeMobileMenu();
-        }
-    };
-
-    splitText(e), splitNavTitle(), e && heroObserver.observe(e), t && baitSwitchObserver.observe(t), lockMaxContentHeight(), displayTestimonial(currentTestimonialIndex), document.querySelectorAll('a[href^="#"]').forEach(e => {
-        e.addEventListener("click", t => {
-            const n = document.querySelector(e.getAttribute("href"));
-            n && (t.preventDefault(), lenis.scrollTo(n, {
-                duration: 1.2,
-                easing: e => 1 - Math.pow(1 - e, 4)
-            }), requestCloseMobileMenu())
-        })
-    }), n?.addEventListener("click", () => {
-        o.classList.contains("open") ? requestCloseMobileMenu() : openMobileMenu()
-    }),
-    b?.addEventListener("click", requestCloseMobileMenu),
-    c.forEach(e => {
-        splitText(e), e.querySelectorAll(".word").forEach(e => {
-            const t = document.createElement("span");
-            t.className = "word-wrapper", e.parentNode.insertBefore(t, e), t.appendChild(e)
-        })
-    });
-
-    let panelHistoryPushed = false;
-    const pushPanelHistory = () => {
-        if (!panelHistoryPushed) {
-            history.pushState({ panelOpen: true }, "");
-            panelHistoryPushed = true;
-        }
-    };
-    const requestClosePanels = () => {
-        if (panelHistoryPushed) {
-            panelHistoryPushed = false;
-            history.back();
-        } else {
-            r?.classList.contains("open") && v();
-            m?.classList.contains("open") && y();
-        }
-    };
-    window.addEventListener("popstate", () => {
-        panelHistoryPushed = false;
-        menuHistoryPushed = false;
-        r?.classList.contains("open") && v();
-        m?.classList.contains("open") && y();
-        o.classList.contains("open") && closeMobileMenu();
-    });
 
     let panelCloseTimeout = null;
     const clearAboutPanelContent = () => {
@@ -403,16 +352,69 @@ document.addEventListener("DOMContentLoaded", () => {
         });
     };
 
+    const v = () => {
+        document.documentElement.style.setProperty("--page-shift", "0px");
+        r?.classList.remove("open");
+        l?.classList.remove("active");
+        document.body.classList.remove("menu-open");
+        clearTimeout(panelCloseTimeout);
+        panelCloseTimeout = setTimeout(clearAboutPanelContent, 850);
+    };
+
+    const y = () => {
+        document.documentElement.style.setProperty("--page-shift", "0px");
+        m?.classList.remove("open");
+        r?.classList.contains("open") || l?.classList.remove("active");
+        document.body.classList.remove("menu-open");
+    };
+
+    const requestCloseAllUI = () => {
+        if (uiHistoryPushed) {
+            uiHistoryPushed = false;
+            history.back();
+        } else {
+            closeMobileMenu();
+            r?.classList.contains("open") && v();
+            m?.classList.contains("open") && y();
+        }
+    };
+
+    window.addEventListener("popstate", () => {
+        uiHistoryPushed = false;
+        closeMobileMenu();
+        r?.classList.contains("open") && v();
+        m?.classList.contains("open") && y();
+    });
+
+    splitText(e), splitNavTitle(), e && heroObserver.observe(e), t && baitSwitchObserver.observe(t), lockMaxContentHeight(), displayTestimonial(currentTestimonialIndex), document.querySelectorAll('a[href^="#"]').forEach(e => {
+        e.addEventListener("click", t => {
+            const n = document.querySelector(e.getAttribute("href"));
+            n && (t.preventDefault(), lenis.scrollTo(n, {
+                duration: 1.2,
+                easing: e => 1 - Math.pow(1 - e, 4)
+            }), requestCloseAllUI())
+        })
+    }), n?.addEventListener("click", () => {
+        o.classList.contains("open") ? requestCloseAllUI() : openMobileMenu()
+    }),
+    b?.addEventListener("click", requestCloseAllUI),
+    c.forEach(e => {
+        splitText(e), e.querySelectorAll(".word").forEach(e => {
+            const t = document.createElement("span");
+            t.className = "word-wrapper", e.parentNode.insertBefore(t, e), t.appendChild(e)
+        })
+    });
+
     const h = e => {
             e && e.preventDefault();
-            requestCloseMobileMenu();
+            closeMobileMenu();
             document.documentElement.style.setProperty("--page-shift", "-80px");
             clearTimeout(panelCloseTimeout);
             const panelContent = r?.querySelector('.panel-content');
             if (panelContent) panelContent.scrollTop = 0;
             r?.classList.add("open");
             l?.classList.add("active");
-            pushPanelHistory();
+            pushUIHistory();
             c.forEach(el => {
                 el.querySelectorAll(".word").forEach(w => {
                     w.style.transition = "none";
@@ -440,28 +442,28 @@ document.addEventListener("DOMContentLoaded", () => {
                     el.classList.add('visible');
                 });
             });
-        },
-        v = () => {
-            document.documentElement.style.setProperty("--page-shift", "0px");
-            r?.classList.remove("open");
-            l?.classList.remove("active");
-            document.body.classList.remove("menu-open");
-            clearTimeout(panelCloseTimeout);
-            panelCloseTimeout = setTimeout(clearAboutPanelContent, 850);
         };
-    s.forEach(e => e.addEventListener("click", h)), a?.addEventListener("click", requestClosePanels), l?.addEventListener("click", requestClosePanels);
+    s.forEach(e => e.addEventListener("click", h)), a?.addEventListener("click", requestCloseAllUI), l?.addEventListener("click", requestCloseAllUI);
+
     const g = e => {
-            e && e.preventDefault(), requestCloseMobileMenu(), document.documentElement.style.setProperty("--page-shift", "-80px"), m?.classList.add("open"), l?.classList.add("active"), pushPanelHistory()
-        },
-        y = () => {
-            document.documentElement.style.setProperty("--page-shift", "0px"), m?.classList.remove("open"), document.getElementById("aboutPanel")?.classList.contains("open") || l?.classList.remove("active"), document.body.classList.remove("menu-open")
-        };
-    d.forEach(e => e.addEventListener("click", g)), u?.addEventListener("click", requestClosePanels), window.addEventListener("keydown", e => {
-        "Escape" === e.key && (o.classList.contains("open") && requestCloseMobileMenu(), requestClosePanels())
+        e && e.preventDefault();
+        closeMobileMenu();
+        document.documentElement.style.setProperty("--page-shift", "-80px");
+        m?.classList.add("open");
+        l?.classList.add("active");
+        pushUIHistory();
+    };
+    d.forEach(e => e.addEventListener("click", g)), u?.addEventListener("click", requestCloseAllUI), window.addEventListener("keydown", e => {
+        "Escape" === e.key && (o.classList.contains("open") || r?.classList.contains("open") || m?.classList.contains("open")) && requestCloseAllUI()
     }), p.forEach(e => {
         e.addEventListener("click", e => {
-            e.preventDefault(), document.documentElement.style.setProperty("--page-shift", "0px"), document.getElementById("contactPanel")?.classList.remove("open"), document.getElementById("aboutPanel")?.classList.remove("open"), document.getElementById("panelOverlay")?.classList.remove("active");
-            if (panelHistoryPushed) { panelHistoryPushed = false; history.back(); }
+            e.preventDefault();
+            document.documentElement.style.setProperty("--page-shift", "0px");
+            document.getElementById("contactPanel")?.classList.remove("open");
+            document.getElementById("aboutPanel")?.classList.remove("open");
+            document.getElementById("panelOverlay")?.classList.remove("active");
+            closeMobileMenu();
+            if (uiHistoryPushed) { uiHistoryPushed = false; history.back(); }
             lenis.scrollTo(0, {
                 duration: 1.5,
                 easing: e => Math.min(1, 1.001 - Math.pow(2, -10 * e))
