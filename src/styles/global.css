@@ -736,8 +736,8 @@ body.menu-open {
     aspect-ratio: 16 / 9;
     object-fit: cover;
     transform-origin: bottom center;
-    transform: translate(-50%, -50%) translateY(200%) perspective(800px) rotateX(-75deg) scale(0.7);
-    transition: transform 0.9s var(--cubic-reveal), opacity 0.9s var(--cubic-reveal), width 0.9s var(--cubic-reveal);
+    transform: translate(-50%, -50%) translateY(200%) perspective(800px) rotateX(75deg);
+    transition: transform 0.6s var(--cubic-reveal), opacity 0.6s var(--cubic-reveal), width 0.6s var(--cubic-reveal);
     z-index: 3;
     opacity: 0;
     pointer-events: none;
@@ -1148,7 +1148,7 @@ body.menu-open {
     .project-video {
     width: 70%;
     transform-origin: bottom center;
-    transform: translate(-50%, -50%) translateY(140%) perspective(800px) rotateX(-75deg) scale(0.7);
+    transform: translate(-50%, -50%) translateY(140%) perspective(800px) rotateX(75deg);
     }
 
 
