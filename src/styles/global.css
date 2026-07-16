@@ -1853,7 +1853,7 @@ main {
     right: 0;
     width: 550px;
     height: 100dvh;
-    background: var(--background);
+    background: #ddd;
     border-left: 1px solid #141414;
     z-index: 310;
     padding: 0 4rem 0;
@@ -1933,13 +1933,13 @@ main {
     font-family: var(--font-notch);
     font-size: 3rem;
     font-weight: 600;
-    color: #ddd;
+    color: #222;
     letter-spacing: -.02em
 }
 
 .panel-content p {
     font-family: "poppins", sans-serif;
-    color: #999;
+    color: #222;
     font-size: 1.2rem;
     line-height: 1.4
 }
@@ -2082,7 +2082,7 @@ main {
     font-weight: 700;
     letter-spacing: -.03em;
     margin-bottom: 2rem;
-    color: #fff
+    color: #222
 }
 
 .sidebar-form {
@@ -2101,7 +2101,7 @@ main {
 .form-group label {
     font-family: "google sans code";
     font-size: .8rem;
-    color: #888;
+    color: #777; 
     text-transform: uppercase;
     letter-spacing: .1em
 }
@@ -2110,9 +2110,9 @@ main {
 .form-group textarea {
     width: 100%;
     padding: 1rem;
-    background: #111;
-    border: 1px solid #222;
-    color: #fff;
+    background: #eee; 
+    border: 1px solid #ddd; 
+    color: #000; 
     font-family: inherit;
     font-size: .95rem;
     box-sizing: border-box;
@@ -2122,8 +2122,8 @@ main {
 .form-group input:focus,
 .form-group textarea:focus {
     outline: none;
-    border-color: #555;
-    background: #141414
+    border-color: #aaa; 
+    background: #ebebeb 
 }
 
 .form-submit-btn {
