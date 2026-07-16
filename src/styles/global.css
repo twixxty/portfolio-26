@@ -361,26 +361,39 @@ img {
     }
 }
 
-.menu-overlay {
+.menu-backdrop {
     position: fixed;
     inset: 0;
-    z-index: 99999;
-    background: rgb(10 10 10 / .9);
+    z-index: 99998;
+    background: rgb(10 10 10 / .85);
     -webkit-backdrop-filter: blur(2px);
     backdrop-filter: blur(2px);
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.4s ease
+}
+
+.menu-backdrop.open {
+    opacity: 1;
+    pointer-events: auto
+}
+
+.menu-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    z-index: 99999;
     display: flex;
     flex-direction: column;
-    justify-content: center;
-    padding: 3rem 2rem;
+    padding: 6.5rem 2rem 2rem;
     pointer-events: none;
-    opacity: 0;
     clip-path: inset(0 0 100% 0);
     -webkit-clip-path: inset(0 0 100% 0);
-    transition: opacity 0.4s ease, clip-path 0.6s var(--cubic-reveal), -webkit-clip-path 0.6s var(--cubic-reveal)
+    transition: clip-path 0.6s var(--cubic-reveal), -webkit-clip-path 0.6s var(--cubic-reveal)
 }
 
 .menu-overlay.open {
-    opacity: 1;
     clip-path: inset(0 0 0% 0);
     -webkit-clip-path: inset(0 0 0% 0);
     pointer-events: auto
