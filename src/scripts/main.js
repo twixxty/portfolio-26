@@ -296,7 +296,7 @@ pitchSection && pitchObserver.observe(pitchSection), document.getElementById("ne
             n = t.classList.contains("active");
         document.querySelectorAll(".faq-item").forEach(e => e.classList.remove("active")), n || t.classList.add("active")
     })
-}), document.addEventListener("DOMContentLoaded", () => {
+document.addEventListener("DOMContentLoaded", () => {
     const e = document.querySelector(".hero-subtext"),
         t = document.getElementById("baitSwitchText"),
         n = document.getElementById("menuBtn"),
@@ -311,6 +311,15 @@ pitchSection && pitchObserver.observe(pitchSection), document.getElementById("ne
         m = document.getElementById("contactPanel"),
         u = document.getElementById("contactClose"),
         p = document.querySelectorAll(".scroll-to-top-trigger");
+
+    let menuHistoryPushed = false;
+    const pushMenuHistory = () => {
+        if (!menuHistoryPushed) {
+            history.pushState({ menuOpen: true }, "");
+            menuHistoryPushed = true;
+        }
+    };
+
     const closeMobileMenu = () => {
         o.classList.remove("open");
         b?.classList.remove("open");
@@ -326,23 +335,36 @@ pitchSection && pitchObserver.observe(pitchSection), document.getElementById("ne
         n?.setAttribute("aria-expanded", "true");
         document.body.classList.add("menu-open", "mobile-nav-open");
         document.documentElement.style.setProperty("--page-shift-y", "50px");
+        pushMenuHistory();
     };
+    const requestCloseMobileMenu = () => {
+        if (menuHistoryPushed) {
+            menuHistoryPushed = false;
+            history.back(); 
+        } else {
+            closeMobileMenu();
+        }
+    };
+
     splitText(e), splitNavTitle(), e && heroObserver.observe(e), t && baitSwitchObserver.observe(t), lockMaxContentHeight(), displayTestimonial(currentTestimonialIndex), document.querySelectorAll('a[href^="#"]').forEach(e => {
         e.addEventListener("click", t => {
             const n = document.querySelector(e.getAttribute("href"));
             n && (t.preventDefault(), lenis.scrollTo(n, {
                 duration: 1.2,
                 easing: e => 1 - Math.pow(1 - e, 4)
-            }), closeMobileMenu())
+            }), requestCloseMobileMenu())
         })
     }), n?.addEventListener("click", () => {
-        o.classList.contains("open") ? closeMobileMenu() : openMobileMenu()
-    }), c.forEach(e => {
+        o.classList.contains("open") ? requestCloseMobileMenu() : openMobileMenu()
+    }),
+    b?.addEventListener("click", requestCloseMobileMenu),
+    c.forEach(e => {
         splitText(e), e.querySelectorAll(".word").forEach(e => {
             const t = document.createElement("span");
             t.className = "word-wrapper", e.parentNode.insertBefore(t, e), t.appendChild(e)
         })
     });
+
     let panelHistoryPushed = false;
     const pushPanelHistory = () => {
         if (!panelHistoryPushed) {
@@ -359,11 +381,15 @@ pitchSection && pitchObserver.observe(pitchSection), document.getElementById("ne
             m?.classList.contains("open") && y();
         }
     };
+    // popstate now also closes the mobile menu
     window.addEventListener("popstate", () => {
         panelHistoryPushed = false;
+        menuHistoryPushed = false;
         r?.classList.contains("open") && v();
         m?.classList.contains("open") && y();
+        o.classList.contains("open") && closeMobileMenu();
     });
+
     let panelCloseTimeout = null;
     const clearAboutPanelContent = () => {
         c.forEach(el => el.querySelectorAll(".word").forEach(w => {
@@ -376,20 +402,17 @@ pitchSection && pitchObserver.observe(pitchSection), document.getElementById("ne
             el.classList.remove('visible');
         });
     };
+
     const h = e => {
             e && e.preventDefault();
-            closeMobileMenu();
+            requestCloseMobileMenu();
             document.documentElement.style.setProperty("--page-shift", "-80px");
-
             clearTimeout(panelCloseTimeout);
-
             const panelContent = r?.querySelector('.panel-content');
             if (panelContent) panelContent.scrollTop = 0;
-
             r?.classList.add("open");
             l?.classList.add("active");
             pushPanelHistory();
-
             c.forEach(el => {
                 el.querySelectorAll(".word").forEach(w => {
                     w.style.transition = "none";
@@ -397,13 +420,11 @@ pitchSection && pitchObserver.observe(pitchSection), document.getElementById("ne
                     w.classList.remove("show");
                 });
             });
-
             r?.querySelectorAll('.panel-img-wipe').forEach(el => {
                 el.style.transition = 'none';
                 el.style.transitionDelay = '';
                 el.classList.remove('visible');
             });
-
             requestAnimationFrame(() => {
                 let t = 0;
                 c.forEach(el => {
@@ -413,7 +434,6 @@ pitchSection && pitchObserver.observe(pitchSection), document.getElementById("ne
                         w.classList.add("show");
                     });
                 });
-
                 r?.querySelectorAll('.panel-img-wipe').forEach((el, i) => {
                     el.style.transition = '';
                     el.style.transitionDelay = `${220 + i * 180}ms`;
@@ -431,13 +451,13 @@ pitchSection && pitchObserver.observe(pitchSection), document.getElementById("ne
         };
     s.forEach(e => e.addEventListener("click", h)), a?.addEventListener("click", requestClosePanels), l?.addEventListener("click", requestClosePanels);
     const g = e => {
-            e && e.preventDefault(), closeMobileMenu(), document.documentElement.style.setProperty("--page-shift", "-80px"), m?.classList.add("open"), l?.classList.add("active"), pushPanelHistory()
+            e && e.preventDefault(), requestCloseMobileMenu(), document.documentElement.style.setProperty("--page-shift", "-80px"), m?.classList.add("open"), l?.classList.add("active"), pushPanelHistory()
         },
         y = () => {
             document.documentElement.style.setProperty("--page-shift", "0px"), m?.classList.remove("open"), document.getElementById("aboutPanel")?.classList.contains("open") || l?.classList.remove("active"), document.body.classList.remove("menu-open")
         };
     d.forEach(e => e.addEventListener("click", g)), u?.addEventListener("click", requestClosePanels), window.addEventListener("keydown", e => {
-        "Escape" === e.key && (o.classList.contains("open") && closeMobileMenu(), requestClosePanels())
+        "Escape" === e.key && (o.classList.contains("open") && requestCloseMobileMenu(), requestClosePanels())
     }), p.forEach(e => {
         e.addEventListener("click", e => {
             e.preventDefault(), document.documentElement.style.setProperty("--page-shift", "0px"), document.getElementById("contactPanel")?.classList.remove("open"), document.getElementById("aboutPanel")?.classList.remove("open"), document.getElementById("panelOverlay")?.classList.remove("active");
