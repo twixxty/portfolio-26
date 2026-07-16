@@ -2284,6 +2284,31 @@ main {
     .faq-btn:active .faq-arrow-box span:nth-child(2) {
         transform: translate(0, 0) !important
     }
+
+    .form-submit-btn.faq-btn:hover {
+        background-color: #1b1b1c !important
+    }
+
+    .form-submit-btn.faq-btn:hover .faq-btn-text span:nth-child(1) {
+        transform: translateY(0) !important
+    }
+
+    .form-submit-btn.faq-btn:hover .faq-btn-text span:nth-child(2) {
+        transform: translateY(100%) !important
+    }
+
+    .form-submit-btn.faq-btn:hover .faq-arrow-box {
+        transform: scale(1) !important
+    }
+
+    .form-submit-btn.faq-btn:hover .faq-arrow-box span:nth-child(1) {
+        transform: translate(0, 0) !important
+    }
+
+    .form-submit-btn.faq-btn:hover .faq-arrow-box span:nth-child(2) {
+        transform: translate(-120%, 120%) !important
+     }
+    
     .form-submit-btn.faq-btn:active {
         background-color: #333333 !important
     }
