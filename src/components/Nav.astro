@@ -9,7 +9,14 @@
     <a href="#faq"><span>FAQ</span><span>FAQ</span></a>
     <a href="#" class="contact-trigger"><span>CONTACT</span><span>CONTACT</span></a>
   </nav>
-  <button class="menu-btn" id="menuBtn" aria-label="Open menu">MENU</button>
+  <button class="menu-btn" id="menuBtn" aria-label="Toggle menu" aria-expanded="false">
+    <span class="menu-btn-viewport">
+      <span class="menu-btn-track">
+        <span class="menu-btn-label">Menu</span>
+        <span class="menu-btn-label">Close</span>
+      </span>
+    </span>
+  </button>
 </header>
 
 <div class="menu-overlay" id="menuOverlay">
@@ -20,5 +27,4 @@
     <a href="#faq" class="menu-overlay-link"><span>FAQ</span></a>
     <a href="#" class="menu-overlay-link contact-trigger"><span>Contact</span></a>
   </nav>
-  <button class="menu-close-btn" id="menuClose">CLOSE</button>
 </div>
