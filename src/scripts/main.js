@@ -301,7 +301,6 @@ pitchSection && pitchObserver.observe(pitchSection), document.getElementById("ne
         t = document.getElementById("baitSwitchText"),
         n = document.getElementById("menuBtn"),
         o = document.getElementById("menuOverlay"),
-        i = document.getElementById("menuClose"),
         s = document.querySelectorAll(".about-trigger"),
         r = document.getElementById("aboutPanel"),
         a = document.getElementById("panelClose"),
@@ -311,18 +310,30 @@ pitchSection && pitchObserver.observe(pitchSection), document.getElementById("ne
         m = document.getElementById("contactPanel"),
         u = document.getElementById("contactClose"),
         p = document.querySelectorAll(".scroll-to-top-trigger");
+    const closeMobileMenu = () => {
+        o.classList.remove("open");
+        n?.classList.remove("open");
+        n?.setAttribute("aria-expanded", "false");
+        document.body.classList.remove("menu-open", "mobile-nav-open");
+        document.documentElement.style.setProperty("--page-shift-y", "0px");
+    };
+    const openMobileMenu = () => {
+        o.classList.add("open");
+        n?.classList.add("open");
+        n?.setAttribute("aria-expanded", "true");
+        document.body.classList.add("menu-open", "mobile-nav-open");
+        document.documentElement.style.setProperty("--page-shift-y", "18px");
+    };
     splitText(e), splitNavTitle(), e && heroObserver.observe(e), t && baitSwitchObserver.observe(t), lockMaxContentHeight(), displayTestimonial(currentTestimonialIndex), document.querySelectorAll('a[href^="#"]').forEach(e => {
         e.addEventListener("click", t => {
             const n = document.querySelector(e.getAttribute("href"));
             n && (t.preventDefault(), lenis.scrollTo(n, {
                 duration: 1.2,
                 easing: e => 1 - Math.pow(1 - e, 4)
-            }), o.classList.remove("open"), document.body.classList.remove("menu-open"))
+            }), closeMobileMenu())
         })
     }), n?.addEventListener("click", () => {
-        o.classList.add("open"), document.body.classList.add("menu-open")
-    }), i?.addEventListener("click", () => {
-        o.classList.remove("open"), document.body.classList.remove("menu-open")
+        o.classList.contains("open") ? closeMobileMenu() : openMobileMenu()
     }), c.forEach(e => {
         splitText(e), e.querySelectorAll(".word").forEach(e => {
             const t = document.createElement("span");
@@ -364,8 +375,7 @@ pitchSection && pitchObserver.observe(pitchSection), document.getElementById("ne
     };
     const h = e => {
             e && e.preventDefault();
-            document.querySelector(".menu-overlay")?.classList.remove("active", "open");
-            (document.getElementById("menuBtn") || document.querySelector(".menu-btn"))?.classList.remove("active", "open");
+            closeMobileMenu();
             document.documentElement.style.setProperty("--page-shift", "-80px");
 
             clearTimeout(panelCloseTimeout);
@@ -418,13 +428,13 @@ pitchSection && pitchObserver.observe(pitchSection), document.getElementById("ne
         };
     s.forEach(e => e.addEventListener("click", h)), a?.addEventListener("click", requestClosePanels), l?.addEventListener("click", requestClosePanels);
     const g = e => {
-            e && e.preventDefault(), document.querySelector(".menu-overlay")?.classList.remove("active", "open"), (document.getElementById("menuBtn") || document.querySelector(".menu-btn"))?.classList.remove("active", "open"), document.documentElement.style.setProperty("--page-shift", "-80px"), m?.classList.add("open"), l?.classList.add("active"), pushPanelHistory()
+            e && e.preventDefault(), closeMobileMenu(), document.documentElement.style.setProperty("--page-shift", "-80px"), m?.classList.add("open"), l?.classList.add("active"), pushPanelHistory()
         },
         y = () => {
             document.documentElement.style.setProperty("--page-shift", "0px"), m?.classList.remove("open"), document.getElementById("aboutPanel")?.classList.contains("open") || l?.classList.remove("active"), document.body.classList.remove("menu-open")
         };
     d.forEach(e => e.addEventListener("click", g)), u?.addEventListener("click", requestClosePanels), window.addEventListener("keydown", e => {
-        "Escape" === e.key && requestClosePanels()
+        "Escape" === e.key && (o.classList.contains("open") && closeMobileMenu(), requestClosePanels())
     }), p.forEach(e => {
         e.addEventListener("click", e => {
             e.preventDefault(), document.documentElement.style.setProperty("--page-shift", "0px"), document.getElementById("contactPanel")?.classList.remove("open"), document.getElementById("aboutPanel")?.classList.remove("open"), document.getElementById("panelOverlay")?.classList.remove("active");
