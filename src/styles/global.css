@@ -1957,7 +1957,7 @@ main {
 
 .panel-image-container .image-caption {
     position: absolute;
-    bottom: -0.5px;
+    bottom: -1px;
     right: 0;
     background: var(--background);
     color: #ddd;
