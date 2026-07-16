@@ -1897,9 +1897,9 @@ main {
 }
 
 .panel-close-btn kbd {
-    background: #333;
-    color: #666;
-    border: 1px solid #222;
+    background: #ccc;
+    color: #999;
+    border: 1px solid #ddd;
     padding: .3rem .6rem;
     border-radius: 4px;
     font-family: "Google Sans Code", sans-serif;
@@ -1909,8 +1909,8 @@ main {
 }
 
 .panel-close-btn:hover kbd {
-    color: #fff;
-    border-color: #444
+    color: #000;
+    border-color: #bbb
 }
 
 .panel-content {
@@ -2146,9 +2146,9 @@ main {
     }
 
     .panel-close-btn:hover kbd {
-        background: #333;
-        color: #666;
-        border: 1px solid #222;
+        background: #ccc;
+        color: #999;
+        border: 1px solid #ddd;
 
     }
 
