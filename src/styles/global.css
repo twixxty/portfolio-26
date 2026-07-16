@@ -321,7 +321,33 @@ img {
     font-size: .85rem;
     letter-spacing: .15rem;
     cursor: pointer;
-    padding: 0
+    padding: 0;
+    position: relative;
+    z-index: 100001
+}
+
+.menu-btn-viewport {
+    display: block;
+    height: 1.1em;
+    overflow: hidden
+}
+
+.menu-btn-track {
+    display: flex;
+    flex-direction: column;
+    transform: translateY(0);
+    transition: transform 0.5s cubic-bezier(.16, 1, .3, 1)
+}
+
+.menu-btn-label {
+    display: block;
+    height: 1.1em;
+    line-height: 1.1em;
+    text-transform: uppercase
+}
+
+.menu-btn.open .menu-btn-track {
+    transform: translateY(-50%)
 }
 
 @media (max-width:768px) {
@@ -339,21 +365,31 @@ img {
     position: fixed;
     inset: 0;
     z-index: 99999;
-    background: #111;
+    background: rgb(10 10 10 / .9);
+    -webkit-backdrop-filter: blur(2px);
+    backdrop-filter: blur(2px);
     display: flex;
     flex-direction: column;
     justify-content: center;
     padding: 3rem 2rem;
     pointer-events: none;
     opacity: 0;
-    transform: translateY(-2%);
-    transition: opacity 0.4s var(--cubic-reveal), transform 0.4s var(--cubic-reveal)
+    clip-path: inset(0 0 100% 0);
+    -webkit-clip-path: inset(0 0 100% 0);
+    transition: opacity 0.4s ease, clip-path 0.6s var(--cubic-reveal), -webkit-clip-path 0.6s var(--cubic-reveal)
 }
 
 .menu-overlay.open {
     opacity: 1;
-    transform: translateY(0);
+    clip-path: inset(0 0 0% 0);
+    -webkit-clip-path: inset(0 0 0% 0);
     pointer-events: auto
+}
+
+@media (max-width:768px) {
+    body.mobile-nav-open .top-nav {
+        z-index: 100000
+    }
 }
 
 .menu-overlay-nav {
@@ -394,20 +430,6 @@ img {
 .menu-overlay-link:hover::after {
     opacity: 1;
     transition: none
-}
-
-.menu-close-btn {
-    position: absolute;
-    top: 1.2rem;
-    right: 2rem;
-    background: none;
-    border: none;
-    color: #ddd;
-    font-family: var(--font-notch);
-    font-size: .85rem;
-    letter-spacing: .15rem;
-    cursor: pointer;
-    padding: 0
 }
 
 body.menu-open {
@@ -1796,11 +1818,12 @@ body.menu-open {
 
 :root {
     --page-shift: 0px;
+    --page-shift-y: 0px;
     --smooth-ease: cubic-bezier(0.16, 1, 0.3, 1)
 }
 
 main {
-    transform: translateX(var(--page-shift, 0));
+    transform: translateX(var(--page-shift, 0)) translateY(var(--page-shift-y, 0));
     transition: transform 0.85s cubic-bezier(.16, 1, .3, 1);
     width: 100%
 }
