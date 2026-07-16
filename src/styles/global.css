@@ -1957,10 +1957,10 @@ main {
 
 .panel-image-container .image-caption {
     position: absolute;
-    bottom: 5px;
-    right: 5px;
-    background: var(--background);
-    color: #ddd;
+    bottom: 2px;
+    right: 2px;
+    background: #333; 
+    color: #ccc;
     font-family: "Google sans code";
     padding: .4rem .8rem;
     letter-spacing: -.01em;
