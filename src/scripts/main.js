@@ -325,7 +325,7 @@ pitchSection && pitchObserver.observe(pitchSection), document.getElementById("ne
         n?.classList.add("open");
         n?.setAttribute("aria-expanded", "true");
         document.body.classList.add("menu-open", "mobile-nav-open");
-        document.documentElement.style.setProperty("--page-shift-y", "18px");
+        document.documentElement.style.setProperty("--page-shift-y", "50px");
     };
     splitText(e), splitNavTitle(), e && heroObserver.observe(e), t && baitSwitchObserver.observe(t), lockMaxContentHeight(), displayTestimonial(currentTestimonialIndex), document.querySelectorAll('a[href^="#"]').forEach(e => {
         e.addEventListener("click", t => {
