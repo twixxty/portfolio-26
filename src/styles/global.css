@@ -735,7 +735,7 @@ body.menu-open {
     width: 70%;
     aspect-ratio: 16 / 9;
     object-fit: cover;
-    transform-origin: top center;
+    transform-origin: bottom center;
     transform: translate(-50%, -50%) translateY(200%) perspective(800px) rotateX(-75deg) scale(0.7);
     transition: transform 0.9s var(--cubic-reveal), opacity 0.9s var(--cubic-reveal), width 0.9s var(--cubic-reveal);
     z-index: 3;
@@ -1146,9 +1146,11 @@ body.menu-open {
     }
 
     .project-video {
-        width: 70%;
-        transform: translate(-50%, -50%) translateY(140%)
+    width: 70%;
+    transform-origin: bottom center;
+    transform: translate(-50%, -50%) translateY(140%) perspective(800px) rotateX(-75deg) scale(0.7);
     }
+
 
     .project-card:hover .project-video {
         width: 70%
