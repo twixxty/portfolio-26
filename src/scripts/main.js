@@ -296,6 +296,7 @@ pitchSection && pitchObserver.observe(pitchSection), document.getElementById("ne
             n = t.classList.contains("active");
         document.querySelectorAll(".faq-item").forEach(e => e.classList.remove("active")), n || t.classList.add("active")
     })
+});
 document.addEventListener("DOMContentLoaded", () => {
     const e = document.querySelector(".hero-subtext"),
         t = document.getElementById("baitSwitchText"),
@@ -381,7 +382,6 @@ document.addEventListener("DOMContentLoaded", () => {
             m?.classList.contains("open") && y();
         }
     };
-    // popstate now also closes the mobile menu
     window.addEventListener("popstate", () => {
         panelHistoryPushed = false;
         menuHistoryPushed = false;
