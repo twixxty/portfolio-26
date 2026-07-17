@@ -477,22 +477,26 @@ const projectVideos = Array.from(projectCards, (card) =>
     card.querySelector(".project-video")
 ).filter(Boolean);
 
+const visibleProjectCards = new Set;
 const projectVideoObserver = new IntersectionObserver(
     (entries) => {
         entries.forEach((entry) => {
-            const video = entry.target.querySelector(".project-video");
-            if (!video) return;
-
-            clearTimeout(video._playTimer);
-
-            if (entry.isIntersecting) {
-                video._playTimer = setTimeout(() => {
-                    video.play().catch(() => {});
-                }, 150);
-            } else {
-                video.pause();
-            }
+            if (entry.isIntersecting) visibleProjectCards.add(entry.target);
+            else visibleProjectCards.delete(entry.target);
         });
+
+        clearTimeout(projectVideoObserver._pauseTimer);
+        if (visibleProjectCards.size > 0) {
+            projectVideos.forEach((video) => {
+                if (video.paused) video.play().catch(() => {});
+            });
+        } else {
+            projectVideoObserver._pauseTimer = setTimeout(() => {
+                if (visibleProjectCards.size === 0) {
+                    projectVideos.forEach((video) => video.pause());
+                }
+            }, 150);
+        }
     }, {
         threshold: 0.15
     }
@@ -500,20 +504,25 @@ const projectVideoObserver = new IntersectionObserver(
 
 projectCards.forEach((card) => projectVideoObserver.observe(card));
 
-if (projectCards.length) {
-    const primeAllVideos = new IntersectionObserver(
-        ([firstEntry], observer) => {
-            if (!firstEntry.isIntersecting) return;
-            projectVideos.forEach((video) => {
-                video.currentTime = 0;
-                video.play().catch(() => {});
+const heroOverlayVideo = document.querySelector(".hero-overlay-video");
+if (heroOverlayVideo) {
+    const heroVideoObserver = new IntersectionObserver(
+        (entries) => {
+            entries.forEach((entry) => {
+                clearTimeout(heroOverlayVideo._playTimer);
+                if (entry.isIntersecting) {
+                    heroOverlayVideo._playTimer = setTimeout(() => {
+                        heroOverlayVideo.play().catch(() => {});
+                    }, 150);
+                } else {
+                    heroOverlayVideo.pause();
+                }
             });
-            observer.disconnect();
         }, {
             threshold: 0.15
         }
     );
-    primeAllVideos.observe(projectCards[0]);
+    heroVideoObserver.observe(heroOverlayVideo);
 }
 
 window.addEventListener("load", () => {
