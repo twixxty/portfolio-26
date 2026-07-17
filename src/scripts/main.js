@@ -286,7 +286,7 @@ function raf(e) {
     const pitchRect = pitchSection ? pitchSection.getBoundingClientRect() : null;
     const contactRect = contactSection ? contactSection.getBoundingClientRect() : null;
     updateNavScroll(heroRect?.bottom, pitchRect, contactRect);
-    updatePitchAndContact();
+    if (pitchNearViewport) updatePitchAndContact();
     requestAnimationFrame(raf);
 }
 
