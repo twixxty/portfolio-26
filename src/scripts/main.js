@@ -482,26 +482,37 @@ const projectVideos = Array.from(projectCards, (card) =>
     card.querySelector(".project-video")
 ).filter(Boolean);
 
-const visibleProjectCards = new Set;
+if (projectCards.length && projectVideos.length) {
+    const primeProjectVideos = new IntersectionObserver(
+        ([firstEntry], observer) => {
+            if (!firstEntry.isIntersecting) return;
+            projectVideos.forEach((video) => {
+                video.preload = "auto";
+                video.load();
+            });
+            observer.disconnect();
+        }, {
+            rootMargin: "300px 0px 300px 0px",
+            threshold: 0.01
+        }
+    );
+    primeProjectVideos.observe(projectCards[0]);
+}
+
 const projectVideoObserver = new IntersectionObserver(
     (entries) => {
         entries.forEach((entry) => {
-            if (entry.isIntersecting) visibleProjectCards.add(entry.target);
-            else visibleProjectCards.delete(entry.target);
+            const video = entry.target.querySelector(".project-video");
+            if (!video) return;
+            clearTimeout(video._playTimer);
+            if (entry.isIntersecting) {
+                video._playTimer = setTimeout(() => {
+                    video.play().catch(() => {});
+                }, 150);
+            } else {
+                video.pause();
+            }
         });
-
-        clearTimeout(projectVideoObserver._pauseTimer);
-        if (visibleProjectCards.size > 0) {
-            projectVideos.forEach((video) => {
-                if (video.paused) video.play().catch(() => {});
-            });
-        } else {
-            projectVideoObserver._pauseTimer = setTimeout(() => {
-                if (visibleProjectCards.size === 0) {
-                    projectVideos.forEach((video) => video.pause());
-                }
-            }, 150);
-        }
     }, {
         threshold: 0.15
     }
