@@ -21,24 +21,29 @@ const isWokeDisabled = "true" === localStorage.getItem("wokeDisabled"),
     contentContainer = document.getElementById("testimonialContent"),
     indexEl = document.getElementById("testimonialIndex"),
     progressWrapper = document.querySelector(".testimonial-progress-wrapper"),
-    activeCards = new Set;
+    activeCards = new Set,
+    cardImageCache = new WeakMap;
 
-function updateCardParallax(e) {
-    const t = e.querySelector(".project-image");
-    if (!t) return;
-    const n = .12 * e.getBoundingClientRect().top;
-    t.style.transform = `translateY(${n}px) scale(1.05)`
+function getCardImage(e) {
+    let t = cardImageCache.get(e);
+    return void 0 === t && (t = e.querySelector(".project-image"), cardImageCache.set(e, t)), t
 }
 
 function onScrollParallax() {
-    for (const e of activeCards) updateCardParallax(e)
+    if (!activeCards.size) return;
+    const reads = [];
+    for (const e of activeCards) {
+        const t = getCardImage(e);
+        t && reads.push([t, .12 * e.getBoundingClientRect().top])
+    }
+    for (const [e, t] of reads) e.style.transform = `translateY(${t}px) scale(1.05)`
 }
 const cardVisibilityObserver = new IntersectionObserver(e => {
         e.forEach(e => {
             if (e.isIntersecting) activeCards.add(e.target);
             else {
                 activeCards.delete(e.target);
-                const t = e.target.querySelector(".project-image");
+                const t = getCardImage(e.target);
                 t && (t.style.transform = "translateY(0px) scale(1.05)")
             }
         })
