@@ -1,0 +1,13 @@
+{
+  "href": "https://hrld.vercel.app",
+  "image": "../../assets/images/hrld.avif",
+  "imageAlt": "hrld",
+  "video": "/videos/hrld.webm",
+  "index": "wd",
+  "date": "03/25",
+  "title": "hrld",
+  "desc": "he asked for it",
+  "statNum": "2",
+  "statLabel": "was a furry for 2 days.",
+  "order": 3
+}
