@@ -226,35 +226,35 @@ body.menu-open {
     opacity: 1
 }
 
-@media (min-width: 601px) {
+@media (min-width: 601px) and (max-width: 768px) {
     .menu-overlay {
         padding: 4rem 1.5rem 1.5rem;
     }
     
     .menu-overlay-link {
-        font-size: clamp(1rem, 5vw, 2.5rem);
+        font-size: clamp(1.25rem, 4vw, 2.5rem); 
         padding: 0.4em 0.3em 0.4em 0;
     }
-   }
+}
    
-@media (min-width:769px) {
+@media (min-width: 769px) {
     html {
-        --page-shift-y: 0px !important
+        --page-shift-y: 0px !important;
     }
 
     .menu-overlay {
         left: auto;
         right: 0;
         width: 400px;
-        padding: 5rem 2rem 2rem
+        padding: 5rem 2rem 2rem; 
     }
 
     .menu-overlay-nav {
-        border-top: none
+        border-top: none;
     }
 
     .menu-overlay-link {
         font-size: 1.25rem;
-        padding: .55em .2em
+        padding: .55em .2em;
     }
 }
