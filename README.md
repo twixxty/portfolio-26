@@ -19,6 +19,7 @@ my personal portfolio. it has:
 ## stack
 
 - **astro** — because i felt like convenience is bad
+- **content collections** — projects/faqs/testimonials live as json, astro validates them so i stop typo-ing my own data
 - **lenis** — for smooth scrolling (and other stuff)
 - **vanilla js** — yes really
 - **css** — approximately 33,000 bytes of it. don't ask
@@ -51,16 +52,25 @@ output goes to `dist/`. deploy it wherever. i use vercel because it's free and i
 
 ```
 src/
-  components/    # hero, nav, projects, faq, etc.
-  layouts/       # one layout. just one.
-  pages/         # index.astro. that's it.
+  components/         # Hero, Nav, Panels, Pitch, Projects, FAQ, Testimonials, Contact
+  content/
+    projects/         # one json per project
+    faqs/              # one json per faq
+    testimonials/      # one json per testimonial
+  content.config.ts    # schemas so astro yells at me instead of prod
+  layouts/             # one layout. just one.
+  pages/               # index.astro. that's it.
+  scripts/
+    main.js            # the beast
+  styles/
+    global.css         # the other beast
+  assets/
+    images/            # avif, imported so astro can optimize them
 public/
-  fonts/         # custom fonts i definitely have a license for
-  images/        # avif because i care about performance (sometimes)
-  videos/        # webm because i also care about your storage (sometimes)
-  lenis/         # smooth scroll library
-  styles.css     # the beast
-  scripts.js     # also the beast
+  fonts/               # custom fonts i definitely have a license for
+  images/              # avif, used raw where optimization doesn't matter
+  videos/              # webm (+ mp4 fallback) because safari is safari
+  lenis/               # smooth scroll library
 ```
 
 ---
