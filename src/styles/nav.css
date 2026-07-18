@@ -1,4 +1,6 @@
-/* Top nav bar (Nav.astro): logo, desktop links, mobile menu button + fullscreen overlay menu. */
+/* Top nav bar (Nav.astro): logo, "Get in touch" CTA, and the hamburger menu button +
+   overlay dropdown. Header markup and behavior are now identical on mobile and desktop —
+   only the overlay's position/size and the page-shift-suppression below change per size. */
 
 .top-nav {
     position: fixed;
@@ -24,46 +26,48 @@
     pointer-events: auto
 }
 
-.top-nav-links {
+.top-nav-actions {
     display: flex;
-    gap: 2rem;
-    align-items: center
+    align-items: center;
+    gap: 1.5rem
 }
 
-.top-nav-links a {
+.nav-cta {
     position: relative;
     display: block;
     height: 1.2em;
     overflow: hidden;
     color: #ddd;
     text-decoration: none;
+    text-transform: uppercase;
     font-family: "Google Sans Code", sans-serif;
     font-size: .85rem;
     letter-spacing: .1rem
 }
 
-.top-nav-links a span {
+.nav-cta span {
     display: block;
     transition: transform 0.35s cubic-bezier(.76, 0, .24, 1)
 }
 
-.top-nav-links a span:nth-child(2) {
+.nav-cta span:nth-child(2) {
     position: absolute;
     left: 0;
     top: 0;
     transform: translateY(100%)
 }
 
-.top-nav-links a:hover span:nth-child(1) {
+.nav-cta:hover span:nth-child(1) {
     transform: translateY(-100%)
 }
 
-.top-nav-links a:hover span:nth-child(2) {
+.nav-cta:hover span:nth-child(2) {
     transform: translateY(0)
 }
 
 .menu-btn {
-    display: none;
+    display: inline-flex;
+    align-items: center;
     background: none;
     border: none;
     color: #ddd;
@@ -98,17 +102,6 @@
 
 .menu-btn.open .menu-btn-track {
     transform: translateY(-50%)
-}
-
-@media (max-width:768px) {
-    .top-nav-links {
-        display: none
-    }
-
-    .menu-btn {
-        display: block;
-        pointer-events: auto
-    }
 }
 
 .menu-backdrop {
@@ -225,4 +218,50 @@ body.menu-open {
     transform: translateY(0);
     cursor: pointer;
     opacity: 1
+}
+
+@media (min-width:769px) {
+    html {
+        --page-shift-y: 0px !important
+    }
+
+    .menu-backdrop {
+        background: rgb(0 0 0 / .25);
+        -webkit-backdrop-filter: blur(1px);
+        backdrop-filter: blur(1px)
+    }
+
+    .menu-overlay {
+        top: 4.5rem;
+        left: auto;
+        right: 2rem;
+        width: 300px;
+        max-height: calc(100vh - 6rem);
+        padding: 1.25rem;
+        border-radius: 14px;
+        overflow-y: auto;
+        clip-path: none;
+        -webkit-clip-path: none;
+        visibility: hidden;
+        opacity: 0;
+        transform-origin: top right;
+        transform: scale(.9) translateY(-6px);
+        transition: opacity 0.35s var(--cubic-reveal), transform 0.35s var(--cubic-reveal), visibility 0s linear 0.35s
+    }
+
+    .menu-overlay.open {
+        visibility: visible;
+        opacity: 1;
+        transform: scale(1) translateY(0);
+        transition: opacity 0.35s var(--cubic-reveal), transform 0.35s var(--cubic-reveal)
+    }
+
+    .menu-overlay-nav {
+        border-top: none
+    }
+
+    .menu-overlay-link {
+        font-size: 1.05rem;
+        padding: .55em .2em
+    }
 }
