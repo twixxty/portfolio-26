@@ -4,7 +4,6 @@
 @media (hover:none) {
 
     .top-nav-links a:hover span:nth-child(1),
-    .menu-overlay-link:hover,
     .faq-trigger:hover .faq-title,
     .archive-row:hover .archive-title,
     .contact-nav a:hover,
@@ -14,6 +13,11 @@
         background-color: transparent !important;
         color: inherit !important;
         -webkit-text-stroke: 1px rgb(255 255 255 / .293) !important
+    }
+
+    .menu-overlay-link:hover {
+        background-color: transparent !important;
+        color: inherit !important
     }
 
     .panel-close-btn:hover kbd {
