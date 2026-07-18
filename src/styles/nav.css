@@ -152,13 +152,12 @@
 
 }
 
-@media (max-width:768px) {
-    body.mobile-nav-open .top-nav {
-        z-index: 150;
-        transition: z-index 0s ease;
+body.mobile-nav-open .top-nav {
+   z-index: 150;
+   transition: z-index 0s ease;
 
-    }
 }
+
 
 .menu-overlay-nav {
     display: flex;
