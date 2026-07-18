@@ -1,5 +1,31 @@
 ---
-import stylesheetUrl from '../styles/global.css?url';
+import baseCss from '../styles/base.css?url';
+import navCss from '../styles/nav.css?url';
+import heroCss from '../styles/hero.css?url';
+import bigTextCss from '../styles/big-text.css?url';
+import projectsCss from '../styles/projects.css?url';
+import testimonialsCss from '../styles/testimonials.css?url';
+import faqCss from '../styles/faq.css?url';
+import buttonsCss from '../styles/buttons.css?url';
+import pitchCss from '../styles/pitch.css?url';
+import contactCss from '../styles/contact.css?url';
+import panelsCss from '../styles/panels.css?url';
+import hoverStatesCss from '../styles/hover-states.css?url';
+
+const deferredStylesheets = [
+  baseCss,
+  navCss,
+  heroCss,
+  bigTextCss,
+  projectsCss,
+  testimonialsCss,
+  faqCss,
+  buttonsCss,
+  pitchCss,
+  contactCss,
+  panelsCss,
+  hoverStatesCss,
+];
 
 export interface Props {
   title?: string;
@@ -37,8 +63,14 @@ const {
     <link rel="preload" href="/fonts/TAN-Moonlight/TAN-MOONLIGHT-Regular.woff2" as="font" type="font/woff2" crossorigin />
     <link rel="preload" href="/fonts/GoogleSansCode-VariableFont_MONO,wght.woff2" as="font" type="font/woff2" crossorigin />
 
-    <link rel="stylesheet" href={stylesheetUrl} media="print" onload="this.media='all';this.onload=null" />
-    <noscript><link rel="stylesheet" href={stylesheetUrl} /></noscript>
+    {deferredStylesheets.map((href) => (
+      <link rel="stylesheet" href={href} media="print" onload="this.media='all';this.onload=null" />
+    ))}
+    <noscript>
+      {deferredStylesheets.map((href) => (
+        <link rel="stylesheet" href={href} />
+      ))}
+    </noscript>
 
     <style is:inline>html.lenis,html.lenis body{height:auto}.lenis-smooth{scroll-behavior:auto!important}.lenis-smooth [data-lenis-prevent]{scroll-control:none}.lenis-target{scroll-behavior:auto!important}.lenis-stopped{overflow:hidden}.lenis-scrolling iframe{pointer-events:none}.menu-overlay,.top-nav{pointer-events:none;opacity:0}.hero-bg,.hero-overlay-video,.hero-subtext,.hero-title,.nav-links-nav li,.scroll-down span,.top-nav{opacity:0}*{margin:0;padding:0;-webkit-tap-highlight-color:#fff0;box-sizing:border-box}:root{--background:#222;--font-notch:"Stack Sans Notch",sans-serif}body{background:var(--background);overflow-x:hidden}.hero{position:relative;width:100%;height:100svh;display:flex;align-items:center;justify-content:center;overflow:hidden;background:var(--background)}@media (max-width:768px){.top-nav-links{display:none}}.about-side-panel{transform:translateX(100%)}.hero-bg{background:linear-gradient(rgb(0 0 0 / .45),rgb(0 0 0 / .45)),url(/images/background.avif) center/cover no-repeat}</style>
   </head>
