@@ -65,7 +65,7 @@
     transform: translateY(0)
 }
 
-@media (max-width: 1024px) {
+@media (max-width: 600px) {
     .nav-cta {
         display: none;
     }
@@ -234,7 +234,7 @@ body.menu-open {
         left: auto;
         right: 0;
         width: 400px;
-        padding: 6rem 2.5rem 2.5rem
+        padding: 5rem 2rem 2rem
     }
 
     .menu-overlay-nav {
@@ -243,6 +243,6 @@ body.menu-open {
 
     .menu-overlay-link {
         font-size: 1.25rem;
-        padding: .7em .3em
+        padding: .55em .2em
     }
 }
