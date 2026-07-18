@@ -1,0 +1,87 @@
+/* Shared pill "arrow" button (.faq-btn / .faq-arrow-box) reused by FAQ.astro, Pitch.astro, and
+   the contact form in Panels.astro — keep here instead of duplicating per component. */
+
+.faq-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 1rem;
+    background: #e4e4e3;
+    color: var(--background);
+    padding: .5rem .5rem .5rem 1rem;
+    text-decoration: none;
+    font-family: "Poppins", sans-serif;
+    font-size: .95rem;
+    font-weight: 500;
+    border-radius: 4px;
+    border: none;
+    transition: background-color 0.4s var(--cubic-slide)
+}
+
+.faq-btn:hover {
+    background-color: #ccc
+}
+
+.faq-btn-text {
+    position: relative;
+    display: block;
+    height: 1.2em;
+    overflow: hidden
+}
+
+.faq-btn-text span {
+    display: block;
+    transition: transform 0.6s var(--cubic-slide)
+}
+
+.faq-btn-text span:nth-child(2) {
+    position: absolute;
+    left: 0;
+    top: 0;
+    transform: translateY(100%)
+}
+
+.faq-btn:hover .faq-btn-text span:nth-child(1) {
+    transform: translateY(-100%)
+}
+
+.faq-btn:hover .faq-btn-text span:nth-child(2) {
+    transform: translateY(0)
+}
+
+.faq-arrow-box {
+    position: relative;
+    width: 32px;
+    height: 32px;
+    background: #0a0a0a;
+    color: #ddd;
+    border-radius: 4px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+    transition: transform 0.6s var(--cubic-slide)
+}
+
+.faq-btn:hover .faq-arrow-box {
+    transform: scale(.85)
+}
+
+.faq-arrow-box span {
+    display: block;
+    font-size: 1.1rem;
+    line-height: 1;
+    transition: transform 0.6s var(--cubic-slide)
+}
+
+.faq-arrow-box span:nth-child(2) {
+    position: absolute;
+    transform: translate(-120%, 120%)
+}
+
+.faq-btn:hover .faq-arrow-box span:nth-child(1) {
+    transform: translate(120%, -120%)
+}
+
+.faq-btn:hover .faq-arrow-box span:nth-child(2) {
+    transform: translate(0, 0)
+}

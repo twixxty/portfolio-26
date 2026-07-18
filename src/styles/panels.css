@@ -1,0 +1,264 @@
+/* Slide-in side panels (Panels.astro): About panel + Contact form panel. */
+
+.about-side-panel {
+    position: fixed;
+    top: 0;
+    right: 0;
+    width: 550px;
+    height: 100dvh;
+    background: #ddd;
+    border-left: 1px solid #141414;
+    z-index: 310;
+    padding: 0 4rem 0;
+    box-sizing: border-box;
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+    transform: translateX(100%);
+    transition: transform 0.85s cubic-bezier(.16, 1, .3, 1)
+}
+
+.about-side-panel.open {
+    transform: translateX(0)
+}
+
+.panel-overlay {
+    position: fixed;
+    inset: 0;
+    background: rgb(0 0 0 / .7);
+    z-index: 300;
+    -webkit-backdrop-filter: blur(4px);
+    backdrop-filter: blur(4px);
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.85s cubic-bezier(.16, 1, .3, 1)
+}
+
+.panel-overlay.active {
+    opacity: 1;
+    pointer-events: auto
+}
+
+.panel-close-btn {
+    position: absolute;
+    top: 2.5rem;
+    right: 3rem;
+    z-index: 2;
+    background: none;
+    border: none;
+    cursor: pointer
+}
+
+.panel-close-btn kbd {
+    background: #ccc;
+    color: #999;
+    border: 1px solid #ddd;
+    padding: .3rem .6rem;
+    border-radius: 4px;
+    font-family: "Google Sans Code", sans-serif;
+    font-size: .85rem;
+    text-transform: uppercase;
+    transition: all 0.3s cubic-bezier(.16, 1, .3, 1)
+}
+
+.panel-close-btn:hover kbd {
+    color: #000;
+    border-color: #bbb
+}
+
+.panel-content {
+    padding-top: 8rem;
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+    flex: 1;
+    overflow-y: auto;
+    padding-bottom: 5rem;
+    overscroll-behavior: contain;
+    scrollbar-width: none
+}
+
+.panel-content::-webkit-scrollbar {
+    display: none
+}
+
+.panel-content h2 {
+    font-family: var(--font-notch);
+    font-size: 3rem;
+    font-weight: 600;
+    color: #222;
+    letter-spacing: -.02em
+}
+
+.panel-content p {
+    font-family: "poppins", sans-serif;
+    color: #222;
+    font-size: 1.2rem;
+    line-height: 1.4
+}
+
+.about-word-mask {
+    display: block;
+    overflow: visible
+}
+
+.about-word-mask .word-wrapper {
+    display: inline-block;
+    overflow: hidden;
+    vertical-align: bottom;
+    padding-bottom: .1em
+}
+
+.about-word-mask .word {
+    display: inline-block;
+    vertical-align: bottom;
+    transform: translateY(115%);
+    transition: transform 0.85s cubic-bezier(.16, 1, .3, 1);
+    will-change: transform
+}
+
+.about-word-mask .word.show {
+    transform: translateY(0)
+}
+
+@media (max-width:600px) {
+    .about-side-panel {
+        width: 100%;
+        padding: 0 2rem 0rem
+    }
+
+    .panel-overlay {
+        -webkit-backdrop-filter: blur(0px);
+        backdrop-filter: blur(0px);
+    }
+
+    .panel-content {
+        padding-top: 7rem;
+        padding-bottom: 3rem
+    }
+}
+
+.panel-image-container {
+    position: relative;
+    width: 100%;
+    margin-bottom: 1.5rem
+}
+
+.panel-image-container img {
+    width: 100%;
+    aspect-ratio: 1 / 1;
+    height: auto;
+    display: block
+}
+
+.panel-image-container .image-caption {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    background: #ddd;
+    color: #222;
+    font-family: "Google sans code";
+    padding: .4rem .8rem;
+    letter-spacing: -.01em;
+    pointer-events: none
+}
+
+.panel-img-wipe {
+    clip-path: inset(100% 0 0 0);
+    transition: clip-path 0.9s cubic-bezier(.16, 1, .3, 1)
+}
+
+.panel-img-wipe.visible {
+    clip-path: inset(0% 0 0 0)
+}
+
+.panel-collage-container {
+    width: 100%
+}
+
+.panel-collage-container img {
+    width: 100%;
+    height: auto;
+    display: block
+}
+
+#contactPanel {
+    z-index: 310
+}
+
+.form-title {
+    font-size: 2.5rem;
+    font-weight: 700;
+    letter-spacing: -.03em;
+    margin-bottom: 2rem;
+    color: #222
+}
+
+.sidebar-form {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+    width: 100%
+}
+
+.form-group {
+    display: flex;
+    flex-direction: column;
+    gap: .5rem
+}
+
+.form-group label {
+    font-family: "google sans code";
+    font-size: .8rem;
+    color: #777; 
+    text-transform: uppercase;
+    letter-spacing: .1em
+}
+
+.form-group input,
+.form-group textarea {
+    width: 100%;
+    padding: 1rem;
+    background: #eee; 
+    border: 1px solid #ddd; 
+    color: #000; 
+    font-family: inherit;
+    font-size: .95rem;
+    box-sizing: border-box;
+    transition: border-color 0.3s ease, background-color 0.3s ease
+}
+
+.form-group input:focus,
+.form-group textarea:focus {
+    outline: none;
+    border-color: #aaa; 
+    background: #ebebeb 
+}
+
+.form-submit-btn.faq-btn {
+    width: fit-content;
+    background: #1b1b1c;
+    color: #ddd
+}
+
+.form-submit-btn.faq-btn:hover {
+    background-color: #333
+}
+
+.form-submit-btn .faq-arrow-box {
+    background: #f5f5f5;
+    color: #222
+}
+
+.panel-banner-container {
+    width: 100%;
+    margin-top: 1.5rem;
+    margin-bottom: .5rem
+}
+
+.panel-banner-container img {
+    width: 100%;
+    height: auto;
+    display: block;
+    object-fit: cover
+}

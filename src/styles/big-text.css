@@ -1,0 +1,75 @@
+/* The "making stuff look cool" big statement section defined directly in index.astro. */
+
+.big-text-section {
+    width: 100%;
+    min-height: 50vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 10rem 2rem;
+    overflow: hidden
+}
+
+.massive-statement {
+    font-family: var(--font-notch);
+    font-size: clamp(3rem, 10vw, 8rem);
+    font-weight: 700;
+    text-align: center;
+    text-transform: lowercase;
+    line-height: 1.05;
+    letter-spacing: -.02em;
+    color: #ddd;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: .25em
+}
+
+.reveal-wrapper {
+    position: relative;
+    display: inline-block;
+    vertical-align: top;
+    overflow: hidden;
+    height: 1.1em;
+    width: 4ch;
+    text-align: left
+}
+
+.reveal-wrapper.open-mode {
+    overflow: visible
+}
+
+.fake-word {
+    position: absolute;
+    opacity: 0;
+    top: 0;
+    left: 0;
+    white-space: nowrap;
+    font-family: 'Tan Moonlight', sans-serif;
+    display: flex;
+    justify-content: flex-start
+}
+
+.fake-letter {
+    display: inline-block;
+    opacity: 0
+}
+
+.fake-letter.pop {
+    opacity: 1
+}
+
+.real-word {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    transform: translateY(120%);
+    opacity: 0;
+    transition: transform 0.9s var(--cubic-slide), opacity 0.8s ease
+}
+
+.real-word.show {
+    transform: translateY(0);
+    opacity: 1
+}

@@ -1,0 +1,225 @@
+/* Contact section (Contact.astro): nav list, socials, email hover-scroll effect, big wordmark. */
+
+.contact-section {
+    position: relative;
+    z-index: 1;
+    min-height: 100vh;
+    background: #050505;
+    padding: 8rem 2rem 4rem
+}
+
+.contact-grid {
+    display: flex;
+    justify-content: space-between;
+    gap: 8rem
+}
+
+.contact-nav {
+    flex: 1;
+    border-top: 1px solid rgb(255 255 255 / .1)
+}
+
+.contact-label {
+    font-family: "Google Sans Code", sans-serif;
+    font-size: .75rem;
+    letter-spacing: .15em;
+    text-transform: uppercase;
+    opacity: .4;
+    margin-bottom: 0;
+    padding: 1rem 0;
+    border-bottom: 1px solid rgb(255 255 255 / .051)
+}
+
+.contact-nav a {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-family: var(--font-notch);
+    font-size: clamp(2.2rem, 5vw, 4.5rem);
+    color: #ddd;
+    text-decoration: none;
+    padding: .4em .5em .4em 0;
+    border-bottom: 1px solid rgb(255 255 255 / .051);
+    transition: background-color 0.5s var(--cubic-slide), color 0.5s var(--cubic-slide), padding-left 0.5s var(--cubic-slide)
+}
+
+.contact-nav a::after {
+    content: '↗';
+    font-size: .55em;
+    opacity: 0;
+    transform: translate(-8px, 4px);
+    transition: opacity 0.4s var(--cubic-slide), transform 0.4s var(--cubic-slide)
+}
+
+.contact-nav a:hover {
+    background-color: #ddd;
+    color: var(--background);
+    padding-left: 1rem;
+    transition: padding-left 0.5s var(--cubic-slide)
+}
+
+.contact-nav a:hover::after {
+    opacity: 1;
+    transform: translate(0, 0);
+    transition: none
+}
+
+.contact-info {
+    width: 300px;
+    display: flex;
+    flex-direction: column;
+    gap: 3rem;
+    padding-top: .5rem
+}
+
+.contact-info-label {
+    font-family: "Google Sans Code", sans-serif;
+    font-size: .75rem;
+    letter-spacing: .15em;
+    text-transform: uppercase;
+    opacity: .4;
+    margin-bottom: 1.2rem
+}
+
+.contact-links {
+    display: flex;
+    flex-direction: column;
+    gap: 0
+}
+
+.contact-links a {
+    position: relative;
+    display: block;
+    height: 1.3rem;
+    overflow: hidden;
+    color: #ddd;
+    text-decoration: none;
+    font-family: "Poppins", sans-serif;
+    font-size: 1rem;
+    letter-spacing: .05em;
+    border-bottom: 1px solid rgb(255 255 255 / .051);
+    padding: .6em 0;
+    height: auto
+}
+
+.contact-links a .link-text {
+    position: relative;
+    display: block;
+    height: 1.2em;
+    overflow: hidden
+}
+
+.contact-links a .link-text span {
+    display: block;
+    transition: transform 0.35s cubic-bezier(.76, 0, .24, 1)
+}
+
+.contact-links a .link-text span:nth-child(2) {
+    position: absolute;
+    left: 0;
+    top: 0;
+    transform: translateY(100%);
+    color: rgb(255 255 255 / .5)
+}
+
+.contact-links a:hover .link-text span:nth-child(1) {
+    transform: translateY(-100%)
+}
+
+.contact-links a:hover .link-text span:nth-child(2) {
+    transform: translateY(0)
+}
+
+.contact-meta {
+    color: rgb(255 255 255 / .5);
+    font-size: .9rem;
+    line-height: 1.8;
+    font-family: "Google Sans Code", sans-serif;
+    letter-spacing: .03em
+}
+
+@media (max-width:900px) {
+    .contact-grid {
+        flex-direction: column;
+        gap: 4rem
+    }
+
+    .contact-info {
+        width: 100%
+    }
+
+    .contact-nav a {
+        font-size: 2.2rem
+    }
+}
+
+.contact-section {
+    margin-top: -50vh;
+    background-color: #050505;
+    position: relative;
+    z-index: 0;
+    min-height: 100vh
+}
+
+.contact-wordmark {
+    font-family: var(--font-notch);
+    font-size: clamp(5rem, 18vw, 16rem);
+    font-weight: 700;
+    color: #fff0;
+    -webkit-text-stroke: 1px rgb(255 255 255 / .293);
+    text-transform: lowercase;
+    letter-spacing: -.03em;
+    line-height: .85;
+    padding: 4rem 1rem 0;
+    user-select: none;
+    pointer-events: none;
+    transition: -webkit-text-stroke 0.3s ease
+}
+
+.contact-wordmark-wrapper:hover .contact-wordmark {
+    -webkit-text-stroke: 1px #fff
+}
+
+.contact-shifted-wrapper {
+    height: 250px
+}
+
+.contact-meta {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: flex-start;
+    width: 100%
+}
+
+.hover-scroll-email,
+.hover-scroll-arrow {
+    display: inline-block;
+    text-decoration: none;
+    color: #fff;
+    overflow: hidden;
+    vertical-align: bottom
+}
+
+.hover-scroll-arrow {
+    margin-left: auto
+}
+
+.contact-meta .scroll-wrapper {
+    display: flex;
+    flex-direction: column;
+    position: relative;
+    height: 1.4em;
+    line-height: 1.4em;
+    overflow: hidden
+}
+
+.contact-meta .scroll-wrapper span {
+    display: block;
+    height: 100%;
+    transition: transform 0.55s cubic-bezier(.16, 1, .3, 1)
+}
+
+.hover-scroll-email:hover .scroll-wrapper span,
+.hover-scroll-arrow:hover .scroll-wrapper span {
+    transform: translateY(-100%)
+}

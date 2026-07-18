@@ -1,0 +1,325 @@
+/* Hero section (Hero.astro): intro title/subtext reveal, nav-links-nav, scroll-down hint. */
+
+.hero {
+    position: relative;
+    width: 100%;
+    height: 100svh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+    background: var(--background)
+}
+
+.hero-bg {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(rgb(0 0 0 / .45), rgb(0 0 0 / .45)), url(/images/background.avif) center/cover no-repeat;
+    transform: scale(1.2);
+    opacity: 0;
+    z-index: 1;
+    animation: bgReveal 2s var(--cubic-reveal) 0.5s forwards
+}
+
+.hero-overlay-video {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    pointer-events: none;
+    mix-blend-mode: screen;
+    opacity: 0;
+    z-index: 2;
+    transform: scale(1.05);
+    animation: overlayFade 2s ease 0.8s forwards
+}
+
+.hero-bottom-fade {
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    width: 100%;
+    height: 220px;
+    z-index: 4;
+    pointer-events: none;
+    background: linear-gradient(to bottom, transparent, var(--background))
+}
+
+.hero-title {
+    position: relative;
+    z-index: 3;
+    display: inline-block;
+    color: #BDBBBE;
+    font-family: var(--font-notch);
+    text-transform: lowercase;
+    font-size: clamp(4rem, 10vw, 8rem);
+    letter-spacing: 1.5rem;
+    mix-blend-mode: normal;
+    opacity: 0;
+    transform: translateY(30px);
+    animation: textReveal 1.8s var(--cubic-reveal) 1s forwards;
+    overflow: hidden
+}
+
+.hero-title span {
+    display: inline-block;
+    transform: translateY(0);
+    transition: transform 0.7s var(--cubic-slide);
+    transition-delay: calc(var(--i-rev, 0) * 35ms);
+    will-change: transform
+}
+
+.hero-title.up span {
+    transform: translateY(-140%);
+    transition-delay: calc(var(--i, 0) * 35ms)
+}
+
+.hero-subtext {
+    position: absolute;
+    left: 2rem;
+    bottom: 2rem;
+    opacity: 0;
+    z-index: 5;
+    width: 200px;
+    color: rgb(255 255 255 / .7);
+    font-family: var(--font-notch);
+    font-size: .9rem;
+    line-height: 1.4;
+    letter-spacing: .04rem;
+    animation: wordReveal 0.38s var(--cubic-reveal) forwards
+}
+
+.hero-subtext .word {
+    position: relative;
+    display: inline-block;
+    overflow: hidden;
+    vertical-align: bottom
+}
+
+.hero-subtext .word span,
+.hero-subtext>span span {
+    display: block;
+    transform: translateY(100%);
+    opacity: 0;
+    animation: wordReveal 0.38s var(--cubic-reveal) forwards
+}
+
+.hero-subtext br {
+    width: 100%
+}
+
+.hero-subtext>span {
+    position: relative;
+    display: block;
+    height: 1.2em;
+    overflow: hidden
+}
+
+.hero-subtext>span:nth-of-type(1) span {
+    animation-delay: 2.40s
+}
+
+.hero-subtext>span:nth-of-type(2) span {
+    animation-delay: 2.44s
+}
+
+.hero-subtext>span:nth-of-type(3) span {
+    animation-delay: 2.48s
+}
+
+.hero-subtext>span:nth-of-type(4) span {
+    animation-delay: 2.52s
+}
+
+.hero-subtext>span:nth-of-type(5) span {
+    animation-delay: 2.56s
+}
+
+.hero-subtext>span:nth-of-type(6) span {
+    animation-delay: 2.60s
+}
+
+.hero-subtext>span:nth-of-type(7) span {
+    animation-delay: 2.64s
+}
+
+.hero-subtext>span:nth-of-type(8) span {
+    animation-delay: 2.68s
+}
+
+.hero-subtext>span:nth-of-type(9) span {
+    animation-delay: 2.72s
+}
+
+.hero-subtext>span:nth-of-type(10) span {
+    animation-delay: 2.76s
+}
+
+.nav-links-nav {
+    position: absolute;
+    top: 2rem;
+    right: 2rem;
+    z-index: 10
+}
+
+.nav-links-nav ul {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+    gap: .5rem;
+    list-style: none
+}
+
+.nav-links-nav li {
+    opacity: 0;
+    transform: translateX(40px);
+    animation: navReveal 0.8s var(--cubic-reveal) forwards
+}
+
+.nav-links-nav li:nth-child(1) {
+    animation-delay: 2.00s
+}
+
+.nav-links-nav li:nth-child(2) {
+    animation-delay: 2.12s
+}
+
+.nav-links-nav li:nth-child(3) {
+    animation-delay: 2.24s
+}
+
+.nav-links-nav li:nth-child(4) {
+    animation-delay: 2.36s
+}
+
+.nav-links-nav li:nth-child(5) {
+    animation-delay: 2.48s
+}
+
+.nav-links-nav a {
+    position: relative;
+    display: block;
+    height: 1.2em;
+    overflow: hidden;
+    color: #b7b1b2;
+    text-decoration: none;
+    font-family: var(--font-notch);
+    font-size: 1rem;
+    letter-spacing: .1rem
+}
+
+.nav-links-nav a span {
+    display: block;
+    transition: transform 0.35s cubic-bezier(.76, 0, .24, 1)
+}
+
+.nav-links-nav a span:nth-child(2) {
+    position: absolute;
+    left: 0;
+    top: 0;
+    transform: translateY(100%)
+}
+
+.nav-links-nav a:hover span:nth-child(1) {
+    transform: translateY(-100%)
+}
+
+.nav-links-nav a:hover span:nth-child(2) {
+    transform: translateY(0)
+}
+
+.scroll-down {
+    position: absolute;
+    right: 2rem;
+    bottom: 2rem;
+    z-index: 6;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+    gap: .1rem;
+    color: rgb(255 255 255 / .7);
+    font-family: "Google Sans Code", sans-serif;
+    font-size: .85rem;
+    letter-spacing: .15rem
+}
+
+.scroll-down span {
+    display: block;
+    opacity: 0;
+    transform: translateX(14px);
+    animation: letterIn 0.5s var(--cubic-reveal) forwards
+}
+
+.scroll-down span:nth-child(1) {
+    animation-delay: 1.80s
+}
+
+.scroll-down span:nth-child(2) {
+    animation-delay: 1.88s
+}
+
+.scroll-down span:nth-child(3) {
+    animation-delay: 1.96s
+}
+
+.scroll-down span:nth-child(4) {
+    animation-delay: 2.04s
+}
+
+.scroll-down span:nth-child(5) {
+    animation-delay: 2.12s
+}
+
+.scroll-down span:nth-child(6) {
+    animation-delay: 2.20s
+}
+
+@media (max-width:700px) {
+    .hero {
+        justify-content: flex-start;
+        align-items: flex-start;
+        padding: 1.5rem
+    }
+
+    .hero-overlay-video {
+        transform: rotate(90deg)
+    }
+
+    .hero-title {
+        position: absolute;
+        top: 2.5rem;
+        left: 1.5rem;
+        transform: none;
+        display: flex;
+        flex-direction: column;
+        letter-spacing: 0;
+        font-size: clamp(3rem, 12vw, 5rem);
+        animation: textRevealMobile 1.8s var(--cubic-reveal) 1s forwards;
+        overflow: visible
+    }
+
+    .hero-title span {
+        display: block;
+        will-change: auto
+    }
+
+    .hero-title.up span {
+        transition: transform 0.7s var(--cubic-slide)
+    }
+
+    .hero-subtext {
+        width: 220px;
+        left: 1.2rem
+    }
+
+    .nav-links-nav a {
+        font-size: 1.5rem;
+        letter-spacing: .1rem
+    }
+
+    .scroll-down {
+        right: 1.2rem;
+        bottom: 1.2rem
+    }
+}

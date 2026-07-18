@@ -1,0 +1,191 @@
+/* FAQ accordion (FAQ.astro). Shares .faq-btn styling with buttons.css. */
+
+.faq-section {
+    width: 100%;
+    padding: 8rem 2rem;
+    background: var(--background);
+    display: flex;
+    flex-direction: row-reverse;
+    gap: 4rem
+}
+
+.faq-right {
+    width: 70%;
+    border-bottom: 1px solid rgb(255 255 255 / .1)
+}
+
+.faq-left {
+    width: 30%
+}
+
+.faq-sticky {
+    position: sticky;
+    top: calc(100vh - 340px - 8rem);
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end
+}
+
+.faq-profile {
+    margin-top: auto
+}
+
+.faq-profile h3 {
+    font-family: var(--font-notch);
+    font-size: 1.5rem;
+    font-weight: 500;
+    line-height: 1.3;
+    margin: 1.5rem 0;
+    text-transform: lowercase
+}
+
+.faq-avatar {
+    width: 120px;
+    height: 120px;
+    object-fit: cover
+}
+
+.faq-heading {
+    font-family: var(--font-notch);
+    font-size: clamp(2.5rem, 5vw, 4.5rem);
+    font-weight: 700;
+    line-height: 1.1;
+    margin-bottom: 5rem;
+    letter-spacing: -.01em
+}
+
+.faq-item {
+    background-color: #fff0;
+    border-bottom: 1px solid rgb(255 255 255 / .051);
+    transition: background-color 0.5s var(--cubic-slide)
+}
+
+.faq-trigger {
+    width: 100%;
+    text-align: left;
+    background: #fff0;
+    border: none;
+    padding: 1.5rem 0rem;
+    cursor: pointer;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    color: #ddd;
+    transition: background-color 0.5s var(--cubic-slide), color 0.5s var(--cubic-slide)
+}
+
+.faq-title {
+    font-family: "Poppins", sans-serif;
+    font-size: 1.5rem;
+    font-weight: 550;
+    text-transform: lowercase;
+    display: inline-block;
+    transition: padding-left 0.5s var(--cubic-slide), color 0.5s var(--cubic-slide)
+}
+
+.faq-trigger:hover {
+    background-color: #ddd;
+    color: var(--background);
+    transition: none
+}
+
+.faq-trigger:hover .faq-title {
+    color: var(--background);
+    padding-left: 1rem
+}
+
+.faq-item.active .faq-trigger {
+    background-color: #ddd;
+    color: var(--background)
+}
+
+.faq-item.active .faq-title {
+    color: var(--background);
+    padding-left: 1rem
+}
+
+.faq-content {
+    display: grid;
+    grid-template-rows: 0fr;
+    transition: grid-template-rows 0.5s var(--cubic-slide);
+    overflow: hidden;
+    background: #fff0;
+    pointer-events: none
+}
+
+.faq-item.active .faq-content {
+    grid-template-rows: 1fr;
+    pointer-events: auto
+}
+
+.faq-content-inner {
+    min-height: 0;
+    overflow: hidden;
+    padding: 0 1rem 0 1rem;
+    font-family: "Poppins", sans-serif;
+    font-size: 1.05rem;
+    line-height: 1.6;
+    max-width: 750px;
+    color: rgb(255 255 255 / .6);
+    transition: padding 0.5s var(--cubic-slide)
+}
+
+.faq-item.active .faq-content-inner {
+    padding: 1.5rem 1rem 2rem 1rem
+}
+
+.faq-content-inner p {
+    margin: 0 0 1rem 0
+}
+
+.faq-content-inner p:last-child {
+    margin-bottom: 0
+}
+
+.faq-icon::after {
+    color: #555;
+    content: '+';
+    font-size: 1.2rem;
+    font-family: var(--font-notch);
+    transition: color 0.3s ease
+}
+
+.faq-item.active .faq-icon::after {
+    content: '-'
+}
+
+.faq-trigger:hover .faq-icon,
+.faq-item.active .faq-icon {
+    color: var(--background)
+}
+
+@media (max-width:1024px) {
+    .faq-section {
+        flex-direction: column;
+        gap: 3rem
+    }
+
+    .faq-left,
+    .faq-right {
+        width: 100%
+    }
+
+    .faq-sticky {
+        position: static;
+        top: auto
+    }
+}
+
+@media (max-width:768px) {
+    .faq-section {
+        padding: 4rem 1rem
+    }
+
+    .faq-heading {
+        margin-bottom: 3rem
+    }
+
+    .faq-title {
+        font-size: 1.25rem
+    }
+}
