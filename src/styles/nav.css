@@ -171,6 +171,7 @@ body.mobile-nav-open .top-nav {
     justify-content: space-between;
     align-items: center;
     font-family: var(--font-notch);
+    font-size: clamp(1rem, 8vw, 5rem);
     color: #ddd;
     text-decoration: none;
     padding: .3em .4em .3em 0;
@@ -180,7 +181,7 @@ body.mobile-nav-open .top-nav {
 
 .menu-overlay-link::after {
     content: '↗';
-    font-size: .55em;
+    font-size: .45em;
     opacity: 0;
     transform: translate(-8px, 4px);
     transition: opacity 0.4s var(--cubic-slide), transform 0.4s var(--cubic-slide);
@@ -199,19 +200,6 @@ body.mobile-nav-open .top-nav {
     transition: none;
 }
 
-@media (min-width: 601px) {
-    .menu-overlay-link {
-        font-size: clamp(1rem, 5vw, 2.5rem);
-        padding: 0.4em 0.3em 0.4em 0;
-    }
-}
-   
-@media (min-width: 769px) {
-    .menu-overlay-link {
-        font-size: 1.25rem;
-        padding: .55em .2em;
-    }
-}
 body.menu-open {
     overflow: hidden
 }
