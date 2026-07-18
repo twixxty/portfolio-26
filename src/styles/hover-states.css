@@ -18,6 +18,7 @@
     .menu-overlay-link:hover {
         background-color: transparent !important;
         color: inherit !important
+        padding-left: 0 !important;       
     }
 
     .panel-close-btn:hover kbd {
