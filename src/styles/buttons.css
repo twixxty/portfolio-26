@@ -66,22 +66,20 @@
     transform: scale(.85)
 }
 
-.faq-arrow-box span {
+.faq-arrow {
     display: block;
-    font-size: 1.1rem;
-    line-height: 1;
-    transition: transform 0.6s var(--cubic-slide)
+    transition: transform 0.6s var(--cubic-slide);
 }
 
-.faq-arrow-box span:nth-child(2) {
+.faq-arrow-box .faq-arrow:nth-child(2) {
     position: absolute;
-    transform: translate(-120%, 120%)
+    transform: translate(-120%, 120%);
 }
 
-.faq-btn:hover .faq-arrow-box span:nth-child(1) {
-    transform: translate(120%, -120%)
+.faq-btn:hover .faq-arrow-box .faq-arrow:nth-child(1) {
+    transform: translate(120%, -120%);
 }
 
-.faq-btn:hover .faq-arrow-box span:nth-child(2) {
-    transform: translate(0, 0)
+.faq-btn:hover .faq-arrow-box .faq-arrow:nth-child(2) {
+    transform: translate(0, 0);
 }
