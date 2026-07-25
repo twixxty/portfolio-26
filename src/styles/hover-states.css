@@ -12,7 +12,7 @@
         padding-left: 0 !important;
         background-color: transparent !important;
         color: inherit !important;
-        -webkit-text-stroke: 1px rgb(255 255 255 / .293) !important
+        -webkit-text-stroke: 1px rgb(255 255 255 / .293) !important;
     }
 
     .menu-overlay-link:hover {
@@ -31,182 +31,184 @@
         background: #ccc;
         color: #999;
         border: 1px solid #ddd;
-
     }
 
     .faq-trigger:hover,
     .archive-row:hover {
         background-color: var(--background);
-        color: #ddd
+        color: #ddd;
     }
 
     .faq-trigger:hover .faq-title,
     .archive-row:hover .archive-title {
-        color: #ddd
+        color: #ddd;
     }
 
     .top-nav-links a:hover span:nth-child(2),
     .contact-links a:hover .link-text span:nth-child(2) {
-        transform: translateY(100%) !important
+        transform: translateY(100%) !important;
     }
 
     .menu-overlay-link:active {
         background-color: #ddd !important;
         color: #111 !important;
-        padding-left: 0.6em !important
+        padding-left: 0.6em !important;
     }
 
     .faq-trigger:active,
     .faq-item.active .faq-trigger {
         background-color: #ddd !important;
-        color: var(--background) !important
+        color: var(--background) !important;
     }
 
     .faq-trigger:active .faq-title,
     .faq-item.active .faq-title {
         color: var(--background) !important;
-        padding-left: 1rem !important
+        padding-left: 1rem !important;
     }
 
     .archive-row:active {
         background-color: #ddd !important;
-        color: var(--background) !important
+        color: var(--background) !important;
     }
 
     .archive-row:active .archive-title {
         color: var(--background) !important;
-        padding-left: 1rem !important
+        padding-left: 1rem !important;
     }
 
     .contact-nav a:active {
         background-color: #ddd !important;
         color: var(--background) !important;
-        padding-left: 1rem !important
+        padding-left: 1rem !important;
     }
 
     .contact-nav a:active::after {
         opacity: 1 !important;
-        transform: translate(0, 0) !important
+        transform: translate(0, 0) !important;
     }
 
     .contact-links a:active .link-text span:nth-child(1) {
-        transform: translateY(-100%) !important
+        transform: translateY(-100%) !important;
     }
 
     .contact-links a:active .link-text span:nth-child(2) {
-        transform: translateY(0) !important
+        transform: translateY(0) !important;
     }
 
     .panel-close-btn:active kbd {
         color: #fff !important;
         border-color: #444 !important;
-        background: #444 !important
+        background: #444 !important;
     }
 
     .contact-wordmark-wrapper:active .contact-wordmark {
-        -webkit-text-stroke: 1px #ffffff !important
+        -webkit-text-stroke: 1px #ffffff !important;
     }
 
+    /* FAQ Button Touch Overrides */
     .faq-btn:hover {
-        background-color: #e4e4e3 !important
+        background-color: #e4e4e3 !important;
     }
 
     .faq-btn:hover .faq-btn-text span:nth-child(1) {
-        transform: translateY(0) !important
+        transform: translateY(0) !important;
     }
 
     .faq-btn:hover .faq-btn-text span:nth-child(2) {
-        transform: translateY(100%) !important
+        transform: translateY(100%) !important;
     }
 
     .faq-btn:hover .faq-arrow-box {
-        transform: scale(1) !important
+        transform: scale(1) !important;
     }
 
     .faq-btn:hover .faq-arrow-box .faq-arrow:nth-child(1) {
-        transform: translate(0, 0) !important
+        transform: translate(0, 0) !important;
     }
 
     .faq-btn:hover .faq-arrow-box .faq-arrow:nth-child(2) {
-        transform: translate(-120%, 120%) !important
+        transform: translate(-120%, 120%) !important;
     }
 
     .faq-btn:active {
-        background-color: #cccccc !important
+        background-color: #cccccc !important;
     }
 
     .faq-btn:active .faq-btn-text span:nth-child(1) {
-        transform: translateY(-100%) !important
+        transform: translateY(-100%) !important;
     }
 
     .faq-btn:active .faq-btn-text span:nth-child(2) {
-        transform: translateY(0) !important
+        transform: translateY(0) !important;
     }
 
     .faq-btn:active .faq-arrow-box {
-        transform: scale(.85) !important
+        transform: scale(.85) !important;
     }
 
-    .faq-btn:active .faq-arrow-box span:nth-child(1) {
-        transform: translate(120%, -120%) !important
+    .faq-btn:active .faq-arrow-box .faq-arrow:nth-child(1) {
+        transform: translate(120%, -120%) !important;
     }
 
-    .faq-btn:active .faq-arrow-box span:nth-child(2) {
-        transform: translate(0, 0) !important
+    .faq-btn:active .faq-arrow-box .faq-arrow:nth-child(2) {
+        transform: translate(0, 0) !important;
     }
 
+    /* Form Submit FAQ Button Overrides */
     .form-submit-btn.faq-btn:hover {
-        background-color: #1b1b1c !important
+        background-color: #1b1b1c !important;
     }
 
     .form-submit-btn.faq-btn:hover .faq-btn-text span:nth-child(1) {
-        transform: translateY(0) !important
+        transform: translateY(0) !important;
     }
 
     .form-submit-btn.faq-btn:hover .faq-btn-text span:nth-child(2) {
-        transform: translateY(100%) !important
+        transform: translateY(100%) !important;
     }
 
     .form-submit-btn.faq-btn:hover .faq-arrow-box {
-        transform: scale(1) !important
+        transform: scale(1) !important;
     }
 
-    .form-submit-btn.faq-btn:hover .faq-arrow-box span:nth-child(1) {
-        transform: translate(0, 0) !important
+    .form-submit-btn.faq-btn:hover .faq-arrow-box .faq-arrow:nth-child(1) {
+        transform: translate(0, 0) !important;
     }
 
-    .form-submit-btn.faq-btn:hover .faq-arrow-box span:nth-child(2) {
-        transform: translate(-120%, 120%) !important
-     }
+    .form-submit-btn.faq-btn:hover .faq-arrow-box .faq-arrow:nth-child(2) {
+        transform: translate(-120%, 120%) !important;
+    }
     
     .form-submit-btn.faq-btn:active {
-        background-color: #333333 !important
+        background-color: #333333 !important;
     }
 
     .form-submit-btn.faq-btn:active .faq-btn-text span:nth-child(1) {
-        transform: translateY(-100%) !important
+        transform: translateY(-100%) !important;
     }
 
     .form-submit-btn.faq-btn:active .faq-btn-text span:nth-child(2) {
-        transform: translateY(0) !important
+        transform: translateY(0) !important;
     }
 
     .form-submit-btn.faq-btn:active .faq-arrow-box {
-        transform: scale(.85) !important
+        transform: scale(.85) !important;
     }
 
-    .form-submit-btn.faq-btn:active .faq-arrow-box span:nth-child(1) {
-        transform: translate(120%, -120%) !important
+    .form-submit-btn.faq-btn:active .faq-arrow-box .faq-arrow:nth-child(1) {
+        transform: translate(120%, -120%) !important;
     }
 
-    .form-submit-btn.faq-btn:active .faq-arrow-box span:nth-child(2) {
-        transform: translate(0, 0) !important
+    .form-submit-btn.faq-btn:active .faq-arrow-box .faq-arrow:nth-child(2) {
+        transform: translate(0, 0) !important;
     }
+
     .contact-wordmark-wrapper:hover .contact-wordmark {
-        -webkit-text-stroke: 1px rgb(255 255 255 / .293)
+        -webkit-text-stroke: 1px rgb(255 255 255 / .293);
     }
 
     .contact-wordmark-wrapper:active .contact-wordmark {
-        -webkit-text-stroke: 1px #fff
+        -webkit-text-stroke: 1px #fff;
     }
 }
