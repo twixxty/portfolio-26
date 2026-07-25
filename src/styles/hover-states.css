@@ -123,11 +123,11 @@
         transform: scale(1) !important
     }
 
-    .faq-btn:hover .faq-arrow-box span:nth-child(1) {
+    .faq-btn:hover .faq-arrow-box .faq-arrow:nth-child(1) {
         transform: translate(0, 0) !important
     }
 
-    .faq-btn:hover .faq-arrow-box span:nth-child(2) {
+    .faq-btn:hover .faq-arrow-box .faq-arrow:nth-child(2) {
         transform: translate(-120%, 120%) !important
     }
 
