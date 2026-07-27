@@ -50,6 +50,8 @@ const contactSection = document.querySelector<HTMLElement>(".contact-section");
 const contentContainer = document.getElementById("testimonialContent");
 const indexEl = document.getElementById("testimonialIndex");
 const progressWrapper = document.querySelector<HTMLElement>(".testimonial-progress-wrapper");
+const prevTestimonialBtn = document.getElementById("prevTestimonial") as HTMLButtonElement | null;
+const nextTestimonialBtn = document.getElementById("nextTestimonial") as HTMLButtonElement | null;
 
 const activeCards = new Set<Element>();
 const cardImageCache = new WeakMap<Element, HTMLElement | null>();
@@ -377,6 +379,14 @@ function getCurrentScaleX(el: HTMLElement): number {
 
 function createAndStartNewProgressBar(duration: number): HTMLElement | undefined {
   if (!progressWrapper) return undefined;
+  // Anything older than the single bar that should currently be
+  // collapsing is a leftover from a race and would otherwise pile up
+  // forever — remove it immediately rather than waiting on its own timer.
+  const existingBars = progressWrapper.querySelectorAll<HTMLElement>(".testimonial-progress-bar");
+  existingBars.forEach((oldBar, i) => {
+    if (i < existingBars.length - 1) oldBar.remove();
+  });
+
   const bar = document.createElement("div");
   bar.className = "testimonial-progress-bar";
   progressWrapper.appendChild(bar);
@@ -411,19 +421,33 @@ function triggerBarCollapseSequence(bar: HTMLElement | null | undefined): void {
   });
 }
 
+function setTransitioning(value: boolean): void {
+  isTransitioning = value;
+  if (prevTestimonialBtn) prevTestimonialBtn.disabled = value;
+  if (nextTestimonialBtn) nextTestimonialBtn.disabled = value;
+}
+
 function displayTestimonial(index: number): void {
-  isTransitioning = true;
+  // Guard here too: displayTestimonial is also invoked directly by the
+  // auto-advance timer, which isn't gated by navigateTestimonial's check.
+  // Without this, a manual tap that lands right as auto-advance fires could
+  // start two overlapping transitions at once (duplicate bars/text).
+  if (isTransitioning) return;
+  setTransitioning(true);
   const next = testimonialData[index];
   if (indexEl) {
     indexEl.textContent = `${String(index + 1).padStart(2, "0")}/${String(
       testimonialData.length
     ).padStart(2, "0")}`;
   }
-  const currentGroup = contentContainer?.querySelector<HTMLElement>(".testimonial-slide-group");
+  // Sweep up every existing slide group, not just the first one. If a prior
+  // race ever left more than one behind, this guarantees they all animate
+  // out and get removed instead of sitting there overlapping forever.
+  const staleGroups = contentContainer?.querySelectorAll<HTMLElement>(".testimonial-slide-group");
   clearTimeout(testimonialTimeout);
   let outroDuration = 0;
 
-  if (currentGroup) {
+  staleGroups?.forEach((currentGroup) => {
     const lineTexts = currentGroup.querySelectorAll<HTMLElement>(".testimonial-line-text");
     const authorInner = currentGroup.querySelector<HTMLElement>(".testimonial-author-inner");
 
@@ -441,9 +465,9 @@ function displayTestimonial(index: number): void {
       }, 45 * lineTexts.length);
     }
 
-    outroDuration = 45 * lineTexts.length + 200;
-    setTimeout(() => currentGroup.remove(), outroDuration + 100);
-  }
+    outroDuration = Math.max(outroDuration, 45 * lineTexts.length + 200);
+    setTimeout(() => currentGroup.remove(), 45 * lineTexts.length + 300);
+  });
 
   setTimeout(() => renderNewContent(next), Math.max(0, outroDuration - 150));
 }
@@ -488,7 +512,7 @@ function renderNewContent(item: Testimonial): void {
     if (authorInner) {
       setTimeout(() => {
         authorInner.classList.add("in");
-        isTransitioning = false;
+        setTransitioning(false);
       }, 45 * lineTexts.length + 50);
     }
   });
@@ -501,7 +525,6 @@ function renderNewContent(item: Testimonial): void {
 
 function navigateTestimonial(direction: 1 | -1): void {
   if (isTransitioning || !progressWrapper) return;
-  isTransitioning = true;
   clearTimeout(testimonialTimeout);
   clearTimeout(progressAnimationInterval);
 
@@ -515,7 +538,6 @@ function navigateTestimonial(direction: 1 | -1): void {
   }
 
   currentTestimonialIndex = nextIndex;
-  isTransitioning = false;
   displayTestimonial(currentTestimonialIndex);
 }
 
