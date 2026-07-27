@@ -368,6 +368,13 @@ function lockMaxContentHeight(): void {
   contentContainer.style.height = `${maxHeight}px`;
 }
 
+function getCurrentScaleX(el: HTMLElement): number {
+  const transform = getComputedStyle(el).transform;
+  if (transform === "none") return 0;
+  const match = transform.match(/matrix\(([^,]+),/);
+  return match ? parseFloat(match[1]) : 1;
+}
+
 function createAndStartNewProgressBar(duration: number): HTMLElement | undefined {
   if (!progressWrapper) return undefined;
   const bar = document.createElement("div");
@@ -381,15 +388,26 @@ function createAndStartNewProgressBar(duration: number): HTMLElement | undefined
   return bar;
 }
 
+// Slides whatever is currently visible of the bar out to the right, starting from
+// its *current* fill amount (whether that's 100% on natural completion, or some
+// partial amount because the user tapped next/prev early). This avoids ever
+// snapping the fill to 100% first, which is what caused the abrupt jump.
 function triggerBarCollapseSequence(bar: HTMLElement | null | undefined): void {
-  if (!bar) return;
+  if (!bar || !progressWrapper) return;
+  const scale = getCurrentScaleX(bar);
+  const wrapperWidth = progressWrapper.clientWidth;
+
   bar.style.transition = "none";
-  bar.style.transformOrigin = "right center";
-  bar.style.transform = "scaleX(1)";
+  bar.style.transformOrigin = "left center";
+  bar.style.transform = `scaleX(${scale})`;
+  void bar.offsetWidth; // force reflow so the frozen state is registered first
+
   requestAnimationFrame(() => {
-    bar.style.transition = "transform 350ms cubic-bezier(0.4, 0, 0.2, 1)";
-    bar.style.transform = "scaleX(0)";
-    setTimeout(() => bar.remove(), 350);
+    bar.style.transition = "transform 380ms cubic-bezier(0.4, 0, 0.2, 1)";
+    // translateX is applied in unscaled px, so this always clears the wrapper
+    // regardless of how filled the bar currently is.
+    bar.style.transform = `translateX(${wrapperWidth}px) scaleX(${scale})`;
+    setTimeout(() => bar.remove(), 380);
   });
 }
 
@@ -493,19 +511,12 @@ function navigateTestimonial(direction: 1 | -1): void {
   const lastBar = bars[bars.length - 1];
 
   if (lastBar) {
-    lastBar.style.transition = "transform 80ms ease-out";
-    lastBar.style.transform = "scaleX(1)";
-    setTimeout(() => {
-      triggerBarCollapseSequence(lastBar);
-      currentTestimonialIndex = nextIndex;
-      isTransitioning = false;
-      displayTestimonial(currentTestimonialIndex);
-    }, 80);
-  } else {
-    currentTestimonialIndex = nextIndex;
-    isTransitioning = false;
-    displayTestimonial(currentTestimonialIndex);
+    triggerBarCollapseSequence(lastBar);
   }
+
+  currentTestimonialIndex = nextIndex;
+  isTransitioning = false;
+  displayTestimonial(currentTestimonialIndex);
 }
 
 function raf(time: number): void {
