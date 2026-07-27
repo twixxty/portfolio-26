@@ -6,8 +6,4 @@ export default defineConfig({
   build: {
     inlineStylesheets: 'always',
   },
-  image: {
-    defaultFormat: 'avif',
-    quality: 80,
-  }
 });
