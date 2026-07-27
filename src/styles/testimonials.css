@@ -64,6 +64,11 @@
     opacity: 1
 }
 
+.testimonial-btn:disabled {
+    opacity: .35;
+    cursor: default
+}
+
 .testimonial-index {
     font-family: var(--font-notch);
     font-size: 1rem;
