@@ -184,25 +184,11 @@ body.mobile-nav-open .top-nav {
     transition: background-color 0.5s var(--cubic-slide), color 0.5s var(--cubic-slide), padding-left 0.5s var(--cubic-slide);
 }
 
-.menu-overlay-link::after {
-    content: '↗';
-    font-size: .45em;
-    opacity: 0;
-    transform: translate(-8px, 4px);
-    transition: opacity 0.4s var(--cubic-slide), transform 0.4s var(--cubic-slide);
-}
-
 .menu-overlay-link:hover {
     background-color: #ddd;
     color: var(--background);
     padding-left: 1rem;
     transition: padding-left 0.5s var(--cubic-slide);
-}
-
-.menu-overlay-link:hover::after {
-    opacity: 1;
-    transform: translate(0, 0);
-    transition: none;
 }
 
 body.menu-open {
