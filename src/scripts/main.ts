@@ -237,6 +237,7 @@ function updateNavScroll(
       letter.style.transitionDelay = `${35 * i}ms`;
     });
     topNav.classList.remove("show");
+    topNav.dispatchEvent(new CustomEvent("navhide"));
   }
 }
 
@@ -379,9 +380,6 @@ function getCurrentScaleX(el: HTMLElement): number {
 
 function createAndStartNewProgressBar(duration: number): HTMLElement | undefined {
   if (!progressWrapper) return undefined;
-  // Anything older than the single bar that should currently be
-  // collapsing is a leftover from a race and would otherwise pile up
-  // forever — remove it immediately rather than waiting on its own timer.
   const existingBars = progressWrapper.querySelectorAll<HTMLElement>(".testimonial-progress-bar");
   existingBars.forEach((oldBar, i) => {
     if (i < existingBars.length - 1) oldBar.remove();
@@ -398,10 +396,6 @@ function createAndStartNewProgressBar(duration: number): HTMLElement | undefined
   return bar;
 }
 
-// Slides whatever is currently visible of the bar out to the right, starting from
-// its *current* fill amount (whether that's 100% on natural completion, or some
-// partial amount because the user tapped next/prev early). This avoids ever
-// snapping the fill to 100% first, which is what caused the abrupt jump.
 function triggerBarCollapseSequence(bar: HTMLElement | null | undefined): void {
   if (!bar || !progressWrapper) return;
   const scale = getCurrentScaleX(bar);
@@ -410,12 +404,10 @@ function triggerBarCollapseSequence(bar: HTMLElement | null | undefined): void {
   bar.style.transition = "none";
   bar.style.transformOrigin = "left center";
   bar.style.transform = `scaleX(${scale})`;
-  void bar.offsetWidth; // force reflow so the frozen state is registered first
+  void bar.offsetWidth;
 
   requestAnimationFrame(() => {
     bar.style.transition = "transform 380ms cubic-bezier(0.4, 0, 0.2, 1)";
-    // translateX is applied in unscaled px, so this always clears the wrapper
-    // regardless of how filled the bar currently is.
     bar.style.transform = `translateX(${wrapperWidth}px) scaleX(${scale})`;
     setTimeout(() => bar.remove(), 380);
   });
@@ -428,10 +420,6 @@ function setTransitioning(value: boolean): void {
 }
 
 function displayTestimonial(index: number): void {
-  // Guard here too: displayTestimonial is also invoked directly by the
-  // auto-advance timer, which isn't gated by navigateTestimonial's check.
-  // Without this, a manual tap that lands right as auto-advance fires could
-  // start two overlapping transitions at once (duplicate bars/text).
   if (isTransitioning) return;
   setTransitioning(true);
   const next = testimonialData[index];
@@ -440,9 +428,6 @@ function displayTestimonial(index: number): void {
       testimonialData.length
     ).padStart(2, "0")}`;
   }
-  // Sweep up every existing slide group, not just the first one. If a prior
-  // race ever left more than one behind, this guarantees they all animate
-  // out and get removed instead of sitting there overlapping forever.
   const staleGroups = contentContainer?.querySelectorAll<HTMLElement>(".testimonial-slide-group");
   clearTimeout(testimonialTimeout);
   let outroDuration = 0;
@@ -691,6 +676,15 @@ document.addEventListener("DOMContentLoaded", () => {
     menuOverlay.classList.contains("open") ? requestCloseAllUI() : openMobileMenu();
   });
   menuBackdrop?.addEventListener("click", requestCloseAllUI);
+
+  topNav?.addEventListener("navhide", () => {
+    if (!menuOverlay.classList.contains("open")) return;
+    if (uiHistoryPushed) {
+      uiHistoryPushed = false;
+      history.replaceState(null, "");
+    }
+    closeMobileMenu();
+  });
 
   aboutWordMasks.forEach((el) => {
     splitText(el);
