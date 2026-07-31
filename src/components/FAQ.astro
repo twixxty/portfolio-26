@@ -11,16 +11,18 @@ const faqs = allFaqs.sort((a, b) => a.data.order - b.data.order);
   <div class="faq-right">
     <h2 class="faq-heading">before you ask questions, READ!</h2>
     <div class="faq-list">
-      {faqs.map((item) => (
-        <div class="faq-item">
-          <button class="faq-trigger">
-            <span class="faq-title">{item.data.question}</span>
-          </button>
-          <div class="faq-content">
-            <p class="faq-content-inner">{item.data.answer}</p>
+      {
+        faqs.map((item) => (
+          <div class="faq-item">
+            <button class="faq-trigger">
+              <span class="faq-title">{item.data.question}</span>
+            </button>
+            <div class="faq-content">
+              <p class="faq-content-inner">{item.data.answer}</p>
+            </div>
           </div>
-        </div>
-      ))}
+        ))
+      }
     </div>
   </div>
   <div class="faq-left">
@@ -39,18 +41,41 @@ const faqs = allFaqs.sort((a, b) => a.data.order - b.data.order);
         />
         <h3>got more questions?<br />(stupid)</h3>
         <a href="#" class="faq-btn contact-trigger">
-          <span class="faq-btn-text"><span>talk to twixxty</span><span>talk to twixxty</span></span>
-  <div class="faq-arrow-box">
-    <svg class="faq-arrow" viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
-      <line x1="7" y1="17" x2="17" y2="7"></line>
-      <polyline points="7 7 17 7 17 17"></polyline>
-    </svg>
-    <svg class="faq-arrow" viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
-      <line x1="7" y1="17" x2="17" y2="7"></line>
-      <polyline points="7 7 17 7 17 17"></polyline>
-    </svg>
-  </div>
-</a>
+          <span class="faq-btn-text">
+            <span>talk to twixxty</span>
+            <span>talk to twixxty</span>
+          </span>
+          <div class="faq-arrow-box">
+            <svg
+              class="faq-arrow"
+              viewBox="0 0 24 24"
+              width="18"
+              height="18"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="2.5"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+            >
+              <line x1="7" y1="17" x2="17" y2="7"></line>
+              <polyline points="7 7 17 7 17 17"></polyline>
+            </svg>
+            <svg
+              class="faq-arrow"
+              viewBox="0 0 24 24"
+              width="18"
+              height="18"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="2.5"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+            >
+              <line x1="7" y1="17" x2="17" y2="7"></line>
+              <polyline points="7 7 17 7 17 17"></polyline>
+            </svg>
+          </div>
+        </a>
       </div>
     </div>
   </div>
