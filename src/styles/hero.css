@@ -285,7 +285,11 @@
     .hero-overlay-video {
         transform: rotate(90deg)
     }
-
+    
+    .hero-bg {
+        rotate: 90deg;
+    }
+    
     .hero-title {
         position: absolute;
         top: 2.5rem;
