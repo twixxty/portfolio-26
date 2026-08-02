@@ -1,0 +1,52 @@
+:root {
+    /* ---------- Core background ---------- */
+    --background: #222;                    /* main page/section background — used almost everywhere */
+
+    /* ---------- Backgrounds (dark surfaces) ---------- */
+    --color-void: #050505;                 /* near-black section background — contact.css, pitch.css */
+    --color-black: #000;                   /* pure black — panels.css */
+    --color-nav-dark: #111;                /* mobile nav overlay bg — nav.css; active nav-link text — hover-states.css */
+    --color-panel-dark: #141414;           /* panel section background — panels.css */
+    --color-panel-darker: #1b1b1c;         /* darker panel/hover surface — hover-states.css, panels.css */
+    --color-near-black: #0a0a0a;           /* faq-arrow-box background — buttons.css */
+
+    /* ---------- Text / foreground neutrals ---------- */
+    --color-text: #ddd;                    /* primary light body/heading text — used almost everywhere */
+    --color-white: #fff;                   /* pure white text/stroke — contact.css, hover-states.css */
+    --color-off-white: #e4e4e3;            /* faq-btn background — buttons.css; touch hover state — hover-states.css */
+    --color-off-white-alt: #ebebeb;        /* panels.css */
+    --color-off-white-alt2: #f5f5f5;       /* panels.css */
+    --color-off-white-alt3: #eee;          /* panels.css */
+    --color-grey-light: #ccc;              /* faq-btn hover — buttons.css; touch hover state — hover-states.css; panels.css */
+    --color-grey-lighter: #bbb;            /* panels.css */
+    --color-grey-lightest: #aaa;           /* panels.css */
+    --color-grey-dark: #333;               /* hover-states.css, panels.css, testimonials.css */
+    --color-grey-subtle: #777;             /* panels.css */
+    --color-grey-faint: #555;              /* faq.css */
+    --color-grey-muted: #888;              /* testimonials.css */
+    --color-muted: #999;                   /* hover-states.css, panels.css */
+    --color-hover-grey: #444;              /* touch active kbd state — hover-states.css */
+    --color-cool-grey: #d0d0d0;            /* projects.css */
+    --color-cool-grey-alt: #b0b0b0;        /* testimonials.css */
+    --color-warm-grey: #bdbbbe;            /* hero title color — hero.css */
+    --color-warm-grey-alt: #b7b1b2;        /* hero.css */
+
+    /* ---------- Transparent / overlay whites (borders, hairlines, translucent fills) ---------- */
+    --color-ghost-white: #fff0;            /* fully transparent white — base.css tap-highlight/scrollbar; also faq.css, projects.css, contact.css, pitch.css */
+    --color-white-05: rgb(255 255 255 / .051); /* hairline borders/dividers — nav.css, projects.css, contact.css, faq.css */
+    --color-white-08: rgb(255 255 255 / .08);  /* nav overlay border — nav.css */
+    --color-white-10: rgb(255 255 255 / .1);   /* subtle overlay fill — contact.css, faq.css, testimonials.css */
+    --color-white-25: rgb(255 255 255 / .25);  /* projects.css */
+    --color-white-29: rgb(255 255 255 / .293); /* text-stroke accent — contact.css, hover-states.css */
+    --color-white-50: rgb(255 255 255 / .5);   /* contact.css */
+    --color-white-60: rgb(255 255 255 / .6);   /* faq.css */
+    --color-white-65: rgb(255 255 255 / .65);  /* projects.css */
+    --color-white-70: rgb(255 255 255 / .7);   /* hero.css */
+
+    /* ---------- Black overlays ---------- */
+    --color-black-45: rgb(0 0 0 / .45);    /* hero background image gradient overlay — hero.css */
+    --color-black-70: rgb(0 0 0 / .7);     /* nav menu backdrop, panel overlay — nav.css, panels.css */
+
+    /* ---------- Special ---------- */
+    --color-transparent: transparent;      /* explicit transparent — hero.css gradient, hover-states.css touch states */
+}
