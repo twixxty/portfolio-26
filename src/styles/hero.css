@@ -287,8 +287,14 @@
     }
     
     .hero-bg {
+        inset: auto;
+        top: 50%;
+        left: 50%;
+        width: 100svh;
+        height: 100vw;
+        translate: -50% -50%;
         rotate: 90deg;
-    }
+    }  
     
     .hero-title {
         position: absolute;
