@@ -4,7 +4,7 @@
     position: relative;
     z-index: 1;
     min-height: 100vh;
-    background: #050505;
+    background: var(--color-void);
     padding: 8rem 2rem 4rem
 }
 
@@ -16,7 +16,7 @@
 
 .contact-nav {
     flex: 1;
-    border-top: 1px solid rgb(255 255 255 / .1)
+    border-top: 1px solid var(--color-white-10)
 }
 
 .contact-label {
@@ -27,7 +27,7 @@
     opacity: .4;
     margin-bottom: 0;
     padding: 1rem 0;
-    border-bottom: 1px solid rgb(255 255 255 / .051)
+    border-bottom: 1px solid var(--color-white-05)
 }
 
 .contact-nav a {
@@ -36,15 +36,15 @@
     align-items: center;
     font-family: var(--font-notch);
     font-size: clamp(2.2rem, 5vw, 4.5rem);
-    color: #ddd;
+    color: var(--color-text);
     text-decoration: none;
     padding: .4em .5em .4em 0;
-    border-bottom: 1px solid rgb(255 255 255 / .051);
+    border-bottom: 1px solid var(--color-white-05);
     transition: background-color 0.5s var(--cubic-slide), color 0.5s var(--cubic-slide), padding-left 0.5s var(--cubic-slide)
 }
 
 .contact-nav a:hover {
-    background-color: #ddd;
+    background-color: var(--color-text);
     color: var(--background);
     padding-left: 1rem;
     transition: padding-left 0.5s var(--cubic-slide)
@@ -78,12 +78,12 @@
     display: block;
     height: 1.3rem;
     overflow: hidden;
-    color: #ddd;
+    color: var(--color-text);
     text-decoration: none;
     font-family: "Poppins", sans-serif;
     font-size: 1rem;
     letter-spacing: .05em;
-    border-bottom: 1px solid rgb(255 255 255 / .051);
+    border-bottom: 1px solid var(--color-white-05);
     padding: .6em 0;
     height: auto
 }
@@ -105,7 +105,7 @@
     left: 0;
     top: 0;
     transform: translateY(100%);
-    color: rgb(255 255 255 / .5)
+    color: var(--color-white-50)
 }
 
 .contact-links a:hover .link-text span:nth-child(1) {
@@ -117,7 +117,7 @@
 }
 
 .contact-meta {
-    color: rgb(255 255 255 / .5);
+    color: var(--color-white-50);
     font-size: .9rem;
     line-height: 1.8;
     font-family: "Google Sans Code", sans-serif;
@@ -141,7 +141,7 @@
 
 .contact-section {
     margin-top: -50vh;
-    background-color: #050505;
+    background-color: var(--color-void);
     position: relative;
     z-index: 0;
     min-height: 100vh
@@ -151,8 +151,8 @@
     font-family: var(--font-notch);
     font-size: clamp(5rem, 18vw, 16rem);
     font-weight: 700;
-    color: #fff0;
-    -webkit-text-stroke: 1px rgb(255 255 255 / .293);
+    color: var(--color-ghost-white);
+    -webkit-text-stroke: 1px var(--color-white-29);
     text-transform: lowercase;
     letter-spacing: -.03em;
     line-height: .85;
@@ -163,7 +163,7 @@
 }
 
 .contact-wordmark-wrapper:hover .contact-wordmark {
-    -webkit-text-stroke: 1px #fff
+    -webkit-text-stroke: 1px var(--color-white)
 }
 
 .contact-shifted-wrapper {
@@ -181,7 +181,7 @@
 .hover-scroll-arrow {
     display: inline-block;
     text-decoration: none;
-    color: #fff;
+    color: var(--color-white);
     overflow: hidden;
     vertical-align: bottom
 }

@@ -4,12 +4,11 @@
 * {
     margin: 0;
     padding: 0;
-    -webkit-tap-highlight-color: #fff0;
+    -webkit-tap-highlight-color: var(--color-ghost-white);
     box-sizing: border-box
 }
 
 :root {
-    --background: #222;
     --font-notch: "Stack Sans Notch", sans-serif;
     --cubic-reveal: cubic-bezier(.22, 1, .36, 1);
     --cubic-slide: cubic-bezier(0.2, 0.8, 0.2, 1)
@@ -25,17 +24,17 @@ html {
 }
 
 ::-webkit-scrollbar-thumb {
-    background: #fff0;
+    background: var(--color-ghost-white);
     border-radius: 10px
 }
 
 ::-webkit-scrollbar-track {
-    background: #fff0
+    background: var(--color-ghost-white)
 }
 
 ::selection {
-    background-color: #ddd;
-    color: #222;
+    background-color: var(--color-text);
+    color: var(--background);
 }
 
 @font-face {
@@ -89,7 +88,7 @@ html {
 body {
     background: var(--background);
     overflow-x: hidden;
-    color: #ddd;
+    color: var(--color-text);
     font-family: Poppins, sans-serif
 }
 

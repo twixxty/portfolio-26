@@ -10,38 +10,38 @@
     .contact-links a:hover .link-text span:nth-child(1) {
         transform: none !important;
         padding-left: 0 !important;
-        background-color: transparent !important;
+        background-color: var(--color-transparent) !important;
         color: inherit !important;
-        -webkit-text-stroke: 1px rgb(255 255 255 / .293) !important;
+        -webkit-text-stroke: 1px var(--color-white-29) !important;
     }
 
     .menu-overlay-link:hover {
-        background-color: transparent !important;
+        background-color: var(--color-transparent) !important;
         color: inherit !important;
         padding: .3em .4em .3em 0 !important;       
     }
 
     .menu-overlay-link:active {
-        background-color: #ddd !important;
+        background-color: var(--color-text) !important;
         color: var(--background) !important;
         padding-left: 1rem !important;
     }
 
     .panel-close-btn:hover kbd {
-        background: #ccc;
-        color: #999;
-        border: 1px solid #ddd;
+        background: var(--color-grey-light);
+        color: var(--color-muted);
+        border: 1px solid var(--color-text);
     }
 
     .faq-trigger:hover,
     .archive-row:hover {
         background-color: var(--background);
-        color: #ddd;
+        color: var(--color-text);
     }
 
     .faq-trigger:hover .faq-title,
     .archive-row:hover .archive-title {
-        color: #ddd;
+        color: var(--color-text);
     }
 
     .top-nav-links a:hover span:nth-child(2),
@@ -50,14 +50,14 @@
     }
 
     .menu-overlay-link:active {
-        background-color: #ddd !important;
-        color: #111 !important;
+        background-color: var(--color-text) !important;
+        color: var(--color-nav-dark) !important;
         padding-left: 0.6em !important;
     }
 
     .faq-trigger:active,
     .faq-item.active .faq-trigger {
-        background-color: #ddd !important;
+        background-color: var(--color-text) !important;
         color: var(--background) !important;
     }
 
@@ -68,7 +68,7 @@
     }
 
     .archive-row:active {
-        background-color: #ddd !important;
+        background-color: var(--color-text) !important;
         color: var(--background) !important;
     }
 
@@ -78,7 +78,7 @@
     }
 
     .contact-nav a:active {
-        background-color: #ddd !important;
+        background-color: var(--color-text) !important;
         color: var(--background) !important;
         padding-left: 1rem !important;
     }
@@ -97,18 +97,18 @@
     }
 
     .panel-close-btn:active kbd {
-        color: #fff !important;
-        border-color: #444 !important;
-        background: #444 !important;
+        color: var(--color-white) !important;
+        border-color: var(--color-hover-grey) !important;
+        background: var(--color-hover-grey) !important;
     }
 
     .contact-wordmark-wrapper:active .contact-wordmark {
-        -webkit-text-stroke: 1px #ffffff !important;
+        -webkit-text-stroke: 1px var(--color-white) !important;
     }
 
     /* FAQ Button Touch Overrides */
     .faq-btn:hover {
-        background-color: #e4e4e3 !important;
+        background-color: var(--color-off-white) !important;
     }
 
     .faq-btn:hover .faq-btn-text span:nth-child(1) {
@@ -132,7 +132,7 @@
     }
 
     .faq-btn:active {
-        background-color: #cccccc !important;
+        background-color: var(--color-grey-light) !important;
     }
 
     .faq-btn:active .faq-btn-text span:nth-child(1) {
@@ -157,7 +157,7 @@
 
     /* Form Submit FAQ Button Overrides */
     .form-submit-btn.faq-btn:hover {
-        background-color: #1b1b1c !important;
+        background-color: var(--color-panel-darker) !important;
     }
 
     .form-submit-btn.faq-btn:hover .faq-btn-text span:nth-child(1) {
@@ -181,7 +181,7 @@
     }
     
     .form-submit-btn.faq-btn:active {
-        background-color: #333333 !important;
+        background-color: var(--color-grey-dark) !important;
     }
 
     .form-submit-btn.faq-btn:active .faq-btn-text span:nth-child(1) {
@@ -205,10 +205,10 @@
     }
 
     .contact-wordmark-wrapper:hover .contact-wordmark {
-        -webkit-text-stroke: 1px rgb(255 255 255 / .293);
+        -webkit-text-stroke: 1px var(--color-white-29);
     }
 
     .contact-wordmark-wrapper:active .contact-wordmark {
-        -webkit-text-stroke: 1px #fff;
+        -webkit-text-stroke: 1px var(--color-white);
     }
 }

@@ -14,7 +14,7 @@
 .hero-bg {
     position: absolute;
     inset: 0;
-    background: linear-gradient(rgb(0 0 0 / .45), rgb(0 0 0 / .45)), url(/images/background.avif) center/cover no-repeat;
+    background: linear-gradient(var(--color-black-45), var(--color-black-45)), url(/images/background.avif) center/cover no-repeat;
     transform: scale(1.2);
     opacity: 0;
     z-index: 1;
@@ -43,14 +43,14 @@
     height: 220px;
     z-index: 4;
     pointer-events: none;
-    background: linear-gradient(to bottom, transparent, var(--background))
+    background: linear-gradient(to bottom, var(--color-transparent), var(--background))
 }
 
 .hero-title {
     position: relative;
     z-index: 3;
     display: inline-block;
-    color: #BDBBBE;
+    color: var(--color-warm-grey);
     font-family: var(--font-notch);
     text-transform: lowercase;
     font-size: clamp(4rem, 10vw, 8rem);
@@ -82,7 +82,7 @@
     opacity: 0;
     z-index: 5;
     width: 200px;
-    color: rgb(255 255 255 / .7);
+    color: var(--color-white-70);
     font-family: var(--font-notch);
     font-size: .9rem;
     line-height: 1.4;
@@ -202,7 +202,7 @@
     display: block;
     height: 1.2em;
     overflow: hidden;
-    color: #b7b1b2;
+    color: var(--color-warm-grey-alt);
     text-decoration: none;
     font-family: var(--font-notch);
     font-size: 1rem;
@@ -238,7 +238,7 @@
     flex-direction: column;
     align-items: flex-end;
     gap: .1rem;
-    color: rgb(255 255 255 / .7);
+    color: var(--color-white-70);
     font-family: "Google Sans Code", sans-serif;
     font-size: .85rem;
     letter-spacing: .15rem

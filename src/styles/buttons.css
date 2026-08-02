@@ -5,7 +5,7 @@
     display: inline-flex;
     align-items: center;
     gap: 1rem;
-    background: #e4e4e3;
+    background: var(--color-off-white);
     color: var(--background);
     padding: .5rem .5rem .5rem 1rem;
     text-decoration: none;
@@ -18,7 +18,7 @@
 }
 
 .faq-btn:hover {
-    background-color: #ccc
+    background-color: var(--color-grey-light)
 }
 
 .faq-btn-text {
@@ -52,8 +52,8 @@
     position: relative;
     width: 32px;
     height: 32px;
-    background: #0a0a0a;
-    color: #ddd;
+    background: var(--color-near-black);
+    color: var(--color-text);
     border-radius: 4px;
     display: flex;
     align-items: center;

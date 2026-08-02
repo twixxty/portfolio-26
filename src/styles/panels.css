@@ -6,8 +6,8 @@
     right: 0;
     width: 550px;
     height: 100dvh;
-    background: #ddd;
-    border-left: 1px solid #141414;
+    background: var(--color-text);
+    border-left: 1px solid var(--color-panel-dark);
     z-index: 310;
     padding: 0 4rem 0;
     box-sizing: border-box;
@@ -25,7 +25,7 @@
 .panel-overlay {
     position: fixed;
     inset: 0;
-    background: rgb(0 0 0 / .7);
+    background: var(--color-black-70);
     z-index: 300;
     -webkit-backdrop-filter: blur(4px);
     backdrop-filter: blur(4px);
@@ -50,9 +50,9 @@
 }
 
 .panel-close-btn kbd {
-    background: #ccc;
-    color: #999;
-    border: 1px solid #ddd;
+    background: var(--color-grey-light);
+    color: var(--color-muted);
+    border: 1px solid var(--color-text);
     padding: .3rem .6rem;
     border-radius: 4px;
     font-family: "Google Sans Code", sans-serif;
@@ -62,8 +62,8 @@
 }
 
 .panel-close-btn:hover kbd {
-    color: #000;
-    border-color: #bbb
+    color: var(--color-black);
+    border-color: var(--color-grey-lighter)
 }
 
 .panel-content {
@@ -86,13 +86,13 @@
     font-family: var(--font-notch);
     font-size: 3rem;
     font-weight: 600;
-    color: #222;
+    color: var(--background);
     letter-spacing: -.02em
 }
 
 .panel-content p {
     font-family: "poppins", sans-serif;
-    color: #222;
+    color: var(--background);
     font-size: 1.2rem;
     line-height: 1.4
 }
@@ -157,8 +157,8 @@
     position: absolute;
     bottom: 0;
     left: 0;
-    background: #ddd;
-    color: #222;
+    background: var(--color-text);
+    color: var(--background);
     font-family: "Google sans code";
     padding: .4rem .8rem;
     letter-spacing: -.01em;
@@ -193,7 +193,7 @@
     font-weight: 700;
     letter-spacing: -.03em;
     margin-bottom: 2rem;
-    color: #222
+    color: var(--background)
 }
 
 .sidebar-form {
@@ -212,7 +212,7 @@
 .form-group label {
     font-family: "google sans code";
     font-size: .8rem;
-    color: #777; 
+    color: var(--color-grey-subtle); 
     text-transform: uppercase;
     letter-spacing: .1em
 }
@@ -221,9 +221,9 @@
 .form-group textarea {
     width: 100%;
     padding: 1rem;
-    background: #eee; 
-    border: 1px solid #ddd; 
-    color: #000; 
+    background: var(--color-off-white-alt3); 
+    border: 1px solid var(--color-text); 
+    color: var(--color-black); 
     font-family: inherit;
     font-size: .95rem;
     box-sizing: border-box;
@@ -233,23 +233,23 @@
 .form-group input:focus,
 .form-group textarea:focus {
     outline: none;
-    border-color: #aaa; 
-    background: #ebebeb 
+    border-color: var(--color-grey-lightest); 
+    background: var(--color-off-white-alt) 
 }
 
 .form-submit-btn.faq-btn {
     width: fit-content;
-    background: #1b1b1c;
-    color: #ddd
+    background: var(--color-panel-darker);
+    color: var(--color-text)
 }
 
 .form-submit-btn.faq-btn:hover {
-    background-color: #333
+    background-color: var(--color-grey-dark)
 }
 
 .form-submit-btn .faq-arrow-box {
-    background: #f5f5f5;
-    color: #222
+    background: var(--color-off-white-alt2);
+    color: var(--background)
 }
 
 .panel-banner-container {

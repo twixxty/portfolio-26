@@ -39,7 +39,7 @@
     justify-content: center;
     gap: 3rem;
     padding: 2rem 2rem 6rem 2rem;
-    background-color: #fff0
+    background-color: var(--color-ghost-white)
 }
 
 .pitch-statement {
@@ -51,7 +51,7 @@
     line-height: 1.2;
     letter-spacing: -.02em;
     max-width: 24ch;
-    color: #ddd;
+    color: var(--color-text);
     display: flex;
     flex-wrap: wrap;
     justify-content: center;
@@ -98,7 +98,7 @@
 }
 
 .reveal-container {
-    background-color: #050505;
+    background-color: var(--color-void);
     position: relative;
     width: 100%
 }
@@ -108,7 +108,7 @@
     top: 0;
     height: 180vh;
     z-index: 1;
-    background: #050505;
+    background: var(--color-void);
     will-change: transform
 }
 

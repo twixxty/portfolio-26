@@ -15,7 +15,7 @@
     opacity: 0;
     pointer-events: none;
     mix-blend-mode: normal;
-    color: #ddd;
+    color: var(--color-text);
     transition: opacity 0.5s ease, transform 0.5s ease;
     transform: translateY(-8px)
 }
@@ -37,7 +37,7 @@
     display: block;
     height: 1.2em;
     overflow: hidden;
-    color: #ddd;
+    color: var(--color-text);
     text-decoration: none;
     text-transform: uppercase;
     font-family: "Google Sans Code", sans-serif;
@@ -76,7 +76,7 @@
     align-items: center;
     background: none;
     border: none;
-    color: #ddd;
+    color: var(--color-text);
     font-family: "Google Sans Code", sans-serif;
     font-size: .85rem;
     letter-spacing: .15rem;
@@ -114,7 +114,7 @@
     position: fixed;
     inset: 0;
     z-index: 90;
-    background: rgb(0 0 0 / .7);
+    background: var(--color-black-70);
     -webkit-backdrop-filter: blur(4px);
     backdrop-filter: blur(2px);
     opacity: 0;
@@ -138,7 +138,7 @@
     -webkit-overflow-scrolling: touch;
     overscroll-behavior: contain;
     z-index: 95;
-    background: #111;
+    background: var(--color-nav-dark);
     display: flex;
     flex-direction: column;
     padding: 5rem 2rem 2rem;
@@ -160,7 +160,7 @@
     display: flex;
     flex-direction: column;
     gap: 0;
-    border-top: 1px solid rgb(255 255 255 / .08)
+    border-top: 1px solid var(--color-white-08)
 }
 
 .menu-overlay-link {
@@ -169,15 +169,15 @@
     align-items: center;
     font-family: var(--font-notch);
     font-size: clamp(1.5rem, 9vw, 2.75rem);
-    color: #ddd;
+    color: var(--color-text);
     text-decoration: none;
     padding: .3em .4em .3em 0;
-    border-bottom: 1px solid rgb(255 255 255 / .051);
+    border-bottom: 1px solid var(--color-white-05);
     transition: background-color 0.5s var(--cubic-slide), color 0.5s var(--cubic-slide), padding-left 0.5s var(--cubic-slide);
 }
 
 .menu-overlay-link:hover {
-    background-color: #ddd;
+    background-color: var(--color-text);
     color: var(--background);
     padding-left: 1rem;
     transition: padding-left 0.5s var(--cubic-slide);
