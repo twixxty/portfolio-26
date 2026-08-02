@@ -53,12 +53,6 @@ const optimizedHero = await getImage({
   width: 1920,
 });
 
-// Auto-generate an accent color palette from the hero background image at build time,
-// using the same swatch-extraction approach as Android's Palette API (what Material You
-// is built on) but without any Material 3 tonal-role system attached — just raw swatches
-// to use as CSS variables wherever you like: --palette-vibrant, --palette-dark-vibrant,
-// --palette-light-vibrant, --palette-muted, --palette-dark-muted, --palette-light-muted.
-// Re-runs automatically any time the hero image changes, no manual eyedropper needed.
 const heroImagePath = path.join(process.cwd(), 'src/assets/images/catzilla.jpg');
 const heroPalette = await Vibrant.from(heroImagePath).getPalette();
 
@@ -70,11 +64,6 @@ const paletteVars = Object.entries(heroPalette)
   })
   .join(';');
 
-// Re-hue the entire colors.css palette (every --background/--color-* variable) using
-// the wallpaper's dominant hue, keeping each variable's original lightness/alpha —
-// same idea as Material You dynamic color, applied to our own hand-built palette
-// instead of the MD3 tonal-role system. TINT_SATURATION controls how colorful the
-// re-hued UI reads; kept low since colors.css is meant to stay mostly neutral.
 const TINT_SATURATION = 15;
 const tintSourceHex =
   heroPalette.Vibrant?.hex ??
