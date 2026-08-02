@@ -1,5 +1,9 @@
 ---
 import { getImage } from 'astro:assets';
+import { Vibrant } from 'node-vibrant/node';
+import path from 'node:path';
+import fs from 'node:fs';
+import { generateTintedPalette, hexToHsl } from '../scripts/generate-tinted-palette.mjs';
 import heroBackgroundSrc from '../assets/images/catzilla.jpg';
 import colorsCss from '../styles/colors.css?url';
 import baseCss from '../styles/base.css?url';
@@ -48,9 +52,46 @@ const optimizedHero = await getImage({
   quality: 80,
   width: 1920,
 });
+
+// Auto-generate an accent color palette from the hero background image at build time,
+// using the same swatch-extraction approach as Android's Palette API (what Material You
+// is built on) but without any Material 3 tonal-role system attached — just raw swatches
+// to use as CSS variables wherever you like: --palette-vibrant, --palette-dark-vibrant,
+// --palette-light-vibrant, --palette-muted, --palette-dark-muted, --palette-light-muted.
+// Re-runs automatically any time the hero image changes, no manual eyedropper needed.
+const heroImagePath = path.join(process.cwd(), 'src/assets/images/catzilla.jpg');
+const heroPalette = await Vibrant.from(heroImagePath).getPalette();
+
+const paletteVars = Object.entries(heroPalette)
+  .filter(([, swatch]) => swatch)
+  .map(([name, swatch]) => {
+    const kebabName = name.replace(/([a-z])([A-Z])/g, '$1-$2').toLowerCase();
+    return `--palette-${kebabName}:${swatch.hex};--palette-${kebabName}-text:${swatch.bodyTextColor}`;
+  })
+  .join(';');
+
+// Re-hue the entire colors.css palette (every --background/--color-* variable) using
+// the wallpaper's dominant hue, keeping each variable's original lightness/alpha —
+// same idea as Material You dynamic color, applied to our own hand-built palette
+// instead of the MD3 tonal-role system. TINT_SATURATION controls how colorful the
+// re-hued UI reads; kept low since colors.css is meant to stay mostly neutral.
+const TINT_SATURATION = 15;
+const tintSourceHex =
+  heroPalette.Vibrant?.hex ??
+  heroPalette.DarkVibrant?.hex ??
+  heroPalette.Muted?.hex ??
+  heroPalette.DarkMuted?.hex ??
+  '#888888';
+const { h: tintHue } = hexToHsl(tintSourceHex);
+
+const colorsCssPath = path.join(process.cwd(), 'src/styles/colors.css');
+const colorsCssText = fs.readFileSync(colorsCssPath, 'utf8');
+const tintedPaletteVars = generateTintedPalette(colorsCssText, tintHue, TINT_SATURATION)
+  .replace(/^:root\{/, '')
+  .replace(/\}$/, '');
 ---
 <!doctype html>
-<html lang="en" style={`--hero-bg-image:url(${optimizedHero.src})`}>
+<html lang="en" style={`--hero-bg-image:url(${optimizedHero.src});${paletteVars};${tintedPaletteVars}`}>
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width,initial-scale=1" />
