@@ -4,7 +4,6 @@ import { Vibrant } from 'node-vibrant/node';
 import path from 'node:path';
 import fs from 'node:fs';
 import { generateTintedPalette, hexToHsl } from '../scripts/generate-tinted-palette.mjs';
-import heroBackgroundSrc from '../assets/images/landscape.jpg';
 import colorsCss from '../styles/colors.css?url';
 import baseCss from '../styles/base.css?url';
 import navCss from '../styles/nav.css?url';
@@ -44,6 +43,10 @@ const {
   description = "twixxty's portfolio. Just another web dev making resource-hungry sites that absolutely nobody asked for.",
 } = Astro.props;
 
+const HERO_IMAGE_FILENAME = 'landscape.jpg';
+const heroImages = import.meta.glob('../assets/images/*.{jpg,jpeg,png,avif}', { eager: true });
+const heroBackgroundSrc = heroImages[`../assets/images/${HERO_IMAGE_FILENAME}`].default;
+
 const optimizedHero = await getImage({
   src: heroBackgroundSrc,
   format: 'avif',
@@ -51,7 +54,7 @@ const optimizedHero = await getImage({
   width: 1920,
 });
 
-const heroImagePath = path.join(process.cwd(), 'src/assets/images/catzilla.jpg');
+const heroImagePath = path.join(process.cwd(), 'src/assets/images', HERO_IMAGE_FILENAME);
 const heroPalette = await Vibrant.from(heroImagePath).getPalette();
 
 const paletteVars = Object.entries(heroPalette)
