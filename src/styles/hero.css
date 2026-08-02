@@ -14,7 +14,7 @@
 .hero-bg {
     position: absolute;
     inset: 0;
-    background: linear-gradient(var(--color-black-45), var(--color-black-45)), url(/images/background.avif) center/cover no-repeat;
+    background: linear-gradient(var(--color-black-45), var(--color-black-45)), var(--hero-bg-image) center/cover no-repeat;
     transform: scale(1.2);
     opacity: 0;
     z-index: 1;
