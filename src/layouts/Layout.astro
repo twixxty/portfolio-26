@@ -44,8 +44,6 @@ const {
   description = "twixxty's portfolio. Just another web dev making resource-hungry sites that absolutely nobody asked for.",
 } = Astro.props;
 
-// Hero background now lives in src/assets so Astro compresses/optimizes it automatically
-// at build time — no more manually re-compressing and dropping a file into public/images.
 const optimizedHero = await getImage({
   src: heroBackgroundSrc,
   format: 'avif',
