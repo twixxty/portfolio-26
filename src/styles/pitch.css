@@ -20,6 +20,15 @@
     filter: brightness(.35)
 }
 
+.pitch-tint {
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+    background: var(--palette-vibrant);
+    mix-blend-mode: color;
+    opacity: 0.45;
+}
+
 .pitch-container {
     position: relative;
     z-index: 2;
