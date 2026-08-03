@@ -133,6 +133,7 @@ function animateWords(container: HTMLElement, baseDelay = 0): void {
 }
 
 navTitle?.addEventListener("click", () => {
+  lenis.start();
   lenis.scrollTo(0, {
     duration: 0.5,
     easing: (t) => 1 - Math.pow(1 - t, 3),
@@ -684,6 +685,7 @@ document.addEventListener("DOMContentLoaded", () => {
       const target = href ? document.querySelector<HTMLElement>(href) : null;
       if (target) {
         e.preventDefault();
+        lenis.start();
         lenis.scrollTo(target, {
           duration: 1.2,
           easing: (t) => 1 - Math.pow(1 - t, 4),
