@@ -24,7 +24,8 @@ my personal portfolio. it has:
 - **content collections** — projects/faqs/testimonials live as json under `src/content/`
 - **typescript** — `src/scripts/main.ts` does all the animation/interaction wiring, no framework, no bundler config to fight
 - **lenis** — for smooth scrolling (and other stuff)
-- **css** — split into one file per section (nav, hero, projects, testimonials, faq, pitch, contact, panels, buttons, hover states) 
+- **node-vibrant** — pulls a hue/saturation from the hero wallpaper and re-hues `colors.css` into a matching palette (`src/scripts/generate-tinted-palette.mjs`), material-you style
+- **css** — split into one file per section (base, colors, big-text, nav, hero, projects, testimonials, faq, pitch, contact, panels, buttons, hover states) 
 
 ---
 
@@ -66,6 +67,7 @@ src/
     index.astro          # that's it.
   scripts/
     main.ts             # the beast, now in typescript
+    generate-tinted-palette.mjs  # re-hues colors.css from the hero wallpaper
   styles/               # one file per section instead of one giant blob
   assets/
     images/             # avif, imported so astro can optimize them
