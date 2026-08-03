@@ -27,7 +27,7 @@
     pointer-events: none;
     background: var(--palette-vibrant);
     mix-blend-mode: color;
-    opacity: 0.45;
+    opacity: 0.2;
 }
 
 .pitch-container {
