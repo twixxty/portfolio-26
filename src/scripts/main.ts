@@ -571,6 +571,18 @@ document.addEventListener("DOMContentLoaded", () => {
 
   if (!menuOverlay) return;
 
+  const pauseLenis = (): void => {
+    lenis.stop();
+  };
+
+  const resumeLenisIfAllClosed = (): void => {
+    const anyOpen =
+      menuOverlay.classList.contains("open") ||
+      aboutPanel?.classList.contains("open") ||
+      contactPanel?.classList.contains("open");
+    if (!anyOpen) lenis.start();
+  };
+
   let uiHistoryPushed = false;
   const pushUIHistory = (): void => {
     if (!uiHistoryPushed) {
@@ -586,9 +598,11 @@ document.addEventListener("DOMContentLoaded", () => {
     menuBtn?.setAttribute("aria-expanded", "false");
     document.body.classList.remove("menu-open", "mobile-nav-open");
     document.documentElement.style.setProperty("--page-shift-y", "0px");
+    resumeLenisIfAllClosed();
   };
 
   const openMobileMenu = (): void => {
+    pauseLenis();
     menuOverlay.classList.add("open");
     menuBackdrop?.classList.add("open");
     menuBtn?.classList.add("open");
@@ -621,6 +635,7 @@ document.addEventListener("DOMContentLoaded", () => {
     document.body.classList.remove("menu-open");
     clearTimeout(panelCloseTimeout);
     panelCloseTimeout = setTimeout(clearAboutPanelContent, 850);
+    resumeLenisIfAllClosed();
   };
 
   const closeContactPanel = (): void => {
@@ -630,6 +645,7 @@ document.addEventListener("DOMContentLoaded", () => {
       panelOverlay?.classList.remove("active");
     }
     document.body.classList.remove("menu-open");
+    resumeLenisIfAllClosed();
   };
 
   const requestCloseAllUI = (): void => {
@@ -699,6 +715,7 @@ document.addEventListener("DOMContentLoaded", () => {
   const openAboutPanel = (e?: Event): void => {
     e?.preventDefault();
     closeMobileMenu();
+    pauseLenis();
     document.documentElement.style.setProperty("--page-shift", "-80px");
     clearTimeout(panelCloseTimeout);
     const panelContent = aboutPanel?.querySelector<HTMLElement>(".panel-content");
@@ -744,6 +761,7 @@ document.addEventListener("DOMContentLoaded", () => {
   const openContactPanel = (e?: Event): void => {
     e?.preventDefault();
     closeMobileMenu();
+    pauseLenis();
     document.documentElement.style.setProperty("--page-shift", "-80px");
     contactPanel?.classList.add("open");
     panelOverlay?.classList.add("active");
