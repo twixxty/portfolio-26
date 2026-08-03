@@ -23,8 +23,8 @@
 
     .menu-overlay-link:active {
         background-color: var(--color-text) !important;
-        color: var(--background) !important;
-        padding-left: 1rem !important;
+        color: var(--color-nav-dark) !important;
+        padding-left: 0.6em !important;
     }
 
     .panel-close-btn:hover kbd {
@@ -47,12 +47,6 @@
     .top-nav-links a:hover span:nth-child(2),
     .contact-links a:hover .link-text span:nth-child(2) {
         transform: translateY(100%) !important;
-    }
-
-    .menu-overlay-link:active {
-        background-color: var(--color-text) !important;
-        color: var(--color-nav-dark) !important;
-        padding-left: 0.6em !important;
     }
 
     .faq-trigger:active,
@@ -106,7 +100,6 @@
         -webkit-text-stroke: 1px var(--color-white) !important;
     }
 
-    /* FAQ Button Touch Overrides */
     .faq-btn:hover {
         background-color: var(--color-off-white) !important;
     }
@@ -155,7 +148,6 @@
         transform: translate(0, 0) !important;
     }
 
-    /* Form Submit FAQ Button Overrides */
     .form-submit-btn.faq-btn:hover {
         background-color: var(--color-panel-darker) !important;
     }
