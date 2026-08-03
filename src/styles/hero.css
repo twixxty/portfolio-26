@@ -35,16 +35,6 @@
     animation: overlayFade 2s ease 0.8s forwards
 }
 
-.hero-tint {
-    position: absolute;
-    inset: 0;
-    z-index: 2;
-    pointer-events: none;
-    background: var(--palette-vibrant);
-    mix-blend-mode: color;
-    opacity: 0.5;
-}
-
 .hero-bottom-fade {
     position: absolute;
     left: 0;

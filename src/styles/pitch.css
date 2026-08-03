@@ -23,6 +23,7 @@
 .pitch-tint {
     position: absolute;
     inset: 0;
+    z-index: 2;
     pointer-events: none;
     background: var(--palette-vibrant);
     mix-blend-mode: color;
