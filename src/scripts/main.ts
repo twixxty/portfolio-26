@@ -114,6 +114,7 @@ let progressAnimationInterval: ReturnType<typeof setTimeout> | undefined;
 let isTransitioning = false;
 let triggered = false;
 let navFreezeActive = false;
+let closeAllUI: (() => void) | undefined;
 const triggerThreshold = Math.min(0.2 * window.innerHeight, 150);
 
 function splitText(el: HTMLElement | null | undefined): void {
@@ -133,6 +134,7 @@ function animateWords(container: HTMLElement, baseDelay = 0): void {
 }
 
 navTitle?.addEventListener("click", () => {
+  closeAllUI?.();
   lenis.start();
   lenis.scrollTo(0, {
     duration: 0.5,
@@ -664,6 +666,7 @@ document.addEventListener("DOMContentLoaded", () => {
       if (contactPanel?.classList.contains("open")) closeContactPanel();
     }
   };
+  closeAllUI = requestCloseAllUI;
 
   window.addEventListener("popstate", () => {
     uiHistoryPushed = false;
