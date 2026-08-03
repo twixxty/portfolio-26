@@ -179,7 +179,7 @@
 .menu-overlay-link:hover {
     background-color: var(--color-text);
     color: var(--background);
-    padding-left: 1rem;
+    padding: .3em .4em .3em 1rem;
     transition: padding-left 0.5s var(--cubic-slide);
 }
 
