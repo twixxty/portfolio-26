@@ -113,6 +113,7 @@ let testimonialTimeout: ReturnType<typeof setTimeout> | undefined;
 let progressAnimationInterval: ReturnType<typeof setTimeout> | undefined;
 let isTransitioning = false;
 let triggered = false;
+let navFreezeActive = false;
 const triggerThreshold = Math.min(0.2 * window.innerHeight, 150);
 
 function splitText(el: HTMLElement | null | undefined): void {
@@ -533,7 +534,9 @@ function raf(time: number): void {
   const pitchRect = pitchSection ? pitchSection.getBoundingClientRect() : null;
   const contactRect = contactSection ? contactSection.getBoundingClientRect() : null;
 
-  updateNavScroll(heroRect?.bottom, pitchRect, contactRect);
+  if (!navFreezeActive) {
+    updateNavScroll(heroRect?.bottom, pitchRect, contactRect);
+  }
   if (pitchNearViewport && pitchRect) updatePitchAndContact(pitchRect);
 
   requestAnimationFrame(raf);
@@ -573,6 +576,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
   const pauseLenis = (): void => {
     lenis.stop();
+    navFreezeActive = true;
   };
 
   const resumeLenisIfAllClosed = (): void => {
@@ -580,6 +584,7 @@ document.addEventListener("DOMContentLoaded", () => {
       menuOverlay.classList.contains("open") ||
       aboutPanel?.classList.contains("open") ||
       contactPanel?.classList.contains("open");
+    navFreezeActive = anyOpen;
     if (!anyOpen) lenis.start();
   };
 
