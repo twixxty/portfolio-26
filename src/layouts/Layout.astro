@@ -57,6 +57,14 @@ const optimizedHero = await getImage({
 const heroImagePath = path.join(process.cwd(), 'src/assets/images', HERO_IMAGE_FILENAME);
 const heroPalette = await Vibrant.from(heroImagePath).getPalette();
 
+console.log('[hero-debug]', {
+  filename: HERO_IMAGE_FILENAME,
+  path: heroImagePath,
+  size: fs.statSync(heroImagePath).size,
+  mtime: fs.statSync(heroImagePath).mtime,
+  vibrantHex: heroPalette.Vibrant?.hex,
+});
+
 const paletteVars = Object.entries(heroPalette)
   .filter(([, swatch]) => swatch)
   .map(([name, swatch]) => {
