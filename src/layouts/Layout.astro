@@ -57,14 +57,6 @@ const optimizedHero = await getImage({
 const heroImagePath = path.join(process.cwd(), 'src/assets/images', HERO_IMAGE_FILENAME);
 const heroPalette = await Vibrant.from(heroImagePath).getPalette();
 
-console.log('[hero-debug]', {
-  filename: HERO_IMAGE_FILENAME,
-  path: heroImagePath,
-  size: fs.statSync(heroImagePath).size,
-  mtime: fs.statSync(heroImagePath).mtime,
-  vibrantHex: heroPalette.Vibrant?.hex,
-});
-
 const paletteVars = Object.entries(heroPalette)
   .filter(([, swatch]) => swatch)
   .map(([name, swatch]) => {
@@ -73,14 +65,19 @@ const paletteVars = Object.entries(heroPalette)
   })
   .join(';');
 
-const TINT_SATURATION = 15;
+const MAX_TINT_SATURATION = 15;
 const tintSourceHex =
   heroPalette.Vibrant?.hex ??
   heroPalette.DarkVibrant?.hex ??
   heroPalette.Muted?.hex ??
   heroPalette.DarkMuted?.hex ??
   '#888888';
-const { h: tintHue } = hexToHsl(tintSourceHex);
+const { h: tintHue, s: tintSourceSaturation } = hexToHsl(tintSourceHex);
+// A near-grayscale photo still has *some* hue (RGB channels are never perfectly
+// equal), but it's noise, not signal — cap the applied saturation at whatever the
+// source actually had so a flat/gray image stays flat/gray instead of getting
+// tinted at full strength off an arbitrary, meaningless hue.
+const TINT_SATURATION = Math.min(MAX_TINT_SATURATION, tintSourceSaturation);
 
 const colorsCssPath = path.join(process.cwd(), 'src/styles/colors.css');
 const colorsCssText = fs.readFileSync(colorsCssPath, 'utf8');
