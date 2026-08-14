@@ -44,7 +44,7 @@ const {
 } = Astro.props;
 
 const HERO_IMAGE_FILENAME = 'rainbow.webp';
-const heroImages = import.meta.glob('../assets/images/*.{jpg,jpeg,png,avif}', { eager: true });
+const heroImages = import.meta.glob('../assets/images/*.{jpg,jpeg,png,avif,webp}', { eager: true });
 const heroBackgroundSrc = heroImages[`../assets/images/${HERO_IMAGE_FILENAME}`].default;
 
 const optimizedHero = await getImage({
