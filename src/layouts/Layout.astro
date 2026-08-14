@@ -43,7 +43,7 @@ const {
   description = "twixxty's portfolio. Just another web dev making resource-hungry sites that absolutely nobody asked for.",
 } = Astro.props;
 
-const HERO_IMAGE_FILENAME = 'city.jpg';
+const HERO_IMAGE_FILENAME = 'rainbow.webp';
 const heroImages = import.meta.glob('../assets/images/*.{jpg,jpeg,png,avif}', { eager: true });
 const heroBackgroundSrc = heroImages[`../assets/images/${HERO_IMAGE_FILENAME}`].default;
 
