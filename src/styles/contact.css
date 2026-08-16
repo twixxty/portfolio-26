@@ -47,7 +47,8 @@
 .contact-nav a:hover {
     background-color: var(--color-text);
     color: var(--background);
-    padding-left: 1rem
+    padding-left: 1rem;
+    transition: padding-left 0.5s var(--cubic-slide)
 }
 
 .contact-info {
