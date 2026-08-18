@@ -46,6 +46,7 @@ const pitchStatement = pitchSection?.querySelector<HTMLElement>(".pitch-statemen
 const pitchWords = document.querySelectorAll<HTMLElement>(".pitch-word-mask");
 
 const contactSection = document.querySelector<HTMLElement>(".contact-section");
+const faqSection = document.querySelector<HTMLElement>(".faq-section");
 
 const contentContainer = document.getElementById("testimonialContent");
 const indexEl = document.getElementById("testimonialIndex");
@@ -63,6 +64,12 @@ function getCardImage(card: Element): HTMLElement | null {
   const img = card.querySelector<HTMLElement>(".project-image");
   cardImageCache.set(card, img);
   return img;
+}
+
+function isInViewport(el: HTMLElement | null): boolean {
+  if (!el) return false;
+  const rect = el.getBoundingClientRect();
+  return rect.top < window.innerHeight && rect.bottom > 0;
 }
 
 function onScrollParallax(): void {
@@ -578,6 +585,9 @@ document.addEventListener("DOMContentLoaded", () => {
   if (!menuOverlay) return;
 
   const pauseLenis = (): void => {
+    if (isInViewport(pitchSection) || isInViewport(faqSection)) {
+      return;
+    }
     lenis.stop();
     navFreezeActive = true;
   };
