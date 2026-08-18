@@ -22,7 +22,7 @@
 }
 
 .faq-btn:active {
-    scale: .99;
+    scale: .975;
     transition: scale 0s
 }
 
