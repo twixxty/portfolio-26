@@ -174,14 +174,14 @@
     text-decoration: none;
     padding: .3em .4em .3em 0;
     border-bottom: 1px solid var(--color-white-05);
-    transition: background-color 0.5s var(--cubic-slide), color 0.5s var(--cubic-slide), padding-left 0.5s var(--cubic-slide);
+    transition: background-color 0.5s var(--cubic-slide), color 0.5s var(--cubic-slide), padding-left 0.5s var(--cubic-slide)
 }
 
 .menu-overlay-link:hover {
     background-color: var(--color-text);
     color: var(--background);
     padding-left: 1rem;
-    transition: padding-left 0.5s var(--cubic-slide);
+    transition: none
 }
 
 body.menu-open {
