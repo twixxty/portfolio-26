@@ -1,7 +1,3 @@
-/* Top nav bar (Nav.astro): logo, "Get in touch" CTA, and the hamburger menu button +
-   overlay dropdown. Header markup and behavior are now identical on mobile and desktop —
-   only the overlay's position/size and the page-shift-suppression below change per size. */
-
 .top-nav {
     position: fixed;
     top: 0;
@@ -169,7 +165,7 @@
     justify-content: space-between;
     align-items: center;
     font-family: var(--font-notch);
-    font-size: clamp(1.5rem, 9vw, 2.75rem);
+    font-size: clamp(1.4rem, 4vw, 1.9rem);
     color: var(--color-text);
     text-decoration: none;
     padding: .3em .4em .3em 0;
@@ -214,11 +210,6 @@ body.menu-open {
     .menu-overlay {
         padding: 4rem 1.5rem 1.5rem;
     }
-    
-    .menu-overlay-link {
-        font-size: clamp(1.25rem, 4vw, 2.5rem); 
-        padding: 0.4em 0.3em 0.4em 0;
-    }
 }
    
 @media (min-width: 769px) {
@@ -238,7 +229,6 @@ body.menu-open {
     }
 
     .menu-overlay-link {
-        font-size: 1.25rem;
         padding: .55em .2em;
     }
 }
@@ -246,9 +236,5 @@ body.menu-open {
 @media (min-width: 481px) and (max-width: 600px) {
     .menu-overlay {
         padding: 4.5rem 1.75rem 1.75rem;
-    }
-    .menu-overlay-link {
-        font-size: clamp(1.5rem, 5vw, 2.25rem);
-        padding: .4em .3em .4em 0;
     }
 }
