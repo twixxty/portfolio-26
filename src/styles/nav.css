@@ -130,7 +130,7 @@
     width: 100%;
     max-height: 100vh;
     max-height: 100dvh; 
-    overflow-y: auto;
+    overflow: auto;
     -webkit-overflow-scrolling: touch;
     overscroll-behavior: contain;
     z-index: 95;
@@ -165,7 +165,7 @@
     justify-content: space-between;
     align-items: center;
     font-family: var(--font-notch);
-    font-size: clamp(1.4rem, 4vw, 1.9rem);
+    font-size: clamp(1.75rem, 6vw, 2.25rem);
     color: var(--color-text);
     text-decoration: none;
     padding: .3em .4em .3em 0;
@@ -229,6 +229,7 @@ body.menu-open {
     }
 
     .menu-overlay-link {
+        font-size: 1.5rem;
         padding: .55em .2em;
     }
 }
