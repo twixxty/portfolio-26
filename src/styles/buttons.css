@@ -14,11 +14,16 @@
     font-weight: 500;
     border-radius: 4px;
     border: none;
-    transition: background-color 0.4s var(--cubic-slide)
+    transition: background-color 0.4s var(--cubic-slide), scale 0.2s var(--cubic-slide);
 }
 
 .faq-btn:hover {
     background-color: var(--color-grey-light)
+}
+
+.faq-btn:active {
+    scale: .95;
+    transition: scale 0s
 }
 
 .faq-btn-text {
