@@ -256,14 +256,12 @@
 .archive-row:hover {
     background-color: var(--color-text);
     color: var(--background);
-    transition: none;
-    padding-left: 0rem
+    transition: none
 }
 
 .archive-row:hover .archive-title {
     color: var(--background);
-    padding-left: 1rem;
-    transition: padding-left 0.5s var(--cubic-slide)
+    padding-left: 1rem
 }
 
 .archive-row:hover .archive-arrow {
