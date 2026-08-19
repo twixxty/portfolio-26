@@ -130,12 +130,9 @@
     text-transform: lowercase;
     letter-spacing: -.03em;
     line-height: .85;
-    padding: 4rem 1rem 0;
-    bottom: -25px;
-    left: 25px;
+    padding: 0 1rem 0;
     user-select: none;
     pointer-events: none;
-    transition: -webkit-text-stroke 0.3s ease
 }
 
 .contact-wordmark-wrapper:hover .contact-wordmark {
