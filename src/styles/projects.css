@@ -210,7 +210,7 @@
     .project-video {
     width: 70%;
     transform-origin: bottom center;
-    transform: translate(-50%, -50%) translateY(140%) perspective(800px) rotateX(75deg);
+    transform: translate(-50%, -50%) translateY(50%) perspective(800px) rotateX(75deg);
     }
 
 
