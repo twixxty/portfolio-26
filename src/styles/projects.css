@@ -58,8 +58,6 @@
     pointer-events: none;
 }
 
-
-
 .project-card:hover .project-image {
     filter: brightness(.45) saturate(0.25) blur(2px);
 }
@@ -145,8 +143,13 @@
         scale: 1.2
     }
     
+    .project-card:hover .project-image {
+        filter: brightness(1) saturate(1) blur(0);
+    }
+
     .project-card:hover .project-video {
-        width: 75%
+        transform: translate(-50%, -50%) translateY(50%) perspective(800px) rotateX(75deg);
+        opacity: 0;
     }
     
     .project-card.in-view .project-video {
@@ -207,13 +210,6 @@
         color: var(--color-white-65)
     }
 
-    .project-video {
-    width: 70%;
-    transform-origin: bottom center;
-    transform: translate(-50%, -50%) translateY(50%) perspective(800px) rotateX(75deg);
-    }
-
-
     .project-card:hover .project-video {
         width: 70%
     }
@@ -222,10 +218,6 @@
         width: 75%
     }
 
-    .project-card.in-view .project-video {
-        transform: translate(-50%, -50%) translateY(0) perspective(800px) rotateX(0deg) scale(1);
-        opacity: 1;
-    }
 }
 
 .archive-section {
