@@ -202,7 +202,7 @@ const baitSwitchObserver = new IntersectionObserver(
           return span;
         });
 
-        const revealDelay = isWokeDisabled ? 0 : 150 * words.length + 500;
+        const revealDelay = 150 * words.length + (isWokeDisabled ? 0 : 500);
         const popStagger = isWokeDisabled ? 0 : 120;
         const hideExtra = isWokeDisabled ? 0 : 100;
 
