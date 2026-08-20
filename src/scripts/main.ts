@@ -124,6 +124,27 @@ let navFreezeActive = false;
 let closeAllUI: (() => void) | undefined;
 const triggerThreshold = Math.min(0.2 * window.innerHeight, 150);
 
+const testimonialsSection = document.querySelector<HTMLElement>(".testimonials-section");
+let testimonialsCarouselStarted = false;
+
+function startTestimonialsCarousel(): void {
+  if (testimonialsCarouselStarted || !testimonialData.length) return;
+  testimonialsCarouselStarted = true;
+  displayTestimonial(currentTestimonialIndex);
+}
+
+const testimonialsStartObserver = new IntersectionObserver(
+  (entries, observer) => {
+    if (entries[0]?.isIntersecting) {
+      startTestimonialsCarousel();
+      observer.disconnect();
+    }
+  },
+  { threshold: 0.2 }
+);
+
+if (testimonialsSection) testimonialsStartObserver.observe(testimonialsSection);
+
 function splitText(el: HTMLElement | null | undefined): void {
   if (!el || el.dataset.splitDone) return;
   const parts = el.textContent?.match(/\S+|\s+/g) || [];
@@ -488,7 +509,7 @@ function renderNewContent(item: Testimonial): void {
   authorZone.className = "testimonial-author-zone";
   authorZone.innerHTML = `
     <div class="testimonial-author-inner">
-      <img src="${item.avatar}" alt="${item.name}" class="testimonial-avatar">
+      <img src="${item.avatar}" alt="${item.name}" class="testimonial-avatar" loading="lazy" decoding="async">
       <div class="testimonial-meta">
         <div class="testimonial-name">${item.name}</div>
         <div class="testimonial-company">${item.company}</div>
@@ -521,6 +542,7 @@ function renderNewContent(item: Testimonial): void {
 
 function navigateTestimonial(direction: 1 | -1): void {
   if (isTransitioning || !progressWrapper) return;
+  testimonialsCarouselStarted = true;
   clearTimeout(testimonialTimeout);
   clearTimeout(progressAnimationInterval);
 
@@ -690,7 +712,6 @@ document.addEventListener("DOMContentLoaded", () => {
   if (heroSubtext) heroObserver.observe(heroSubtext);
   if (baitSwitchText) baitSwitchObserver.observe(baitSwitchText);
   lockMaxContentHeight();
-  displayTestimonial(currentTestimonialIndex);
 
   document.querySelectorAll<HTMLAnchorElement>('a[href^="#"]').forEach((anchor) => {
     anchor.addEventListener("click", (e) => {
