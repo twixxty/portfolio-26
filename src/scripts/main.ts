@@ -186,7 +186,7 @@ const baitSwitchObserver = new IntersectionObserver(
       const words = target.querySelectorAll<HTMLElement>(".word");
 
       words.forEach((word, i) => {
-        setTimeout(() => word.classList.add("show"), isWokeDisabled ? 0 : 150 * i);
+        setTimeout(() => word.classList.add("show"), 150 * i);
       });
 
       if (fakeWord && realWord && revealWrapper) {
