@@ -509,7 +509,7 @@ function renderNewContent(item: Testimonial): void {
   authorZone.className = "testimonial-author-zone";
   authorZone.innerHTML = `
     <div class="testimonial-author-inner">
-      <img src="${item.avatar}" alt="${item.name}" class="testimonial-avatar" loading="lazy" decoding="async">
+      <img src="${item.avatar}" alt="${item.name}" class="testimonial-avatar">
       <div class="testimonial-meta">
         <div class="testimonial-name">${item.name}</div>
         <div class="testimonial-company">${item.company}</div>
@@ -910,7 +910,7 @@ if (heroOverlayVideo) {
         }
       }
     },
-    { threshold: 0.15 }
+    { threshold: 0 }
   );
   heroVideoObserver.observe(heroOverlayVideo);
 }
