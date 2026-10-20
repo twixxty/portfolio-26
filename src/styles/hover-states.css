@@ -202,5 +202,6 @@
 
     .contact-wordmark-wrapper:active .contact-wordmark {
         -webkit-text-stroke: 1px var(--color-white);
+        transition: -webkit-text-stroke 0s
     }
 }
