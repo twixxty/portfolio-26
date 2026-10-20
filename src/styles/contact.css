@@ -137,7 +137,8 @@
 }
 
 .contact-wordmark-wrapper:hover .contact-wordmark {
-    -webkit-text-stroke: 1px var(--color-white)
+    -webkit-text-stroke: 1px var(--color-white);
+    transition: -webkit-text-stroke 0
 }
 
 .contact-shifted-wrapper {
