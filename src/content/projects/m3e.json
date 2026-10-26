@@ -1,0 +1,13 @@
+{
+  "href": "https://github.com/twixxty/m3e-wallpaper-picker",
+  "image": "../../assets/images/dark.avif",
+  "imageAlt": "m3e-wallpaper-picker",
+  "video": "/videos/m3e.webm",
+  "index": "su",
+  "date": "10/26",
+  "title": "m3e wallpaper picker",
+  "desc": "a smooth wallpaper carousel for Quickshell",
+  "statNum": "9",
+  "statLabel": "images render at a time",
+  "order": 3
+}
